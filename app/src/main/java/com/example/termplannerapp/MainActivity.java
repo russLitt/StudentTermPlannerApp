@@ -2,6 +2,8 @@ package com.example.termplannerapp;
 
 import android.os.Bundle;
 
+import com.example.termplannerapp.model.TermEntity;
+import com.example.termplannerapp.utilities.SampleTermData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -10,11 +12,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.nio.BufferUnderflowException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
+
+    private List<TermEntity> termsData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        termsData.addAll(SampleTermData.getTerms());
+        for (TermEntity term :
+                termsData) {
+            Log.i("TermPlannerApp", term.toString());
+        }
     }
 
     private void initRecyclerView() {
