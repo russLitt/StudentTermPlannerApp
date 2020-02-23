@@ -1,7 +1,5 @@
 package com.example.termplannerapp.model;
 
-import androidx.room.Dao;
-
 import java.util.Date;
 
 public class TermEntity {

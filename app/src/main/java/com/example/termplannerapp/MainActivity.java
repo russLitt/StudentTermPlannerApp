@@ -3,6 +3,7 @@ package com.example.termplannerapp;
 import android.os.Bundle;
 
 import com.example.termplannerapp.model.TermEntity;
+import com.example.termplannerapp.ui.TermsAdapter;
 import com.example.termplannerapp.utilities.SampleTermData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
 
     private List<TermEntity> termsData = new ArrayList<>();
+    private TermsAdapter mTermsAdaper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
+
+        mTermsAdaper = new TermsAdapter(termsData, this);
+        mRecyclerView.setAdapter(mTermsAdaper);
     }
 
     @Override
