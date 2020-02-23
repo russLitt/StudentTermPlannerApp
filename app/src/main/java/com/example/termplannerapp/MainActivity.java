@@ -1,5 +1,6 @@
 package com.example.termplannerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.termplannerapp.model.TermEntity;
@@ -23,14 +24,21 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
+    @OnClick(R.id.fab)
+    void fabClickHandler() {
+        Intent intent = new Intent(this, EditTermActivity.class);
+        startActivity(intent);
+    }
+
     private List<TermEntity> termsData = new ArrayList<>();
-    private TermsAdapter mTermsAdaper;
+    private TermsAdapter mTermsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mTermsAdaper = new TermsAdapter(termsData, this);
-        mRecyclerView.setAdapter(mTermsAdaper);
+        mTermsAdapter = new TermsAdapter(termsData, this);
+        mRecyclerView.setAdapter(mTermsAdapter);
     }
 
     @Override
