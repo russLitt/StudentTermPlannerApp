@@ -6,9 +6,11 @@ import android.os.Bundle;
 import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.TermsAdapter;
 import com.example.termplannerapp.utilities.SampleTermData;
+import com.example.termplannerapp.viewmodel.MainViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<TermEntity> termsData = new ArrayList<>();
     private TermsAdapter mTermsAdapter;
+    private MainViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +48,18 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
+        initViewModel();
         initRecyclerView();
 
-        termsData.addAll(SampleTermData.getTerms());
+        termsData.addAll(mViewModel.mTerms);
         for (TermEntity term :
                 termsData) {
             Log.i("TermPlannerApp", term.toString());
         }
+    }
+
+    private void initViewModel() {
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
     }
 
     private void initRecyclerView() {
