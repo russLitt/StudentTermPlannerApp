@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Term Planner App</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_edit_term">EditTermActivity</string>
+    <string name="title_term_editor_activity">Edit Term Title</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

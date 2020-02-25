@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".EditTermActivity"
-            android:label="@string/title_activity_edit_term"
+            android:name=".TermEditorActivity"
+            android:label="@string/title_term_editor_activity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

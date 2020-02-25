@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab)
     void fabClickHandler() {
-        Intent intent = new Intent(this, EditTermActivity.class);
+        Intent intent = new Intent(this, TermEditorActivity.class);
         startActivity(intent);
     }
 
@@ -49,15 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         initRecyclerView();
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         termsData.addAll(SampleTermData.getTerms());
         for (TermEntity term :
