@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.TermsAdapter;
-import com.example.termplannerapp.utilities.SampleTermData;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -86,10 +85,15 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add_sample_data) {
+            addSampleData();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addSampleData() {
+        mViewModel.addSampleData();
     }
 }
