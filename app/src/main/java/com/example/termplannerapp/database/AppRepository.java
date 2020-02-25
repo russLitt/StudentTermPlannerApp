@@ -30,15 +30,23 @@ public class AppRepository {
     }
 
     public void addSampleData() {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mDb.termDao().insertAll(SampleTermData.getTerms());
-            }
-        });
+        executor.execute(() -> mDb.termDao().insertAll(SampleTermData.getTerms()));
     }
+
+//        (ABOVE) METHOD BEFORE USING LAMBDA EXPRESSION
+//        executor.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                mDb.termDao().insertAll(SampleTermData.getTerms());
+//            }
+//        });
+
 
     private LiveData<List<TermEntity>> getAllTerms() {
         return mDb.termDao().getAll();
+    }
+
+    public void deleteAllTerms() {
+        executor.execute(() -> mDb.termDao().deleteAll());
     }
 }

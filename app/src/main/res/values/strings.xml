@@ -92,4 +92,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="enter_term_title">Enter term title</string>
+    <string name="delete_all_terms">Delete all terms</string>
 </resources>
