@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.R;
-import com.example.termplannerapp.model.TermEntity;
+import com.example.termplannerapp.database.TermEntity;
 
 import java.util.List;
 

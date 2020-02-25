@@ -3,11 +3,9 @@ package com.example.termplannerapp;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.termplannerapp.model.TermEntity;
+import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.TermsAdapter;
 import com.example.termplannerapp.utilities.SampleTermData;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 

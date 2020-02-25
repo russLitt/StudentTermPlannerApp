@@ -1,6 +1,6 @@
 package com.example.termplannerapp.utilities;
 
-import com.example.termplannerapp.model.TermEntity;
+import com.example.termplannerapp.database.TermEntity;
 
 import java.util.ArrayList;
 import java.util.Calendar;

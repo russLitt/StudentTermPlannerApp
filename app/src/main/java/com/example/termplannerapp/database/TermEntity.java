@@ -1,4 +1,4 @@
-package com.example.termplannerapp.model;
+package com.example.termplannerapp.database;
 
 import androidx.room.Entity;
 import androidx.room.Ignore;
