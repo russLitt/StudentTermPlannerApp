@@ -1,13 +1,20 @@
 package com.example.termplannerapp.model;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.Date;
 
+@Entity(tableName = "terms")
 public class TermEntity {
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private Date date;
     private String termTitle;
 
     //for creating term and assigning values individually
+    @Ignore
     public TermEntity() {
     }
 
@@ -19,6 +26,7 @@ public class TermEntity {
     }
 
     //for creating new term and assigning id individually
+    @Ignore
     public TermEntity(Date date, String termTitle) {
         this.date = date;
         this.termTitle = termTitle;
