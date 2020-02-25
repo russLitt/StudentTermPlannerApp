@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import com.example.termplannerapp.database.AppRepository;
 import com.example.termplannerapp.database.TermEntity;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
 
-    public List<TermEntity> mTerms;
+    public LiveData<List<TermEntity>> mTerms;
     private AppRepository mRepository;
 
     public MainViewModel(@NonNull Application application) {

@@ -2,20 +2,19 @@ package com.example.termplannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.termplannerapp.database.TermEntity;
-import com.example.termplannerapp.ui.TermsAdapter;
-import com.example.termplannerapp.viewmodel.MainViewModel;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.example.termplannerapp.database.TermEntity;
+import com.example.termplannerapp.ui.TermsAdapter;
+import com.example.termplannerapp.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,27 +46,37 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
-        initViewModel();
         initRecyclerView();
-
-        termsData.addAll(mViewModel.mTerms);
-        for (TermEntity term :
-                termsData) {
-            Log.i("TermPlannerApp", term.toString());
-        }
+        initViewModel();
     }
 
     private void initViewModel() {
+
+        final Observer<List<TermEntity>> termsObserver = new Observer<List<TermEntity>>() {
+            @Override
+            public void onChanged(List<TermEntity> termEntities) {
+                termsData.clear();
+                termsData.addAll(termEntities);
+
+                if (mTermsAdapter == null) {
+                    mTermsAdapter = new TermsAdapter(termsData,
+                            MainActivity.this);
+                    mRecyclerView.setAdapter(mTermsAdapter);
+                } else {
+                    mTermsAdapter.notifyDataSetChanged();
+                }
+
+            }
+        };
+
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel.mTerms.observe(this, termsObserver);
     }
 
     private void initRecyclerView() {
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-
-        mTermsAdapter = new TermsAdapter(termsData, this);
-        mRecyclerView.setAdapter(mTermsAdapter);
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.example.termplannerapp.database;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.termplannerapp.utilities.SampleTermData;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.concurrent.Executors;
 public class AppRepository {
     private static AppRepository ourInstance;
 
-    public List<TermEntity> mTerms;
+    public LiveData<List<TermEntity>> mTerms;
     private AppDatabase mDb;
     private Executor executor = Executors.newSingleThreadExecutor();
 
@@ -23,8 +25,8 @@ public class AppRepository {
     }
 
     private AppRepository(Context context) {
-        mTerms = SampleTermData.getTerms();
         mDb = AppDatabase.getInstance(context);
+        mTerms = getAllTerms();
     }
 
     public void addSampleData() {
@@ -34,5 +36,9 @@ public class AppRepository {
                 mDb.termDao().insertAll(SampleTermData.getTerms());
             }
         });
+    }
+
+    private LiveData<List<TermEntity>> getAllTerms() {
+        return mDb.termDao().getAll();
     }
 }
