@@ -2,15 +2,28 @@ package com.example.termplannerapp;
 
 import android.os.Bundle;
 
+import com.example.termplannerapp.database.TermEntity;
+import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class TermEditorActivity extends AppCompatActivity {
+
+    @BindView(R.id.term_text)
+    TextView mTextView;
+
+    private TermEditorViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,5 +41,19 @@ public class TermEditorActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ButterKnife.bind(this);
+        
+        initViewModel();
+    }
+
+    private void initViewModel() {
+        mViewModel = new ViewModelProvider(this).get(TermEditorViewModel.class);
+        mViewModel.mLiveTerms.observe(this, new Observer<TermEntity>() {
+            @Override
+            public void onChanged(TermEntity termEntity) {
+                mTextView.setText(termEntity.getTermTitle());
+            }
+        });
     }
 }
