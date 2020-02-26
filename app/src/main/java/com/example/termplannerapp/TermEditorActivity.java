@@ -1,6 +1,8 @@
 package com.example.termplannerapp;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -61,10 +63,22 @@ public class TermEditorActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (!mNewTerm) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_term_editor, menu);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             saveAndReturn();
             return true;
+        } else if(item.getItemId() == R.id.action_delete_term) {
+            mViewModel.deleteTerm();
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
