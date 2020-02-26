@@ -32,4 +32,15 @@ public class TermEditorViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void saveNote(String termText) {
+        TermEntity term = mLiveTerms.getValue();
+
+        if (term == null) {
+
+        } else {
+            term.setTermTitle(termText);
+        }
+        mRepository.insertTerm(term);
+    }
 }

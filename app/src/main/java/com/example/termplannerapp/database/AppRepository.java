@@ -53,4 +53,13 @@ public class AppRepository {
     public TermEntity getTermById(int termId) {
         return mDb.termDao().getTermById(termId);
     }
+
+    public void insertTerm(TermEntity term) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.termDao().insertTerm(term);
+            }
+        });
+    }
 }

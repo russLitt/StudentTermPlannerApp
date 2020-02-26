@@ -7,9 +7,11 @@ import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -34,15 +36,7 @@ public class TermEditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_term_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_check);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
@@ -68,4 +62,24 @@ public class TermEditorActivity extends AppCompatActivity {
             mViewModel.loadData(termId);
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            saveAndReturn();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        saveAndReturn();
+    }
+
+    private void saveAndReturn() {
+        mViewModel.saveNote(mTextView.getText().toString());
+        finish();
+    }
 }
+
