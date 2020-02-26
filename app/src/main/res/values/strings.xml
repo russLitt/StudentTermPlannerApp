@@ -93,4 +93,6 @@
     </string>
     <string name="enter_term_title">Enter term title</string>
     <string name="delete_all_terms">Delete all terms</string>
+    <string name="new_term">New term</string>
+    <string name="edit_term">Edit term</string>
 </resources>

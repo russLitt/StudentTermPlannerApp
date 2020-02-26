@@ -1,14 +1,7 @@
 package com.example.termplannerapp;
 
 import android.os.Bundle;
-
-import com.example.termplannerapp.database.TermEntity;
-import com.example.termplannerapp.viewmodel.TermEditorViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.termplannerapp.database.TermEntity;
+import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +36,7 @@ public class TermEditorActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
-        
+
         initViewModel();
     }
 
@@ -52,12 +48,13 @@ public class TermEditorActivity extends AppCompatActivity {
                 mTextView.setText(termEntity.getTermTitle());
             }
         });
+
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
-            setTitle("New term");
+            setTitle(getString(R.string.new_term));
             mNewTerm = true;
         } else {
-            setTitle("Edit term");
+            setTitle(getString(R.string.edit_term));
             int termId = extras.getInt(TERM_ID_KEY);
             mViewModel.loadData(termId);
         }
