@@ -18,12 +18,15 @@ import androidx.lifecycle.ViewModelProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
+
 public class TermEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.term_text)
     TextView mTextView;
 
     private TermEditorViewModel mViewModel;
+    private boolean mNewTerm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +58,14 @@ public class TermEditorActivity extends AppCompatActivity {
                 mTextView.setText(termEntity.getTermTitle());
             }
         });
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            setTitle("New term");
+            mNewTerm = true;
+        } else {
+            setTitle("Edit term");
+            int termId = extras.getInt(TERM_ID_KEY);
+            mViewModel.loadData(termId);
+        }
     }
 }

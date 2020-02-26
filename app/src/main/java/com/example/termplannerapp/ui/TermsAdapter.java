@@ -1,6 +1,7 @@
 package com.example.termplannerapp.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.R;
+import com.example.termplannerapp.TermEditorActivity;
 import com.example.termplannerapp.database.TermEntity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> {
 
@@ -40,6 +45,15 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final TermEntity term = mTerms.get(position);
         holder.mTextView.setText(term.getTermTitle());
+
+        holder.mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, TermEditorActivity.class);
+                intent.putExtra(TERM_ID_KEY, term.getId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -50,6 +64,8 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.term_text) //
         TextView mTextView;
+        @BindView(R.id.fab)
+        FloatingActionButton mFab;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

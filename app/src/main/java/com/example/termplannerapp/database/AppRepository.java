@@ -49,4 +49,8 @@ public class AppRepository {
     public void deleteAllTerms() {
         executor.execute(() -> mDb.termDao().deleteAll());
     }
+
+    public TermEntity getTermById(int termId) {
+        return mDb.termDao().getTermById(termId);
+    }
 }
