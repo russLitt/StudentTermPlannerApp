@@ -13,11 +13,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.termplannerapp.database.TermEntity;
+import com.example.termplannerapp.utilities.Constants;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermEditorActivity extends AppCompatActivity {
@@ -26,7 +28,7 @@ public class TermEditorActivity extends AppCompatActivity {
     TextView mTextView;
 
     private TermEditorViewModel mViewModel;
-    private boolean mNewTerm;
+    private boolean mNewTerm, mEditing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +41,17 @@ public class TermEditorActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        if (savedInstanceState != null) {
+            mEditing = savedInstanceState.getBoolean(EDITING_TERM_KEY);
+        }
+
         initViewModel();
     }
 
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(TermEditorViewModel.class);
-        mViewModel.mLiveTerms.observe(this, new Observer<TermEntity>() {
-            @Override
-            public void onChanged(TermEntity termEntity) {
+        mViewModel.mLiveTerms.observe(this, (termEntity) -> {
+            if (termEntity != null && !mEditing) {
                 mTextView.setText(termEntity.getTermTitle());
             }
         });
@@ -91,6 +96,12 @@ public class TermEditorActivity extends AppCompatActivity {
     private void saveAndReturn() {
         mViewModel.saveNote(mTextView.getText().toString());
         finish();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putBoolean(EDITING_TERM_KEY, true);
+        super.onSaveInstanceState(outState);
     }
 }
 
