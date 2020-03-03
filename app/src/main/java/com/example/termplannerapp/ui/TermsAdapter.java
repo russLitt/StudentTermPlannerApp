@@ -45,6 +45,8 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final TermEntity term = mTerms.get(position);
         holder.mTextView.setText(term.getTermTitle());
+//        holder.mTextView.setText(term.getTermStartDate());
+//        holder.mTextView.setText(term.getTermEndDate());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override

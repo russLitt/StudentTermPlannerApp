@@ -79,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        DividerItemDecoration divdider = new DividerItemDecoration(mRecyclerView.getContext(),
+        DividerItemDecoration divider = new DividerItemDecoration(mRecyclerView.getContext(),
                 layoutManager.getOrientation());
-        mRecyclerView.addItemDecoration(divdider);
+        mRecyclerView.addItemDecoration(divider);
     }
 
     @Override

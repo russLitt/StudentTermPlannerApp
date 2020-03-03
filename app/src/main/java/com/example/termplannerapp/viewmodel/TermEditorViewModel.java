@@ -35,16 +35,18 @@ public class TermEditorViewModel extends AndroidViewModel {
         });
     }
 
-    public void saveNote(String termText) {
+    public void saveTerm(String termText, String termStart, String termEnd) {
         TermEntity term = mLiveTerms.getValue();
 
         if (term == null) {
             if (TextUtils.isEmpty(termText.trim())) {
                 return;
             }
-            term = new TermEntity(new Date(), termText.trim());
+            term = new TermEntity(new Date(), termText.trim(), termStart.trim(), termEnd.trim());
         } else {
-            term.setTermTitle(termText);
+            term.setTermTitle(termText.trim());
+            term.setTermStartDate(termStart.trim());
+            term.setTermEndDate(termEnd.trim());
         }
         mRepository.insertTerm(term);
     }

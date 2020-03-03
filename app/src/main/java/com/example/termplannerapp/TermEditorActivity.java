@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,12 @@ public class TermEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.term_text)
     TextView mTextView;
+
+    @BindView(R.id.term_start_date)
+    EditText mTermStartDate;
+
+    @BindView(R.id.term_end_date)
+    EditText mTermEndDate;
 
     private TermEditorViewModel mViewModel;
     private boolean mNewTerm, mEditing;
@@ -53,6 +60,8 @@ public class TermEditorActivity extends AppCompatActivity {
         mViewModel.mLiveTerms.observe(this, (termEntity) -> {
             if (termEntity != null && !mEditing) {
                 mTextView.setText(termEntity.getTermTitle());
+                mTermStartDate.setText(termEntity.getTermStartDate());
+                mTermEndDate.setText(termEntity.getTermEndDate());
             }
         });
 
@@ -94,7 +103,8 @@ public class TermEditorActivity extends AppCompatActivity {
     }
 
     private void saveAndReturn() {
-        mViewModel.saveNote(mTextView.getText().toString());
+        mViewModel.saveTerm(mTextView.getText().toString(), mTermStartDate.getText().toString(),
+                mTermEndDate.getText().toString());
         finish();
     }
 

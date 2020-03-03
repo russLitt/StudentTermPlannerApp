@@ -11,7 +11,7 @@ public class TermEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private Date date;
-    private String termTitle;
+    private String termTitle, termStartDate, termEndDate;
 
     //for creating term and assigning values individually
     @Ignore
@@ -19,17 +19,21 @@ public class TermEntity {
     }
 
     //for editing an existing term
-    public TermEntity(int id, Date date, String termTitle) {
+    public TermEntity(int id, Date date, String termTitle, String termStartDate, String termEndDate) {
         this.id = id;
         this.date = date;
         this.termTitle = termTitle;
+        this.termStartDate = termStartDate;
+        this.termEndDate = termEndDate;
     }
 
     //for creating new term and assigning id individually
     @Ignore
-    public TermEntity(Date date, String termTitle) {
+    public TermEntity(Date date, String termTitle, String termStartDate, String termEndDate) {
         this.date = date;
         this.termTitle = termTitle;
+        this.termStartDate = termStartDate;
+        this.termEndDate = termEndDate;
     }
 
     public int getId() {
@@ -54,6 +58,22 @@ public class TermEntity {
 
     public void setTermTitle(String termTitle) {
         this.termTitle = termTitle;
+    }
+
+    public String getTermStartDate() {
+        return termStartDate;
+    }
+
+    public void setTermStartDate(String termStartDate) {
+        this.termStartDate = termStartDate;
+    }
+
+    public String getTermEndDate() {
+        return termEndDate;
+    }
+
+    public void setTermEndDate(String termEndDate) {
+        this.termEndDate = termEndDate;
     }
 
     //for debugging
