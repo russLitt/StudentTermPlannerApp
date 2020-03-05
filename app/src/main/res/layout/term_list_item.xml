@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="100dp">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:backgroundTint="@color/colorPrimary"
         android:layout_marginStart="@dimen/list_fab_margin"
         android:layout_marginLeft="@dimen/list_fab_margin"
         android:layout_marginTop="@dimen/list_fab_margin"
         android:layout_marginBottom="@dimen/list_fab_margin"
+        app:backgroundTint="@color/colorPrimary"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,39 +22,40 @@
 
     <TextView
         android:id="@+id/term_text"
-        android:layout_width="351dp"
-        android:layout_height="63dp"
+        android:layout_width="320dp"
+        android:layout_height="26dp"
         android:layout_margin="12dp"
-        android:ellipsize="end"
-        android:maxLines="2"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:text="TextView"
         android:textColor="@color/term_text_color"
         android:textSize="@dimen/term_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/fab"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/term_start"
-        android:layout_width="82dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="84dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginTop="44dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/term_text"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/term_text" />
 
     <TextView
         android:id="@+id/term_end"
-        android:layout_width="103dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="84dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="44dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/term_start"
         app:layout_constraintTop_toTopOf="@+id/term_text" />
