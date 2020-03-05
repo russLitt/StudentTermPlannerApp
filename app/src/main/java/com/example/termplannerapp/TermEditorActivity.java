@@ -1,5 +1,6 @@
 package com.example.termplannerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,11 +22,18 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermEditorActivity extends AppCompatActivity {
+
+    @OnClick(R.id.fab_add_class)
+    void fabClickHandler() {
+        Intent intent = new Intent(this, CourseEditorActivity.class);
+        startActivity(intent);
+    }
 
     @BindView(R.id.term_text)
     TextView mTextView;

@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".CourseEditorActivity"
+            android:label="@string/title_activity_course_editor"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".TermEditorActivity"
             android:label="@string/title_term_editor_activity"
             android:parentActivityName=".MainActivity"

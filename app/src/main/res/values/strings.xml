@@ -96,4 +96,6 @@
     <string name="new_term">New term</string>
     <string name="edit_term">Edit term</string>
     <string name="delete_term">Delete</string>
+    <string name="title_activity_course_editor">CourseEditorActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>
