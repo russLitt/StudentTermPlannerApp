@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,8 +46,8 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final TermEntity term = mTerms.get(position);
         holder.mTextView.setText(term.getTermTitle());
-//        holder.mTextView.setText(term.getTermStartDate());
-//        holder.mTextView.setText(term.getTermEndDate());
+        holder.mStartDate.setText(term.getTermStartDate());
+        holder.mEndDate.setText(term.getTermEndDate());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +67,10 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.term_text) //
         TextView mTextView;
+        @BindView(R.id.term_start)
+        TextView mStartDate;
+        @BindView(R.id.term_end)
+        TextView mEndDate;
         @BindView(R.id.fab)
         FloatingActionButton mFab;
 

@@ -17,6 +17,8 @@ import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.utilities.Constants;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -43,7 +45,7 @@ public class TermEditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_term_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_check);
+        Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_check);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
@@ -90,7 +92,7 @@ public class TermEditorActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             saveAndReturn();
             return true;
-        } else if(item.getItemId() == R.id.action_delete_term) {
+        } else if (item.getItemId() == R.id.action_delete_term) {
             mViewModel.deleteTerm();
             finish();
         }
@@ -103,7 +105,8 @@ public class TermEditorActivity extends AppCompatActivity {
     }
 
     private void saveAndReturn() {
-        mViewModel.saveTerm(mTextView.getText().toString(), mTermStartDate.getText().toString(),
+        mViewModel.saveTerm(mTextView.getText().toString(),
+                mTermStartDate.getText().toString(),
                 mTermEndDate.getText().toString());
         finish();
     }
