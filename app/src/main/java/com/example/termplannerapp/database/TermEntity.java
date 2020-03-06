@@ -6,6 +6,8 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "terms")
 public class TermEntity {
     @PrimaryKey(autoGenerate = true)
