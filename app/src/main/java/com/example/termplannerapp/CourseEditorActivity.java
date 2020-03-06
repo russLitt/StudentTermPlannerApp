@@ -11,9 +11,23 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CourseEditorActivity extends AppCompatActivity {
+
+    //used to test for now, will change class target later when its created
+    @OnClick(R.id.add_mentor_btn)
+    void addMentorBtnHandler() {
+        Intent intent = new Intent(this, TermEditorActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.add_assessment_btn)
+    void addAssessmentBtnHandler() {
+        Intent intent = new Intent(this, TermEditorActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +35,8 @@ public class CourseEditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course_editor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ButterKnife.bind(this);
 
     }
 }
