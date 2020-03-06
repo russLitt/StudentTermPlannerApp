@@ -13,108 +13,109 @@
         android:layout_width="375dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
-        android:hint="Enter course title"
+        android:hint="@string/enter_course_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/course_start_date"
         android:layout_width="160dp"
         android:layout_height="42dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Course start date"
+        android:hint="@string/course_start_date"
         android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_title" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/course_end_date"
         android:layout_width="160dp"
         android:layout_height="42dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Course end date"
+        android:hint="@string/course_end_date"
         android:inputType="date"
-        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/course_start_date"
         app:layout_constraintTop_toBottomOf="@+id/course_title" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup2"
-        android:layout_width="298dp"
-        android:layout_height="137dp"
-        android:layout_marginTop="184dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="In progress" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Completed" />
-
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dropped" />
-
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Plan to take" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="154dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:text="Add Mentor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
-        app:layout_constraintVertical_bias="0.174" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="154dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="Add Assessment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
-        app:layout_constraintVertical_bias="0.171" />
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/course_status_label"
         android:layout_width="66dp"
         android:layout_height="27dp"
         android:layout_marginTop="92dp"
-        android:text="Status"
-        android:textSize="18dp"
+        android:text="@string/course_status"
+        android:textSize="@dimen/term_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/course_status_rb_group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_title" />
+
+    <RadioGroup
+        android:id="@+id/course_status_rb_group"
+        android:layout_width="298dp"
+        android:layout_height="137dp"
+        android:layout_marginTop="192dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.424"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_in_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/in_progress" />
+
+        <RadioButton
+            android:id="@+id/rb_completed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/completed" />
+
+        <RadioButton
+            android:id="@+id/rb_dropped"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dropped" />
+
+        <RadioButton
+            android:id="@+id/rb_plan_to_take"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/plan_to_take" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/add_mentor_btn"
+        android:layout_width="154dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:text="@string/add_mentor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_status_rb_group"
+        app:layout_constraintVertical_bias="0.205" />
+
+    <Button
+        android:id="@+id/add_assessment_btn"
+        android:layout_width="154dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:text="@string/add_assessment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_mentor_btn"
+        app:layout_constraintTop_toBottomOf="@+id/course_status_rb_group"
+        app:layout_constraintVertical_bias="0.205" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
