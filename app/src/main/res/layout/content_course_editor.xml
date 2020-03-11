@@ -72,24 +72,32 @@
             android:id="@+id/rb_in_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="onRbClicked"
             android:text="@string/in_progress" />
 
         <RadioButton
             android:id="@+id/rb_completed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="false"
+            android:onClick="onRbClicked"
             android:text="@string/completed" />
 
         <RadioButton
             android:id="@+id/rb_dropped"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="false"
+            android:onClick="onRbClicked"
             android:text="@string/dropped" />
 
         <RadioButton
             android:id="@+id/rb_plan_to_take"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="false"
+            android:onClick="onRbClicked"
             android:text="@string/plan_to_take" />
     </RadioGroup>
 
