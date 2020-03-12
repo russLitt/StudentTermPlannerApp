@@ -26,6 +26,7 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     private CourseEditorViewModel mViewModel;
     private Boolean mNewCourse, mEditingCourse;
+    private String status = "";
 
     @BindView(R.id.course_title)
     TextView mCourseTitle;
@@ -38,6 +39,18 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.course_status_rb_group)
     RadioGroup mCourseStatus;
+
+    @BindView(R.id.rb_completed)
+    RadioButton mCompleted;
+
+    @BindView(R.id.rb_in_progress)
+    RadioButton mInProgress;
+
+    @BindView(R.id.rb_dropped)
+    RadioButton mDropped;
+
+    @BindView(R.id.rb_plan_to_take)
+    RadioButton mPlanToTake;
 
     //used to test for now, will change class target later when its created
     @OnClick(R.id.add_mentor_btn)
@@ -69,30 +82,39 @@ public class CourseEditorActivity extends AppCompatActivity {
             mCourseTitle.setText(CourseEntity.getCourseTitle());
             mCourseStartDate.setText(CourseEntity.getCourseStartDate());
             mCourseEndDate.setText(CourseEntity.getCourseEndDate());
-            //mCourseStatus.(CourseEntity.getStatus());
         });
     }
 
     public void onRbClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
 
-        switch(view.getId()) {
-            case R.id.rb_in_progress:
-                if (checked)
-                    this.mCourseStatus.toString();
-                    break;
-            case  R.id.rb_completed:
-                if (checked)
-                    //
-                    break;
-            case R.id.rb_dropped:
-                if (checked)
-                    //
-                    break;
-            case R.id.rb_plan_to_take:
-                if (checked)
-                    //
-                    break;
-        }
+        int selectedStatus = mCourseStatus.getCheckedRadioButtonId();
+
+        RadioButton radioButton = findViewById(selectedStatus);
+
+        String status = radioButton.getText().toString();
+
+        int result = Integer.parseInt(status);
+
+
+        //boolean checked = ((RadioButton) view).isChecked();
+
+//        switch(view.getId()) {
+//            case R.id.rb_in_progress:
+//                if (checked)
+//                    status = "in progress";
+//                    break;
+//            case  R.id.rb_completed:
+//                if (checked)
+//                    status = "completed";
+//                    break;
+//            case R.id.rb_dropped:
+//                if (checked)
+//                    status = "dropped";
+//                    break;
+//            case R.id.rb_plan_to_take:
+//                if (checked)
+//                    status = "plan to take";
+//                    break;
+//        }
     }
 }
