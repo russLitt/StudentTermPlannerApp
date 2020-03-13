@@ -2,7 +2,6 @@ package com.example.termplannerapp.viewmodel;
 
 import android.app.Application;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,8 +13,6 @@ import com.example.termplannerapp.database.TermEntity;
 import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
-import static android.content.ContentValues.TAG;
 
 public class TermEditorViewModel extends AndroidViewModel {
 
@@ -45,11 +42,6 @@ public class TermEditorViewModel extends AndroidViewModel {
             if (TextUtils.isEmpty(termText.trim())) {
                 return;
             }
-//            } else if (termStart != null && termEnd == null) {
-//                Toast.makeText(this,"enter end date", Toast.LENGTH_SHORT).show();
-//                Log.i(TAG, "saveTerm: got to this method");
-//                return;
-//            }
             term = new TermEntity(new Date(), termText.trim(), termStart.trim(), termEnd.trim());
         } else {
             term.setTermTitle(termText.trim());

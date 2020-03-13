@@ -10,7 +10,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.termplannerapp.database.AppRepository;
 import com.example.termplannerapp.database.CourseEntity;
 
-import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
