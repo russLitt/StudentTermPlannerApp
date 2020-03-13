@@ -14,6 +14,7 @@ public class AppRepository {
     private static AppRepository ourInstance;
 
     public LiveData<List<TermEntity>> mTerms;
+    public LiveData<List<CourseEntity>> mCourses;
     private AppDatabase mDb;
     private Executor executor = Executors.newSingleThreadExecutor();
 
@@ -27,6 +28,7 @@ public class AppRepository {
     private AppRepository(Context context) {
         mDb = AppDatabase.getInstance(context);
         mTerms = getAllTerms();
+        //mCourses = getAllCourses();
     }
 
     public void addSampleData() {
@@ -74,6 +76,11 @@ public class AppRepository {
     }
 
     //course methods
+
+    private LiveData<List<CourseEntity>> getAllCourses() {
+        return mDb.courseDao().getAll();
+    }
+
     public CourseEntity getCourseById(int courseId) {
         return mDb.courseDao().getCourseById(courseId);
     }
@@ -82,7 +89,16 @@ public class AppRepository {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                mDb.courseDao.insertCourse(course);
+                mDb.courseDao().insertCourse(course);
+            }
+        });
+    }
+
+    public void deleteCourse(final CourseEntity course) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.courseDao().deleteCourse(course);
             }
         });
     }

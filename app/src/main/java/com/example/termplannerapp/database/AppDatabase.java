@@ -17,6 +17,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract TermDao termDao();
 
+    public abstract CourseDao courseDao();
+
     public static AppDatabase getInstance(Context context) {
         if (instance == null) {
             synchronized (LOCK) {
