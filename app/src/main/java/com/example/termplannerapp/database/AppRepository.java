@@ -28,7 +28,7 @@ public class AppRepository {
     private AppRepository(Context context) {
         mDb = AppDatabase.getInstance(context);
         mTerms = getAllTerms();
-        //mCourses = getAllCourses();
+        mCourses = getAllCourses();
     }
 
     public void addSampleData() {

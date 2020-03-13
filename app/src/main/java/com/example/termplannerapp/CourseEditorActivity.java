@@ -8,15 +8,18 @@ import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +31,6 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     private CourseEditorViewModel mViewModel;
     private Boolean mNewCourse, mEditingCourse;
-    private String status = "";
 
     @BindView(R.id.course_title)
     TextView mCourseTitle;
@@ -67,6 +69,8 @@ public class CourseEditorActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        initViewModel();
+
     }
 
     private void initViewModel() {
@@ -75,6 +79,7 @@ public class CourseEditorActivity extends AppCompatActivity {
             mCourseTitle.setText(CourseEntity.getCourseTitle());
             mCourseStartDate.setText(CourseEntity.getCourseStartDate());
             mCourseEndDate.setText(CourseEntity.getCourseEndDate());
+            mRadioButton.setText(CourseEntity.getStatus());
         });
     }
 
@@ -83,12 +88,33 @@ public class CourseEditorActivity extends AppCompatActivity {
 
         int selectedStatus = mCourseStatus.getCheckedRadioButtonId();
 
-        RadioButton radioButton = findViewById(selectedStatus);
+        mRadioButton = findViewById(selectedStatus);
 
-        String status = radioButton.getText().toString();
+        Toast.makeText(this, "Status selection: " + mRadioButton.getText(), Toast.LENGTH_SHORT).show();
+    }
 
-        int result = Integer.parseInt(status);
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            saveAndReturn();
+            return true;
+        } else if (item.getItemId() == R.id.action_delete_course) {
+            mViewModel.deleteCourse();
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    @Override
+    public void onBackPressed() {
+        saveAndReturn();
+    }
 
+    private void saveAndReturn() {
+        mViewModel.saveCourse(mCourseTitle.getText().toString(),
+                mCourseStartDate.getText().toString(),
+                mCourseEndDate.getText().toString(),
+                mRadioButton.getText().toString());
+        finish();
     }
 }

@@ -64,8 +64,8 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.term_text) //
-                TextView mTextView;
+        @BindView(R.id.term_text)
+        TextView mTextView;
         @BindView(R.id.term_start)
         TextView mStartDate;
         @BindView(R.id.term_end)

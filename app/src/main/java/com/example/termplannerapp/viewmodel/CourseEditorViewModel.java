@@ -46,7 +46,12 @@ public class CourseEditorViewModel extends AndroidViewModel {
             course.setCourseTitle(courseTitle.trim());
             course.setCourseStartDate(courseStart.trim());
             course.setCourseEndDate(courseEnd.trim());
+            course.setStatus(courseStatus.trim());
         }
         mRepository.insertCourse(course);
+    }
+
+    public void deleteCourse() {
+        mRepository.deleteCourse(mLiveCourses.getValue());
     }
 }
