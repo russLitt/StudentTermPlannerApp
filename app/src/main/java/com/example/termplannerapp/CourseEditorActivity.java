@@ -2,17 +2,6 @@ package com.example.termplannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.termplannerapp.database.CourseEntity;
-import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -21,11 +10,22 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
+
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
+import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
+import static com.example.termplannerapp.utilities.Constants.EDITING_COURSE_KEY;
+import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 
 public class CourseEditorActivity extends AppCompatActivity {
 
@@ -66,8 +66,14 @@ public class CourseEditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course_editor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_check);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
+
+        if (savedInstanceState != null) {
+            mEditingCourse = savedInstanceState.getBoolean(EDITING_TERM_KEY);
+        }
 
         initViewModel();
 
@@ -81,8 +87,17 @@ public class CourseEditorActivity extends AppCompatActivity {
             mCourseEndDate.setText(CourseEntity.getCourseEndDate());
             mRadioButton.setText(CourseEntity.getStatus());
         });
-    }
 
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            setTitle(getString(R.string.new_course));
+            mNewCourse = true;
+        } else {
+            setTitle(getString(R.string.edit_course));
+            int courseId = extras.getInt(COURSE_ID_KEY);
+            mViewModel.loadData(courseId);
+        }
+    }
 
     public void onRbClicked(View view) {
 
@@ -116,5 +131,11 @@ public class CourseEditorActivity extends AppCompatActivity {
                 mCourseEndDate.getText().toString(),
                 mRadioButton.getText().toString());
         finish();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putBoolean(EDITING_COURSE_KEY, true);
+        super.onSaveInstanceState(outState);
     }
 }
