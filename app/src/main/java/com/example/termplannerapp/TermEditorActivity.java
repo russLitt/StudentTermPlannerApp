@@ -11,12 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.termplannerapp.database.TermEntity;
-import com.example.termplannerapp.utilities.Constants;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
@@ -28,6 +26,9 @@ import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermEditorActivity extends AppCompatActivity {
+
+    @BindView(R.id.fab_add_class)
+    FloatingActionButton fabAddClass;
 
     @OnClick(R.id.fab_add_class)
     void fabClickHandler() {
@@ -79,6 +80,7 @@ public class TermEditorActivity extends AppCompatActivity {
         if (extras == null) {
             setTitle(getString(R.string.new_term));
             mNewTerm = true;
+            fabAddClass.hide();
         } else {
             setTitle(getString(R.string.edit_term));
             int termId = extras.getInt(TERM_ID_KEY);

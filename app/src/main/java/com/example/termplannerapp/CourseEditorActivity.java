@@ -76,7 +76,6 @@ public class CourseEditorActivity extends AppCompatActivity {
         }
 
         initViewModel();
-
     }
 
     private void initViewModel() {
