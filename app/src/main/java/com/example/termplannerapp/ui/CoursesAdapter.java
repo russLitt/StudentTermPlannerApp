@@ -22,20 +22,19 @@ import butterknife.ButterKnife;
 public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHolder> {
 
     private final List<CourseEntity> mCourses;
+    private final Context mContext;
 
     public CoursesAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
         this.mContext = mContext;
     }
 
-    private final Context mContext;
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.term_list_item, parent, false);
-        return new CoursesAdapter.ViewHolder(view);
+        View view = inflater.inflate(R.layout.course_list_item, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -48,7 +47,9 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     }
 
     @Override
-    public int getItemCount() { return mCourses.size(); }
+    public int getItemCount() {
+        return mCourses.size();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.course_title)
@@ -59,14 +60,11 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         TextView mCourseEndDate;
         @BindView(R.id.course_status_rb_group)
         RadioButton mRadioButton;
-
-//        @BindView(R.id.fab)
-//        FloatingActionButton mFab;
-
+        @BindView(R.id.courseEditFab)
+        FloatingActionButton mFab;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
-
 }
