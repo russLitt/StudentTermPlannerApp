@@ -61,7 +61,7 @@
         app:layout_constraintTop_toTopOf="@+id/term_text" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_show_courses"
         android:layout_width="103dp"
         android:layout_height="38dp"
         android:layout_marginBottom="16dp"
@@ -78,12 +78,14 @@
         android:layout_width="103dp"
         android:layout_height="38dp"
         android:layout_marginTop="14dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginRight="152dp"
         android:layout_marginBottom="16dp"
         android:text="Mentors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.083"
-        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintStart_toEndOf="@+id/btn_show_courses"
         app:layout_constraintTop_toBottomOf="@+id/term_start"
         app:layout_constraintVertical_bias="1.0" />
 

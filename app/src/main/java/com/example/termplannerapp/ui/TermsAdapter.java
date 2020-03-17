@@ -25,13 +25,12 @@ import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> {
 
     private final List<TermEntity> mTerms;
+    private final Context mContext;
 
     public TermsAdapter(List<TermEntity> mTerms, Context mContext) {
         this.mTerms = mTerms;
         this.mContext = mContext;
     }
-
-    private final Context mContext;
 
     @NonNull
     @Override

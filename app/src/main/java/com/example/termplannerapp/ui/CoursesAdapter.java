@@ -1,6 +1,7 @@
 package com.example.termplannerapp.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.termplannerapp.CourseEditorActivity;
 import com.example.termplannerapp.R;
 import com.example.termplannerapp.database.CourseEntity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,6 +20,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 
 public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHolder> {
 
@@ -44,6 +48,15 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         holder.mCourseStartDate.setText(course.getCourseStartDate());
         holder.mCourseEndDate.setText(course.getCourseEndDate());
         holder.mRadioButton.setText(course.getStatus());
+
+//        holder.mFab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(mContext, CourseEditorActivity.class);
+//                intent.putExtra(COURSE_ID_KEY, course.getId());
+//                mContext.startActivity(intent);
+//            }
+//        });
     }
 
     @Override
@@ -60,8 +73,9 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         TextView mCourseEndDate;
         @BindView(R.id.course_status_rb_group)
         RadioButton mRadioButton;
-        @BindView(R.id.courseEditFab)
-        FloatingActionButton mFab;
+//        @BindView(R.id.course_edit_fab)
+//        FloatingActionButton mFab;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

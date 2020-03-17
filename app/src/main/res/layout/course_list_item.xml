@@ -7,7 +7,7 @@
     android:layout_height="200dp">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/courseEditFab"
+        android:id="@+id/course_edit_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,6 +28,7 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.414"
-        app:layout_constraintStart_toEndOf="@+id/courseEditFab"
+        app:layout_constraintStart_toEndOf="@+id/course_edit_fab"
         app:layout_constraintTop_toTopOf="parent" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
