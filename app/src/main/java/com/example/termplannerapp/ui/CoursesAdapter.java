@@ -49,14 +49,14 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         holder.mCourseEndDate.setText(course.getCourseEndDate());
         holder.mRadioButton.setText(course.getStatus());
 
-//        holder.mFab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(mContext, CourseEditorActivity.class);
-//                intent.putExtra(COURSE_ID_KEY, course.getId());
-//                mContext.startActivity(intent);
-//            }
-//        });
+        holder.mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, CourseEditorActivity.class);
+                intent.putExtra(COURSE_ID_KEY, course.getId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -73,8 +73,8 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         TextView mCourseEndDate;
         @BindView(R.id.course_status_rb_group)
         RadioButton mRadioButton;
-//        @BindView(R.id.course_edit_fab)
-//        FloatingActionButton mFab;
+        @BindView(R.id.course_edit_fab)
+        FloatingActionButton mFab;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
