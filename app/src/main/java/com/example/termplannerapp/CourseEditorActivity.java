@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -47,18 +48,28 @@ public class CourseEditorActivity extends AppCompatActivity {
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
 
-    //used to test for now, will change class target later when its created
-    @OnClick(R.id.add_mentor_btn)
-    void addMentorBtnHandler() {
-        Intent intent = new Intent(this, TermEditorActivity.class);
-        startActivity(intent);
-    }
+//    @BindView(R.id.btn_show_courses)
+//    Button mShowCoursesBtn;
+//
+//    @OnClick(R.id.btn_show_courses)
+//    void showCoursesBtnHandler() {
+//        Intent intent = new Intent(this, CourseEditorActivity.class);
+//        startActivity(intent);
+//    }
 
-    @OnClick(R.id.add_assessment_btn)
-    void addAssessmentBtnHandler() {
-        Intent intent = new Intent(this, TermEditorActivity.class);
-        startActivity(intent);
-    }
+
+    //used to test for now, will change class target later when its created
+//    @OnClick(R.id.add_mentor_btn)
+//    void addMentorBtnHandler() {
+//        Intent intent = new Intent(this, TermEditorActivity.class);
+//        startActivity(intent);
+//    }
+
+//    @OnClick(R.id.add_assessment_btn)
+//    void addAssessmentBtnHandler() {
+//        Intent intent = new Intent(this, TermEditorActivity.class);
+//        startActivity(intent);
+//    }
 
 
     @Override

@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<TermEntity> termsData = new ArrayList<>();
     private List<CourseEntity> coursesData = new ArrayList<>();
-    private TermsAdapter mTermsAdapter, mCoursesAdapter;
+    private TermsAdapter mTermsAdapter;
+    private CoursesAdapter mCoursesAdapter;
     private MainViewModel mViewModel;
 
     @Override

@@ -65,7 +65,9 @@
         android:layout_width="103dp"
         android:layout_height="38dp"
         android:layout_marginBottom="16dp"
+        android:clickable="true"
         android:text="Courses"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.12"
@@ -101,6 +103,5 @@
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/term_end"
         app:layout_constraintVertical_bias="1.0" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
