@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -26,7 +25,6 @@ import butterknife.OnClick;
 
 import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 import static com.example.termplannerapp.utilities.Constants.EDITING_COURSE_KEY;
-import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 
 public class CourseEditorActivity extends AppCompatActivity {
 
@@ -48,7 +46,7 @@ public class CourseEditorActivity extends AppCompatActivity {
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
 
-//    @BindView(R.id.btn_show_courses)
+    //    @BindView(R.id.btn_show_courses)
 //    Button mShowCoursesBtn;
 //
 //    @OnClick(R.id.btn_show_courses)
@@ -56,7 +54,7 @@ public class CourseEditorActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, CourseEditorActivity.class);
 //        startActivity(intent);
 //    }
-
+//
 
     //used to test for now, will change class target later when its created
 //    @OnClick(R.id.add_mentor_btn)
@@ -84,7 +82,7 @@ public class CourseEditorActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         if (savedInstanceState != null) {
-            mEditingCourse = savedInstanceState.getBoolean(EDITING_TERM_KEY);
+            mEditingCourse = savedInstanceState.getBoolean(EDITING_COURSE_KEY);
         }
 
         initViewModel();
