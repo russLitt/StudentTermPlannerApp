@@ -37,6 +37,7 @@ public class TermEditorActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     @BindView(R.id.term_text)
     TextView mTextView;
 
