@@ -24,14 +24,13 @@ import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> {
 
+
     private final List<TermEntity> mTerms;
     private final Context mContext;
-    private OnTermListener mOnTermListener;
 
-    public TermsAdapter(List<TermEntity> mTerms, Context mContext, OnTermListener onTermListener) {
+    public TermsAdapter(List<TermEntity> mTerms, Context mContext) {
         this.mTerms = mTerms;
         this.mContext = mContext;
-        this.mOnTermListener = onTermListener;
     }
 
     @NonNull
@@ -39,7 +38,7 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.term_list_item, parent, false);
-        return new ViewHolder(view, mOnTermListener);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -64,7 +63,7 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
         return mTerms.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.term_text)
         TextView mTextView;
         @BindView(R.id.term_start)
@@ -74,23 +73,11 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
         @BindView(R.id.fab)
         FloatingActionButton mFab;
 
-        OnTermListener onTermListener;
 
-        public ViewHolder(@NonNull View itemView, OnTermListener onTermListener) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            this.onTermListener = onTermListener;
-
-            itemView.setOnClickListener(this);
 
         }
-
-        @Override
-        public void onClick(View v) {
-            onTermListener.onTermClicked(getAdapterPosition());
-        }
-    }
-    public interface OnTermListener {
-        void onTermClicked(int position);
     }
 }

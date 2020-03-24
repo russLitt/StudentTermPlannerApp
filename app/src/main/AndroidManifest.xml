@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TermDetailsActivity"></activity>
         <activity
             android:name=".CourseEditorActivity"
             android:label="@string/title_activity_course_editor"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TermEditorActivity"
             android:label="@string/title_term_editor_activity"
