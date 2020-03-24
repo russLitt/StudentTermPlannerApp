@@ -26,7 +26,6 @@ public class CourseListActivity extends AppCompatActivity {
     @BindView(R.id.course_recycler_view)
     RecyclerView mCourseRecyclerView;
 
-
     private List<CourseEntity> courseData = new ArrayList<>();
     private CoursesAdapter mCourseAdapter;
     private CourseEditorViewModel mCourseViewModel;

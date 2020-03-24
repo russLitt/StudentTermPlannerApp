@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp">
+    android:layout_height="100dp">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -21,17 +21,20 @@
 
     <TextView
         android:id="@+id/term_text"
-        android:layout_width="320dp"
-        android:layout_height="26dp"
+        android:layout_width="329dp"
+        android:layout_height="38dp"
         android:layout_margin="12dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
+        android:gravity="center"
         android:text="TextView"
         android:textColor="@color/term_text_color"
-        android:textSize="@dimen/term_text_size"
+        android:textSize="24sp"
+        android:ellipsize="end"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/fab"
@@ -59,47 +62,5 @@
         app:layout_constraintStart_toEndOf="@+id/term_start"
         app:layout_constraintTop_toTopOf="@+id/term_text" />
 
-    <Button
-        android:id="@+id/btn_show_courses"
-        android:layout_width="103dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:text="Courses"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/term_start"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="103dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="152dp"
-        android:layout_marginRight="152dp"
-        android:layout_marginBottom="16dp"
-        android:text="Mentors"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
-        app:layout_constraintStart_toEndOf="@+id/btn_show_courses"
-        app:layout_constraintTop_toBottomOf="@+id/term_start"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="103dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="16dp"
-        android:text="Assessments"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.363"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/term_end"
-        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

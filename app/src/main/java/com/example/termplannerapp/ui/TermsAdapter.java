@@ -26,10 +26,12 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
 
     private final List<TermEntity> mTerms;
     private final Context mContext;
+    private OnTermListener mOnTermListener;
 
-    public TermsAdapter(List<TermEntity> mTerms, Context mContext) {
+    public TermsAdapter(List<TermEntity> mTerms, Context mContext, OnTermListener onTermListener) {
         this.mTerms = mTerms;
         this.mContext = mContext;
+        this.mOnTermListener = onTermListener;
     }
 
     @NonNull
@@ -37,7 +39,7 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.term_list_item, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, mOnTermListener);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
         return mTerms.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.term_text)
         TextView mTextView;
         @BindView(R.id.term_start)
@@ -72,9 +74,23 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
         @BindView(R.id.fab)
         FloatingActionButton mFab;
 
-        public ViewHolder(@NonNull View itemView) {
+        OnTermListener onTermListener;
+
+        public ViewHolder(@NonNull View itemView, OnTermListener onTermListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            this.onTermListener = onTermListener;
+
+            itemView.setOnClickListener(this);
+
         }
+
+        @Override
+        public void onClick(View v) {
+            onTermListener.onTermClicked(getAdapterPosition());
+        }
+    }
+    public interface OnTermListener {
+        void onTermClicked(int position);
     }
 }

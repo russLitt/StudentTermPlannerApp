@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.termplannerapp.ui.TermsAdapter;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

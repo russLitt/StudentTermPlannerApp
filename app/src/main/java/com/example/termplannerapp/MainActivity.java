@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,18 +30,9 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.recycler_view)
-    RecyclerView mRecyclerView;
-
-    @OnClick(R.id.fab)
-    void fabClickHandler() {
-        Intent intent = new Intent(this, TermEditorActivity.class);
-        startActivity(intent);
-    }
-
     private List<TermEntity> termsData = new ArrayList<>();
     private List<CourseEntity> coursesData = new ArrayList<>();
-    private TermsAdapter mTermsAdapter;
+
     private CoursesAdapter mCoursesAdapter;
     private MainViewModel mViewModel;
 
@@ -49,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         ButterKnife.bind(this);
         initRecyclerView();
@@ -66,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 if (mTermsAdapter == null) {
                     mTermsAdapter = new TermsAdapter(termsData,
                             MainActivity.this);
-                    mRecyclerView.setAdapter(mTermsAdapter);
+                    mTermRecyclerView.setAdapter(mTermsAdapter);
                 } else {
                     mTermsAdapter.notifyDataSetChanged();
                 }
@@ -87,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        mRecyclerView.setHasFixedSize(true);
+        mTermRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
+        mTermRecyclerView.setLayoutManager(layoutManager);
 
-        DividerItemDecoration divider = new DividerItemDecoration(mRecyclerView.getContext(),
+        DividerItemDecoration divider = new DividerItemDecoration(mTermRecyclerView.getContext(),
                 layoutManager.getOrientation());
-        mRecyclerView.addItemDecoration(divider);
+        mTermRecyclerView.addItemDecoration(divider);
     }
 
     @Override
