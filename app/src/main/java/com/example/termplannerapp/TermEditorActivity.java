@@ -39,7 +39,7 @@ public class TermEditorActivity extends AppCompatActivity {
     }
     
     @BindView(R.id.term_text)
-    TextView mTextView;
+    EditText mTextView;
 
     @BindView(R.id.term_start_date)
     EditText mTermStartDate;

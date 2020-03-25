@@ -33,15 +33,10 @@ public class MainActivity extends AppCompatActivity{
     @BindView(R.id.term_recycler_view)
     RecyclerView mTermRecyclerView;
 
+
     @OnClick(R.id.fab)
     void fabClickHandler() {
         Intent intent = new Intent(this, TermEditorActivity.class);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.term_details_btn)
-    void btnClickHandler() {
-        Intent intent = new Intent(this, TermDetailsActivity.class);
         startActivity(intent);
     }
 
