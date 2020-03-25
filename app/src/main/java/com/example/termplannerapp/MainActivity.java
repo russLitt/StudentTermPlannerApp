@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     @BindView(R.id.term_recycler_view)
     RecyclerView mTermRecyclerView;
@@ -39,12 +39,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.term_details_btn)
+    void btnClickHandler() {
+        Intent intent = new Intent(this, TermDetailsActivity.class);
+        startActivity(intent);
+    }
+
     private List<TermEntity> termsData = new ArrayList<>();
     private List<CourseEntity> coursesData = new ArrayList<>();
     private TermsAdapter mTermsAdapter;
     private CoursesAdapter mCoursesAdapter;
     private MainViewModel mViewModel;
-    private Button mTermDetailsBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +59,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mTermDetailsBtn = findViewById(R.id.term_details_btn);
-        mTermDetailsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openTermDetails();
-            }
-        });
-
         ButterKnife.bind(this);
         initRecyclerView();
         initViewModel();
-    }
-
-    private void openTermDetails() {
-        Intent intent = new Intent(this, TermDetailsActivity.class);
-        startActivity(intent);
     }
 
     private void initViewModel() {

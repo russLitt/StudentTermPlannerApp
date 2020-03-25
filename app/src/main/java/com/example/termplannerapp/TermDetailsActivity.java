@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TermDetailsActivity extends AppCompatActivity {
+    public static final String EXTRA_TERM_TITLE = "EXTRA_TERM_TITLE";
 
     @OnClick(R.id.term_details_btn)
     void btnClickHandler() {
@@ -40,6 +42,7 @@ public class TermDetailsActivity extends AppCompatActivity {
 
 
     private TermEditorViewModel mViewModel;
+    private Button mTermDetailsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +51,21 @@ public class TermDetailsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mTermDetailsBtn = findViewById(R.id.term_details_btn);
+        mTermDetailsBtn.setOnClickListener(v -> openTermDetails());
+
         ButterKnife.bind(this);
         initRecyclerView();
         initViewModel();
+    }
+
+    public void openTermDetails() {
+        TextView termTitle = mTextView;
+        String text = mTextView.getText().toString();
+
+        Intent intent = new Intent(this, TermDetailsActivity.class);
+        intent.putExtra(EXTRA_TERM_TITLE, text);
+        startActivity(intent);
     }
 
     private void initRecyclerView() {
