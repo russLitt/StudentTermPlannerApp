@@ -30,11 +30,14 @@ import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 public class TermEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.fab_add_class)
-    FloatingActionButton fabAddClass;
+    FloatingActionButton mFabAddClass;
 
-    @OnClick(R.id.fab_add_class)
-    void fabClickHandler() {
-        Intent intent = new Intent(this, CourseEditorActivity.class);
+//    @BindView(R.id.view_course_list_btn)
+//    Button mBtnViewCourseList;
+
+    @OnClick(R.id.view_course_list_btn)
+    void CourseListBtnHandler() {
+        Intent intent = new Intent(this, CourseListActivity.class);
         startActivity(intent);
     }
     
@@ -82,7 +85,7 @@ public class TermEditorActivity extends AppCompatActivity {
         if (extras == null) {
             setTitle(getString(R.string.new_term));
             mNewTerm = true;
-            fabAddClass.hide();
+            mFabAddClass.hide();
         } else {
             setTitle(getString(R.string.edit_term));
             int termId = extras.getInt(TERM_ID_KEY);

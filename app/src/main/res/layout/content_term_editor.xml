@@ -15,8 +15,8 @@
         android:layout_margin="@dimen/text_margin"
         android:layout_marginTop="72dp"
         android:hint="@string/enter_term_title"
-        android:maxLength="24"
         android:inputType="text|textCapSentences"
+        android:maxLength="24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.361"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,12 +57,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="424dp"
-        android:clickable="true"
         android:backgroundTint="@color/colorPrimary"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_add" />
+
+    <Button
+        android:id="@+id/view_course_list_btn"
+        android:layout_width="119dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="64dp"
+        android:clickable="true"
+        android:text="View Courses"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/term_end_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
