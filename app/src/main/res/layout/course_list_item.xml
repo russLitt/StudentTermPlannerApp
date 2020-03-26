@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/course_start_date"
         android:layout_width="108dp"
         android:layout_height="26dp"
         android:layout_marginStart="72dp"
@@ -42,25 +42,25 @@
         app:layout_constraintTop_toBottomOf="@+id/course_title" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/course_end_date"
         android:layout_width="98dp"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="28dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/course_start_date"
         app:layout_constraintTop_toBottomOf="@+id/course_title" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/course_status_rb_group"
         android:layout_width="85dp"
         android:layout_height="22dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="28dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/course_end_date"
         app:layout_constraintTop_toBottomOf="@+id/course_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

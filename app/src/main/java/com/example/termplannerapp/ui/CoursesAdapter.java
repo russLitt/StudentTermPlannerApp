@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,7 +49,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         holder.mCourseTitle.setText(course.getCourseTitle());
         holder.mCourseStartDate.setText(course.getCourseStartDate());
         holder.mCourseEndDate.setText(course.getCourseEndDate());
-        holder.mRadioButton.setText(course.getStatus());
+        //holder.mRadioButton.setCh(course.getStatus());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +73,8 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         TextView mCourseStartDate;
         @BindView(R.id.course_end_date)
         TextView mCourseEndDate;
-        @BindView(R.id.course_status_rb_group)
-        RadioButton mRadioButton;
+//        @BindView(R.id.course_status_rb_group)
+//        RadioGroup mRadioButton;
         @BindView(R.id.course_edit_fab)
         FloatingActionButton mFab;
 

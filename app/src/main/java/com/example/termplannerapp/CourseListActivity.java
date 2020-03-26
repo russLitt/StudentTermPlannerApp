@@ -2,6 +2,8 @@ package com.example.termplannerapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,11 +26,11 @@ public class CourseListActivity extends AppCompatActivity {
     @BindView(R.id.course_recycler_view)
     RecyclerView mCourseRecyclerView;
 
-//    @OnClick(R.id.course_edit_fab)
-//    void fabClickHandler() {
-//        Intent intent = new Intent(this, CourseEditorActivity.class);
-//        startActivity(intent);
-//    }
+    @OnClick(R.id.course_edit_fab)
+    void fabClickHandler() {
+        Intent intent = new Intent(this, CourseEditorActivity.class);
+        startActivity(intent);
+    }
 
     private List<CourseEntity> coursesData = new ArrayList<>();
     private CoursesAdapter mCoursesAdapter;
@@ -43,6 +45,21 @@ public class CourseListActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         initRecyclerView();
+        initViewModel();
+    }
+
+    private void initViewModel() {
+
+        final Observer<List<CourseEntity>> coursesObserver = new Observer<List<CourseEntity>>() {
+            @Override
+            public void onChanged(List<CourseEntity> courseEntities) {
+                coursesData.clear();
+                coursesData.addAll(courseEntities);
+            }
+        };
+
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel.mCourses.observe(this, coursesObserver);
     }
 
     private void initRecyclerView() {
