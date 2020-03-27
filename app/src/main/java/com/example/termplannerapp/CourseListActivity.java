@@ -1,14 +1,16 @@
 package com.example.termplannerapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.ui.CoursesAdapter;
@@ -66,6 +68,10 @@ public class CourseListActivity extends AppCompatActivity {
         mCourseRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mCourseRecyclerView.setLayoutManager(layoutManager);
+
+        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
+                layoutManager.getOrientation());
+        mCourseRecyclerView.addItemDecoration(divider);
 
         mCoursesAdapter = new CoursesAdapter(coursesData, this);
         mCourseRecyclerView.setAdapter(mCoursesAdapter);

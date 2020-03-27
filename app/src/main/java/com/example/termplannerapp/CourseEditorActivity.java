@@ -2,6 +2,7 @@ package com.example.termplannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -45,12 +46,6 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
-
-    //    @BindView(R.id.btn_show_courses)
-//    Button mShowCoursesBtn;
-//
-
-//
 
     //used to test for now, will change class target later when its created
     @OnClick(R.id.add_mentor_btn)
@@ -142,5 +137,12 @@ public class CourseEditorActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putBoolean(EDITING_COURSE_KEY, true);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_course_editor, menu);
+        return true;
     }
 }

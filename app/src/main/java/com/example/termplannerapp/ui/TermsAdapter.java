@@ -24,7 +24,6 @@ import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> {
 
-
     private final List<TermEntity> mTerms;
     private final Context mContext;
 
@@ -77,7 +76,6 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
         }
     }
 }

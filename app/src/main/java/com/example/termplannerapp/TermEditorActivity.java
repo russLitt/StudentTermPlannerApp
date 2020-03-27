@@ -30,9 +30,6 @@ import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermEditorActivity extends AppCompatActivity {
 
-//    @BindView(R.id.fab_add_class)
-//    FloatingActionButton mFabAddClass;
-
     @BindView(R.id.view_course_list_btn)
     Button mBtnViewCourseList;
 
@@ -41,12 +38,6 @@ public class TermEditorActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CourseListActivity.class);
         startActivity(intent);
     }
-
-//    @OnClick(R.id.fab_add_class)
-//    void fabAddClassHandler() {
-//        Intent intent = new Intent(this, CourseEditorActivity.class);
-//        startActivity(intent);
-//    }
     
     @BindView(R.id.term_text)
     EditText mTextView;
@@ -92,7 +83,6 @@ public class TermEditorActivity extends AppCompatActivity {
         if (extras == null) {
             setTitle(getString(R.string.new_term));
             mNewTerm = true;
-            //mFabAddClass.hide();
             mBtnViewCourseList.setVisibility(View.INVISIBLE);
         } else {
             setTitle(getString(R.string.edit_term));
