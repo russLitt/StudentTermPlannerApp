@@ -10,6 +10,7 @@
     <string name="delete_term">Delete</string>
     //course strings
     <string name="title_activity_course_editor">Add Course</string>
+    <string name="courses_list">Courses</string>
     <string name="action_settings">Settings</string>
     <string name="enter_course_title">Enter course title</string>
     <string name="course_start_date">Course start date</string>

@@ -44,6 +44,7 @@ public class CourseListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Courses");
 
         ButterKnife.bind(this);
         initRecyclerView();
