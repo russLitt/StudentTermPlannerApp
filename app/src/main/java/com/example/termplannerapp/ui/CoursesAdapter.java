@@ -29,10 +29,13 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
+//    private final String[] mList;
+//    private int lastCheckedPosition = -1;
 
     public CoursesAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
         this.mContext = mContext;
+        //this.mList = mList;
     }
 
     @NonNull
@@ -49,7 +52,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         holder.mCourseTitle.setText(course.getCourseTitle());
         holder.mCourseStartDate.setText(course.getCourseStartDate());
         holder.mCourseEndDate.setText(course.getCourseEndDate());
-        //holder.mRadioButton.setText(course.getStatus());
+        holder.mRadioButton.setText(course.getStatus());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,14 +76,23 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         TextView mCourseStartDate;
         @BindView(R.id.course_end_date)
         TextView mCourseEndDate;
-//        @BindView(R.id.course_status_rb_group)
-//        RadioButton mRadioButton;
+        @BindView(R.id.rb_completed)
+        RadioButton mRadioButton;
         @BindView(R.id.course_edit_fab)
         FloatingActionButton mFab;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+//            mRadioButton.setOnClickListener(new View.OnClickListener() {
+//
+//                @Override
+//                public void onClick(View v) {
+//                    lastCheckedPosition = getAdapterPosition();
+//                    notifyDataSetChanged();
+//                }
+//            });
         }
     }
 }

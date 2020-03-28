@@ -1,6 +1,7 @@
 package com.example.termplannerapp;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 
 import java.util.Objects;
 
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -45,6 +47,9 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
+
+    @BindDrawable(R.drawable.ic_delete)
+    Drawable mDeleteIcon;
 
     private CourseEditorViewModel mViewModel;
     private Boolean mNewCourse, mEditingCourse;
@@ -85,11 +90,11 @@ public class CourseEditorActivity extends AppCompatActivity {
         mViewModel = new ViewModelProvider(this).get(CourseEditorViewModel.class);
         mViewModel.mLiveCourses.observe(this, (CourseEntity) -> {
             //if (CourseEntity != null && !mEditingCourse) {
-                mCourseTitle.setText(CourseEntity.getCourseTitle());
-                mCourseStartDate.setText(CourseEntity.getCourseStartDate());
-                mCourseEndDate.setText(CourseEntity.getCourseEndDate());
-                mRadioButton.setText(CourseEntity.getStatus());
-           // }
+            mCourseTitle.setText(CourseEntity.getCourseTitle());
+            mCourseStartDate.setText(CourseEntity.getCourseStartDate());
+            mCourseEndDate.setText(CourseEntity.getCourseEndDate());
+            mRadioButton.setText(CourseEntity.getStatus());
+            // }
         });
 
         Bundle extras = getIntent().getExtras();
@@ -145,5 +150,26 @@ public class CourseEditorActivity extends AppCompatActivity {
         int selectedStatus = mCourseStatus.getCheckedRadioButtonId();
         mRadioButton = findViewById(selectedStatus);
         Toast.makeText(this, "Status selection: " + mRadioButton.getText(), Toast.LENGTH_SHORT).show();
+
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.rb_in_progress:
+                if (checked)
+                    mRadioButton.setText("In progress");
+                break;
+            case R.id.rb_completed:
+                if (checked)
+                    mRadioButton.setText("Completed");
+                break;
+            case R.id.rb_dropped:
+                if (checked)
+                    mRadioButton.setText("Dropped");
+                break;
+            case R.id.rb_plan_to_take:
+                if (checked)
+                    mRadioButton.setText("Plan to take");
+                break;
+        }
     }
 }
