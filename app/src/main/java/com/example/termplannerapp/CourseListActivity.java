@@ -2,8 +2,6 @@ package com.example.termplannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -42,8 +40,6 @@ public class CourseListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_course_list);
         super.onCreate(savedInstanceState);
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Courses");
 
         ButterKnife.bind(this);
@@ -58,6 +54,14 @@ public class CourseListActivity extends AppCompatActivity {
             public void onChanged(List<CourseEntity> courseEntities) {
                 coursesData.clear();
                 coursesData.addAll(courseEntities);
+
+                if (mCoursesAdapter == null) {
+                    mCoursesAdapter = new CoursesAdapter(coursesData,
+                            CourseListActivity.this);
+                    mCourseRecyclerView.setAdapter(mCoursesAdapter);
+                } else {
+                    mCoursesAdapter.notifyDataSetChanged();
+                }
             }
         };
 

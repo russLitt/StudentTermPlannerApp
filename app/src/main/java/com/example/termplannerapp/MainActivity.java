@@ -38,9 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private List<TermEntity> termsData = new ArrayList<>();
-    private List<CourseEntity> coursesData = new ArrayList<>();
     private TermsAdapter mTermsAdapter;
-    private CoursesAdapter mCoursesAdapter;
     private MainViewModel mViewModel;
 
 
@@ -74,17 +72,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        final Observer<List<CourseEntity>> coursesObserver = new Observer<List<CourseEntity>>() {
-            @Override
-            public void onChanged(List<CourseEntity> courseEntities) {
-                coursesData.clear();
-                coursesData.addAll(courseEntities);
-            }
-        };
-
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.mTerms.observe(this, termsObserver);
-        mViewModel.mCourses.observe(this, coursesObserver);
     }
 
     private void initRecyclerView() {

@@ -9,12 +9,14 @@
         android:id="@+id/course_edit_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/list_fab_margin"
+        android:layout_marginLeft="@dimen/list_fab_margin"
+        android:layout_marginTop="@dimen/list_fab_margin"
+        android:layout_marginBottom="@dimen/list_fab_margin"
         android:clickable="true"
         app:fabSize="mini"
         android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_edit" />
@@ -56,8 +58,8 @@
 
     <TextView
         android:id="@+id/course_status_rb_group"
-        android:layout_width="85dp"
-        android:layout_height="22dp"
+        android:layout_width="97dp"
+        android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="28dp"

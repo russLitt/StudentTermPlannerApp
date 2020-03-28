@@ -99,13 +99,11 @@ public class CourseEditorActivity extends AppCompatActivity {
         }
     }
 
-    public void onRbClicked(View view) {
-
-        int selectedStatus = mCourseStatus.getCheckedRadioButtonId();
-
-        mRadioButton = findViewById(selectedStatus);
-
-        Toast.makeText(this, "Status selection: " + mRadioButton.getText(), Toast.LENGTH_SHORT).show();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_course_editor, menu);
+        return true;
     }
 
     @Override
@@ -139,10 +137,9 @@ public class CourseEditorActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_course_editor, menu);
-        return true;
+    public void onRbClicked(View view) {
+        int selectedStatus = mCourseStatus.getCheckedRadioButtonId();
+        mRadioButton = findViewById(selectedStatus);
+        Toast.makeText(this, "Status selection: " + mRadioButton.getText(), Toast.LENGTH_SHORT).show();
     }
 }
