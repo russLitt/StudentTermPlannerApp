@@ -15,13 +15,21 @@ public interface CourseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCourse(CourseEntity course);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<CourseEntity> terms);
+
+    @Delete
+    void deleteCourse(CourseEntity course);
+
     @Query("SELECT * FROM courses ORDER BY id")
     LiveData<List<CourseEntity>> getAll();
 
     @Query("SELECT * FROM courses WHERE id = :id")
     CourseEntity getCourseById(int id);
 
-    @Delete
-    void deleteCourse(CourseEntity course);
+    @Query("DELETE FROM courses")
+    int deleteAll();
 
+    @Query("SELECT COUNT(*) FROM courses")
+    int getCount();
 }

@@ -48,20 +48,16 @@ public class CourseListActivity extends AppCompatActivity {
     }
 
     private void initViewModel() {
+        final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
+            coursesData.clear();
+            coursesData.addAll(courseEntities);
 
-        final Observer<List<CourseEntity>> coursesObserver = new Observer<List<CourseEntity>>() {
-            @Override
-            public void onChanged(List<CourseEntity> courseEntities) {
-                coursesData.clear();
-                coursesData.addAll(courseEntities);
-
-                if (mCoursesAdapter == null) {
-                    mCoursesAdapter = new CoursesAdapter(coursesData,
-                            CourseListActivity.this);
-                    mCourseRecyclerView.setAdapter(mCoursesAdapter);
-                } else {
-                    mCoursesAdapter.notifyDataSetChanged();
-                }
+            if (mCoursesAdapter == null) {
+                mCoursesAdapter = new CoursesAdapter(coursesData,
+                        CourseListActivity.this);
+                mCourseRecyclerView.setAdapter(mCoursesAdapter);
+            } else {
+                mCoursesAdapter.notifyDataSetChanged();
             }
         };
 

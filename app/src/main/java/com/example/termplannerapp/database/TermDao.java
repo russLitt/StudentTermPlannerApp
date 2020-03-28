@@ -32,5 +32,4 @@ public interface TermDao {
 
     @Query("SELECT COUNT(*) FROM terms")
     int getCount();
-
 }

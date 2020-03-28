@@ -38,7 +38,7 @@ public class TermEditorActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CourseListActivity.class);
         startActivity(intent);
     }
-    
+
     @BindView(R.id.term_text)
     EditText mTextView;
 

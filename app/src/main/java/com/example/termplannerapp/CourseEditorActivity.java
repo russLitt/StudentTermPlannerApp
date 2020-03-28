@@ -1,8 +1,10 @@
 package com.example.termplannerapp;
 
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -24,13 +26,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 import static com.example.termplannerapp.utilities.Constants.EDITING_COURSE_KEY;
+import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 
 public class CourseEditorActivity extends AppCompatActivity {
-
-    private CourseEditorViewModel mViewModel;
-    private Boolean mNewCourse, mEditingCourse;
 
     @BindView(R.id.course_title)
     TextView mCourseTitle;
@@ -47,12 +46,15 @@ public class CourseEditorActivity extends AppCompatActivity {
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
 
+    private CourseEditorViewModel mViewModel;
+    private Boolean mNewCourse, mEditingCourse;
+
     //used to test for now, will change class target later when its created
-    @OnClick(R.id.add_mentor_btn)
-    void addMentorBtnHandler() {
-        Intent intent = new Intent(this, TermEditorActivity.class);
-        startActivity(intent);
-    }
+//    @OnClick(R.id.add_mentor_btn)
+//    void addMentorBtnHandler() {
+//        Intent intent = new Intent(this, TermEditorActivity.class);
+//        startActivity(intent);
+//    }
 
 //    @OnClick(R.id.add_assessment_btn)
 //    void addAssessmentBtnHandler() {
@@ -82,10 +84,12 @@ public class CourseEditorActivity extends AppCompatActivity {
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(CourseEditorViewModel.class);
         mViewModel.mLiveCourses.observe(this, (CourseEntity) -> {
-            mCourseTitle.setText(CourseEntity.getCourseTitle());
-            mCourseStartDate.setText(CourseEntity.getCourseStartDate());
-            mCourseEndDate.setText(CourseEntity.getCourseEndDate());
-            mRadioButton.setText(CourseEntity.getStatus());
+            //if (CourseEntity != null && !mEditingCourse) {
+                mCourseTitle.setText(CourseEntity.getCourseTitle());
+                mCourseStartDate.setText(CourseEntity.getCourseStartDate());
+                mCourseEndDate.setText(CourseEntity.getCourseEndDate());
+                mRadioButton.setText(CourseEntity.getStatus());
+           // }
         });
 
         Bundle extras = getIntent().getExtras();

@@ -35,15 +35,6 @@ public class AppRepository {
         executor.execute(() -> mDb.termDao().insertAll(SampleTermData.getTerms()));
     }
 
-//        (ABOVE) METHOD BEFORE USING LAMBDA EXPRESSION
-//        executor.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                mDb.termDao().insertAll(SampleTermData.getTerms());
-//            }
-//        });
-
-
     //term methods
     private LiveData<List<TermEntity>> getAllTerms() {
         return mDb.termDao().getAll();
@@ -83,6 +74,10 @@ public class AppRepository {
 
     public CourseEntity getCourseById(int courseId) {
         return mDb.courseDao().getCourseById(courseId);
+    }
+
+    public void deleteAllCourses() {
+        executor.execute(() -> mDb.courseDao().deleteAll());
     }
 
     public void insertCourse(CourseEntity course) {
