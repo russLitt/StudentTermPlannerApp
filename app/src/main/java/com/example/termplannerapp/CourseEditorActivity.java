@@ -151,25 +151,25 @@ public class CourseEditorActivity extends AppCompatActivity {
         mRadioButton = findViewById(selectedStatus);
         Toast.makeText(this, "Status selection: " + mRadioButton.getText(), Toast.LENGTH_SHORT).show();
 
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch (view.getId()) {
-            case R.id.rb_in_progress:
-                if (checked)
-                    mRadioButton.setText("In progress");
-                break;
-            case R.id.rb_completed:
-                if (checked)
-                    mRadioButton.setText("Completed");
-                break;
-            case R.id.rb_dropped:
-                if (checked)
-                    mRadioButton.setText("Dropped");
-                break;
-            case R.id.rb_plan_to_take:
-                if (checked)
-                    mRadioButton.setText("Plan to take");
-                break;
-        }
+//        boolean checked = ((RadioButton) view).isChecked();
+//
+//        switch (view.getId()) {
+//            case R.id.rb_in_progress:
+//                if (checked)
+//                    mRadioButton.setText("In progress");
+//                break;
+//            case R.id.rb_completed:
+//                if (checked)
+//                    mRadioButton.setText("Completed");
+//                break;
+//            case R.id.rb_dropped:
+//                if (checked)
+//                    mRadioButton.setText("Dropped");
+//                break;
+//            case R.id.rb_plan_to_take:
+//                if (checked)
+//                    mRadioButton.setText("Plan to take");
+//                break;
+//        }
     }
 }
