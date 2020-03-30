@@ -60,7 +60,7 @@
         android:layout_marginLeft="240dp"
         android:layout_marginTop="64dp"
         android:clickable="true"
-        android:text="View Courses"
+        android:text="View/Add Courses"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/term_end_date" />
 

@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,7 +19,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 
@@ -29,13 +26,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
-//    private final String[] mList;
-//    private int lastCheckedPosition = -1;
 
     public CoursesAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
         this.mContext = mContext;
-        //this.mList = mList;
     }
 
     @NonNull
@@ -84,15 +78,6 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-//            mRadioButton.setOnClickListener(new View.OnClickListener() {
-//
-//                @Override
-//                public void onClick(View v) {
-//                    lastCheckedPosition = getAdapterPosition();
-//                    notifyDataSetChanged();
-//                }
-//            });
         }
     }
 }

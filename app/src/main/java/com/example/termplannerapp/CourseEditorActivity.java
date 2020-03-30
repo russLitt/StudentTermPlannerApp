@@ -1,11 +1,8 @@
 package com.example.termplannerapp;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -26,10 +23,9 @@ import java.util.Objects;
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-import static com.example.termplannerapp.utilities.Constants.EDITING_COURSE_KEY;
 import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
+import static com.example.termplannerapp.utilities.Constants.EDITING_COURSE_KEY;
 
 public class CourseEditorActivity extends AppCompatActivity {
 
@@ -150,26 +146,5 @@ public class CourseEditorActivity extends AppCompatActivity {
         int selectedStatus = mCourseStatus.getCheckedRadioButtonId();
         mRadioButton = findViewById(selectedStatus);
         Toast.makeText(this, "Status selection: " + mRadioButton.getText(), Toast.LENGTH_SHORT).show();
-
-//        boolean checked = ((RadioButton) view).isChecked();
-//
-//        switch (view.getId()) {
-//            case R.id.rb_in_progress:
-//                if (checked)
-//                    mRadioButton.setText("In progress");
-//                break;
-//            case R.id.rb_completed:
-//                if (checked)
-//                    mRadioButton.setText("Completed");
-//                break;
-//            case R.id.rb_dropped:
-//                if (checked)
-//                    mRadioButton.setText("Dropped");
-//                break;
-//            case R.id.rb_plan_to_take:
-//                if (checked)
-//                    mRadioButton.setText("Plan to take");
-//                break;
-//        }
     }
 }
