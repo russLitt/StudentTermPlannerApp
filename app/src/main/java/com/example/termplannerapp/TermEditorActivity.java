@@ -30,12 +30,6 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.view_course_list_btn)
     Button mBtnViewCourseList;
 
-    @OnClick(R.id.view_course_list_btn)
-    void CourseListBtnHandler() {
-        Intent intent = new Intent(this, CourseListActivity.class);
-        startActivity(intent);
-    }
-
     @BindView(R.id.term_text)
     EditText mTextView;
 
@@ -47,6 +41,12 @@ public class TermEditorActivity extends AppCompatActivity {
 
     private TermEditorViewModel mViewModel;
     private boolean mNewTerm, mEditing;
+
+    @OnClick(R.id.view_course_list_btn)
+    void CourseListBtnHandler() {
+        Intent intent = new Intent(this, CourseListActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

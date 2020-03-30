@@ -46,7 +46,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         holder.mCourseTitle.setText(course.getCourseTitle());
         holder.mCourseStartDate.setText(course.getCourseStartDate());
         holder.mCourseEndDate.setText(course.getCourseEndDate());
-        holder.mRadioButton.setText(course.getStatus());
+        holder.mCourseStatus.setText(course.getStatus());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +70,8 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         TextView mCourseStartDate;
         @BindView(R.id.course_end_date)
         TextView mCourseEndDate;
-        @BindView(R.id.rb_completed)
-        TextView mRadioButton;
+        @BindView(R.id.course_status_rb_group)
+        TextView mCourseStatus;
         @BindView(R.id.course_edit_fab)
         FloatingActionButton mFab;
 

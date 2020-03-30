@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/course_title" />
 
     <TextView
-        android:id="@+id/rb_completed"
+        android:id="@+id/course_status_rb_group"
         android:layout_width="97dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"

@@ -3,6 +3,7 @@ package com.example.termplannerapp;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -24,8 +25,8 @@ import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 import static com.example.termplannerapp.utilities.Constants.EDITING_COURSE_KEY;
+import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 
 public class CourseEditorActivity extends AppCompatActivity {
 
@@ -68,7 +69,7 @@ public class CourseEditorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_editor);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_check);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -90,7 +91,7 @@ public class CourseEditorActivity extends AppCompatActivity {
             mCourseStartDate.setText(CourseEntity.getCourseStartDate());
             mCourseEndDate.setText(CourseEntity.getCourseEndDate());
             mRadioButton.setText(CourseEntity.getStatus());
-            // }
+             //}
         });
 
         Bundle extras = getIntent().getExtras();
@@ -106,9 +107,15 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+ //        Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_course_editor, menu);
         return true;
+
+//        if (!mNewCourse) {
+//            MenuInflater inflater = getMenuInflater();
+//            inflater.inflate(R.menu.menu_course_editor, menu);
+//        }
+//        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
