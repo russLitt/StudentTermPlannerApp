@@ -77,7 +77,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         @BindView(R.id.course_end_date)
         TextView mCourseEndDate;
         @BindView(R.id.rb_completed)
-        RadioButton mRadioButton;
+        TextView mRadioButton;
         @BindView(R.id.course_edit_fab)
         FloatingActionButton mFab;
 
