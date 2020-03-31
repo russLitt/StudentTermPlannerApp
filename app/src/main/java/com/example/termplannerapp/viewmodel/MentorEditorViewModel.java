@@ -8,7 +8,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.termplannerapp.database.AppRepository;
-import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.MentorEntity;
 
 import java.util.concurrent.Executor;
@@ -22,6 +21,7 @@ public class MentorEditorViewModel extends AndroidViewModel {
 
     public MentorEditorViewModel(@NonNull Application application) {
         super(application);
+        mRepository = AppRepository.getInstance(getApplication());
     }
 
     public void loadData(final int mentorId) {

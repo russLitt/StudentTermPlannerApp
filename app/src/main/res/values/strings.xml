@@ -25,4 +25,8 @@
     <string name="new_course">New course</string>
     <string name="edit_course">Edit course</string>
     <string name="delete_course">Delete</string>
+    //mentor strings
+    <string name="new_mentor">New mentor</string>
+    <string name="edit_mentor">Edit mentor</string>
+    <string name="delete_mentor">Delete</string>
 </resources>

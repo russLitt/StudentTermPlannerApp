@@ -72,7 +72,6 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
         @BindView(R.id.fab)
         FloatingActionButton mFab;
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
