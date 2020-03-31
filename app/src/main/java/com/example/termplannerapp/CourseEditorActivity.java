@@ -1,5 +1,6 @@
 package com.example.termplannerapp;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,6 +25,7 @@ import java.util.Objects;
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.example.termplannerapp.utilities.Constants.EDITING_COURSE_KEY;
 import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
@@ -52,11 +54,11 @@ public class CourseEditorActivity extends AppCompatActivity {
     private Boolean mNewCourse, mEditingCourse;
 
     //used to test for now, will change class target later when its created
-//    @OnClick(R.id.add_mentor_btn)
-//    void addMentorBtnHandler() {
-//        Intent intent = new Intent(this, TermEditorActivity.class);
-//        startActivity(intent);
-//    }
+    @OnClick(R.id.add_mentor_btn)
+    void addMentorBtnHandler() {
+        Intent intent = new Intent(this, MentorEditorActivity.class);
+        startActivity(intent);
+    }
 
 //    @OnClick(R.id.add_assessment_btn)
 //    void addAssessmentBtnHandler() {

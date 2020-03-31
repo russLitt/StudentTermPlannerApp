@@ -16,8 +16,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public static final Object LOCK = new Object();
 
     public abstract TermDao termDao();
-
     public abstract CourseDao courseDao();
+    public abstract MentorDao mentorDao();
 
     public static AppDatabase getInstance(Context context) {
         if (instance == null) {
