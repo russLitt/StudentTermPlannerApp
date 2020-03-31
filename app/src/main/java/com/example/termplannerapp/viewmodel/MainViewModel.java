@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.termplannerapp.database.AppRepository;
 import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.database.MentorEntity;
 import com.example.termplannerapp.database.TermEntity;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<TermEntity>> mTerms;
     public LiveData<List<CourseEntity>> mCourses;
+    public LiveData<List<MentorEntity>> mMentors;
     private AppRepository mRepository;
 
     public MainViewModel(@NonNull Application application) {
@@ -24,6 +26,7 @@ public class MainViewModel extends AndroidViewModel {
         mRepository = AppRepository.getInstance(application.getApplicationContext());
         mTerms = mRepository.mTerms;
         mCourses = mRepository.mCourses;
+        mMentors = mRepository.mMentors;
     }
 
     public void addSampleData() {

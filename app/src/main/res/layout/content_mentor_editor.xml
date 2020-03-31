@@ -3,13 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MentorEditorActivity"
+    tools:showIn="@layout/activity_mentor_editor">
 
     <EditText
-        android:id="@+id/mentor_email"
+        android:id="@+id/mentor_name"
         android:layout_width="248dp"
         android:layout_height="46dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="92dp"
         android:hint="Mentor name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -20,7 +23,7 @@
         android:id="@+id/mentor_phone"
         android:layout_width="248dp"
         android:layout_height="46dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="56dp"
         android:hint="Mentor phone number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -28,14 +31,14 @@
         app:layout_constraintTop_toBottomOf="@+id/mentor_name" />
 
     <EditText
-        android:id="@+id/mentor_name"
+        android:id="@+id/mentor_email"
         android:layout_width="248dp"
         android:layout_height="46dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="56dp"
         android:hint="Mentor email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mentor_email" />
+        app:layout_constraintTop_toBottomOf="@+id/mentor_phone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,7 +56,7 @@ public class CourseEditorActivity extends AppCompatActivity {
     //used to test for now, will change class target later when its created
     @OnClick(R.id.add_mentor_btn)
     void addMentorBtnHandler() {
-        Intent intent = new Intent(this, MentorEditorActivity.class);
+        Intent intent = new Intent(this, MentorListActivity.class);
         startActivity(intent);
     }
 
