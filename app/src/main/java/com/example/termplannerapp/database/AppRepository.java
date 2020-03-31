@@ -15,6 +15,7 @@ public class AppRepository {
 
     public LiveData<List<TermEntity>> mTerms;
     public LiveData<List<CourseEntity>> mCourses;
+    public LiveData<List<MentorEntity>> mMentors;
     private AppDatabase mDb;
     private Executor executor = Executors.newSingleThreadExecutor();
 
@@ -29,6 +30,7 @@ public class AppRepository {
         mDb = AppDatabase.getInstance(context);
         mTerms = getAllTerms();
         mCourses = getAllCourses();
+        mMentors = getAllMentors();
     }
 
     public void addSampleData() {
@@ -49,21 +51,11 @@ public class AppRepository {
     }
 
     public void insertTerm(TermEntity term) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mDb.termDao().insertTerm(term);
-            }
-        });
+        executor.execute(() -> mDb.termDao().insertTerm(term));
     }
 
     public void deleteTerm(final TermEntity term) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mDb.termDao().deleteTerm(term);
-            }
-        });
+        executor.execute(() -> mDb.termDao().deleteTerm(term));
     }
 
     //course methods
@@ -81,22 +73,29 @@ public class AppRepository {
     }
 
     public void insertCourse(CourseEntity course) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mDb.courseDao().insertCourse(course);
-            }
-        });
+        executor.execute(() -> mDb.courseDao().insertCourse(course));
     }
 
     public void deleteCourse(final CourseEntity course) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mDb.courseDao().deleteCourse(course);
-            }
-        });
+        executor.execute(() -> mDb.courseDao().deleteCourse(course));
     }
 
     //mentor methods
+
+    private LiveData<List<MentorEntity>> getAllMentors() {
+        return mDb.mentorDao().getAll();
+    }
+
+
+    public MentorEntity getMentorById(int mentorId) {
+        return mDb.mentorDao().getMentorById(mentorId);
+    }
+
+    public void insertMentor(MentorEntity mentor) {
+        executor.execute(() -> mDb.mentorDao().insertMentor(mentor));
+    }
+
+    public void deleteMentor(final MentorEntity mentor) {
+        executor.execute(() -> mDb.mentorDao().deleteMentor(mentor));
+    }
 }
