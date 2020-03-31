@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.termplannerapp.viewmodel.MentorEditorViewModel;
@@ -55,11 +54,9 @@ public class MentorEditorActivity extends AppCompatActivity {
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(MentorEditorViewModel.class);
         mViewModel.mLiveMentors.observe(this, (MentorEntity) -> {
-            //if (CourseEntity != null && !mEditingCourse) {
             mMentorName.setText(MentorEntity.getMentorName());
             mMentorEmail.setText(MentorEntity.getMentorEmail());
             mMentorPhone.setText(MentorEntity.getMentorPhone());
-            //}
         });
 
         Bundle extras = getIntent().getExtras();
@@ -76,7 +73,7 @@ public class MentorEditorActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_course_editor, menu);
+        getMenuInflater().inflate(R.menu.menu_mentor_editor, menu);
         return true;
     }
 
