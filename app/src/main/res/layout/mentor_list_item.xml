@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="100dp">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/mentor_edit_fab"
@@ -23,14 +23,37 @@
 
     <TextView
         android:id="@+id/mentor_name"
-        android:layout_width="160dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:text="TextView"
+        android:layout_width="135dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Mentor name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mentor_edit_fab"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="0.277" />
+
+    <TextView
+        android:id="@+id/mentor_phone"
+        android:layout_width="135dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="20dp"
+        android:text="Mentor phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintStart_toEndOf="@+id/mentor_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mentor_email"
+        android:layout_width="135dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="16dp"
+        android:text="Mentor email"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mentor_phone"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

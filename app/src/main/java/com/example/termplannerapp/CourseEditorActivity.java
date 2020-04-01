@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -60,11 +61,11 @@ public class CourseEditorActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    @OnClick(R.id.add_assessment_btn)
-//    void addAssessmentBtnHandler() {
-//        Intent intent = new Intent(this, TermEditorActivity.class);
-//        startActivity(intent);
-//    }
+    @OnClick(R.id.add_assessment_btn)
+    void addAssessmentBtnHandler() {
+        Intent intent = new Intent(this, TermEditorActivity.class);
+        startActivity(intent);
+    }
 
 
     @Override

@@ -20,7 +20,7 @@
     <string name="completed">Completed</string>
     <string name="dropped">Dropped</string>
     <string name="plan_to_take">Plan to take</string>
-    <string name="add_mentor">Add Mentor</string>
+    <string name="add_mentor">Add/View Mentors</string>
     <string name="add_assessment">Add Assessment</string>
     <string name="new_course">New course</string>
     <string name="edit_course">Edit course</string>

@@ -27,7 +27,7 @@ public class MentorListActivity extends AppCompatActivity {
     RecyclerView mMentorRecyclerView;
 
     @OnClick(R.id.mentor_edit_fab)
-    void fabClickHandler() {
+    void mentorEditFab() {
         Intent intent = new Intent(this, MentorEditorActivity.class);
         startActivity(intent);
     }

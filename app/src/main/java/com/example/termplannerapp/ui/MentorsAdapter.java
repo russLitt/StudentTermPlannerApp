@@ -16,6 +16,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Optional;
 
 public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHolder> {
 
@@ -31,7 +32,7 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.content_mentor_editor, parent, false);
+        View view = inflater.inflate(R.layout.mentor_list_item, parent, false);
         return new ViewHolder(view);
     }
 
