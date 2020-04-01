@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.TermEntity;
-import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.ui.TermsAdapter;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 
@@ -48,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Terms");
 
         ButterKnife.bind(this);
         initRecyclerView();
