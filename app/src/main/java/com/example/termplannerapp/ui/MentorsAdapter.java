@@ -1,6 +1,7 @@
 package com.example.termplannerapp.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.termplannerapp.MentorEditorActivity;
 import com.example.termplannerapp.R;
 import com.example.termplannerapp.database.MentorEntity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.termplannerapp.utilities.Constants.MENTOR_ID_KEY;
 
 public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHolder> {
 
@@ -41,6 +46,15 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHold
         holder.mMentorName.setText(mentor.getMentorName());
         holder.mMentorEmail.setText(mentor.getMentorEmail());
         holder.mMentorPhone.setText(mentor.getMentorPhone());
+
+        holder.mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, MentorEditorActivity.class);
+                intent.putExtra(MENTOR_ID_KEY, mentor.getId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -56,6 +70,8 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHold
         TextView mMentorPhone;
         @BindView(R.id.mentor_email)
         TextView mMentorEmail;
+        @BindView(R.id.mentor_edit_fab)
+        FloatingActionButton mFab;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
