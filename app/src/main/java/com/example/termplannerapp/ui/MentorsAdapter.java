@@ -16,7 +16,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Optional;
 
 public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHolder> {
 
@@ -42,7 +41,6 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHold
         holder.mMentorName.setText(mentor.getMentorName());
         holder.mMentorEmail.setText(mentor.getMentorEmail());
         holder.mMentorPhone.setText(mentor.getMentorPhone());
-
     }
 
     @Override

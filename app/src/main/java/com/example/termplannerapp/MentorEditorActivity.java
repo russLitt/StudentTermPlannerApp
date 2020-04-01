@@ -3,6 +3,7 @@ package com.example.termplannerapp;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,13 +25,13 @@ import static com.example.termplannerapp.utilities.Constants.MENTOR_ID_KEY;
 public class MentorEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.mentor_name)
-    TextView mMentorName;
+    EditText mMentorName;
 
     @BindView(R.id.mentor_email)
-    TextView mMentorEmail;
+    EditText mMentorEmail;
 
     @BindView(R.id.mentor_phone)
-    TextView mMentorPhone;
+    EditText mMentorPhone;
 
     private MentorEditorViewModel mViewModel;
     private boolean mNewMentor, mEditingMentor;
