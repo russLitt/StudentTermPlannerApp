@@ -11,7 +11,7 @@ public class AssessmentEntity {
     private String assessmentTitle, assessmentDueDate, assessmentType;
     private int courseId;
 
-    @Ignore
+    //@Ignore
     public AssessmentEntity() {
     }
 
