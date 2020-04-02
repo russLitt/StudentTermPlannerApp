@@ -16,7 +16,7 @@ public interface CourseDao {
     void insertCourse(CourseEntity course);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<CourseEntity> terms);
+    void insertAll(List<CourseEntity> courses);
 
     @Delete
     void deleteCourse(CourseEntity course);

@@ -32,6 +32,13 @@ public class AssessmentEntity {
         this.courseId = courseId;
     }
 
+    @Ignore
+    public AssessmentEntity(String assessmentTitle, String assessmentDueDate, String assessmentType) {
+        this.assessmentTitle = assessmentTitle;
+        this.assessmentDueDate = assessmentDueDate;
+        this.assessmentType = assessmentType;
+    }
+
     public int getId() {
         return id;
     }

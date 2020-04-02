@@ -4,7 +4,6 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-
 @Entity(tableName = "courses")
 public class CourseEntity {
     @PrimaryKey(autoGenerate = true)
