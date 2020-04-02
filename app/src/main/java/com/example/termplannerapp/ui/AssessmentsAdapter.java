@@ -55,7 +55,6 @@ public class AssessmentsAdapter extends RecyclerView.Adapter<AssessmentsAdapter.
                 mContext.startActivity(intent);
             }
         });
-
     }
 
     @Override

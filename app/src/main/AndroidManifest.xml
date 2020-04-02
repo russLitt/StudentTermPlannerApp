@@ -15,6 +15,7 @@
         <activity
             android:name=".MentorEditorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AssessmentListActivity" />
         <activity android:name=".MentorListActivity" />
         <activity android:name=".CourseListActivity" />
         <activity
