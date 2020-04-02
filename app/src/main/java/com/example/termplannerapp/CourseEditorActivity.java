@@ -62,7 +62,7 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @OnClick(R.id.add_assessment_btn)
     void addAssessmentBtnHandler() {
-        Intent intent = new Intent(this, TermEditorActivity.class);
+        Intent intent = new Intent(this, AssessmentEditorActivity.class);
         startActivity(intent);
     }
 
