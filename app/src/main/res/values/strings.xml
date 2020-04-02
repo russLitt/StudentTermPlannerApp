@@ -29,4 +29,6 @@
     <string name="new_mentor">New mentor</string>
     <string name="edit_mentor">Edit mentor</string>
     <string name="delete_mentor">Delete</string>
+    <string name="new_assessment">New assessment</string>
+    <string name="edit_assessment">Edit assessment</string>
 </resources>

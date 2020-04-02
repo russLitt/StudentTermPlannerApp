@@ -1,19 +1,23 @@
 package com.example.termplannerapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.termplannerapp.viewmodel.AssessmentEditorViewModel;
+import com.example.termplannerapp.viewmodel.MentorEditorViewModel;
 
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.termplannerapp.utilities.Constants.ASSESSMENT_ID_KEY;
 
 public class AssessmentEditorActivity extends AppCompatActivity {
 
@@ -28,6 +32,9 @@ public class AssessmentEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.assmnt_alert_check)
     CheckBox mAssmntAlertCheck;
+
+    private AssessmentEditorViewModel mViewModel;
+    private boolean mNewAssessment, mEditingAssessment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,24 +52,23 @@ public class AssessmentEditorActivity extends AppCompatActivity {
     }
 
     private void intiViewModel() {
-        mViewModel = new ViewModelProvider(this).get(CourseEditorViewModel.class);
-        mViewModel.mLiveCourses.observe(this, (CourseEntity) -> {
+        mViewModel = new ViewModelProvider(this).get(AssessmentEditorViewModel.class);
+        mViewModel.mLiveAssessments.observe(this, (AssessmentEntity) -> {
             //if (CourseEntity != null && !mEditingCourse) {
-            mCourseTitle.setText(CourseEntity.getCourseTitle());
-            mCourseStartDate.setText(CourseEntity.getCourseStartDate());
-            mCourseEndDate.setText(CourseEntity.getCourseEndDate());
-            mRadioButton.setText(CourseEntity.getStatus());
+            mAssmntTitle.setText(AssessmentEntity.getAssessmentTitle());
+            mAssmntDueDate.setText(AssessmentEntity.getAssessmentDueDate());
+            mAssmntSwitch.setText(AssessmentEntity.getAssessmentType());
             //}
         });
 
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
-            setTitle(getString(R.string.new_course));
-            mNewCourse = true;
+            setTitle(getString(R.string.new_assessment));
+            mNewAssessment = true;
         } else {
-            setTitle(getString(R.string.edit_course));
-            int courseId = extras.getInt(COURSE_ID_KEY);
-            mViewModel.loadData(courseId);
+            setTitle(getString(R.string.edit_assessment));
+            int assessmentId = extras.getInt(ASSESSMENT_ID_KEY);
+            mViewModel.loadData(assessmentId);
         }
     }
 }
