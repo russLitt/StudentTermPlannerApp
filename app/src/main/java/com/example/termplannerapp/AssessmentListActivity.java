@@ -1,6 +1,5 @@
 package com.example.termplannerapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,9 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.AssessmentEntity;
-import com.example.termplannerapp.database.MentorEntity;
 import com.example.termplannerapp.ui.AssessmentsAdapter;
-import com.example.termplannerapp.ui.MentorsAdapter;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 
 import java.util.ArrayList;

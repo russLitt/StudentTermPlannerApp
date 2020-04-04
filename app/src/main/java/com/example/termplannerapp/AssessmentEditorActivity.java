@@ -1,16 +1,17 @@
 package com.example.termplannerapp;
 
 import android.os.Bundle;
-import android.widget.CheckBox;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.termplannerapp.viewmodel.AssessmentEditorViewModel;
-import com.example.termplannerapp.viewmodel.MentorEditorViewModel;
 
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.termplannerapp.utilities.Constants.ASSESSMENT_ID_KEY;
+import static com.example.termplannerapp.utilities.Constants.EDITING_ASSESSMENT_KEY;
 
 public class AssessmentEditorActivity extends AppCompatActivity {
 
@@ -30,8 +32,8 @@ public class AssessmentEditorActivity extends AppCompatActivity {
     @BindView(R.id.assmnt_due_date)
     EditText mAssmntDueDate;
 
-    @BindView(R.id.assmnt_alert_check)
-    CheckBox mAssmntAlertCheck;
+//    @BindView(R.id.assmnt_alert_check)
+//    CheckBox mAssmntAlertCheck;
 
     private AssessmentEditorViewModel mViewModel;
     private boolean mNewAssessment, mEditingAssessment;
@@ -70,5 +72,42 @@ public class AssessmentEditorActivity extends AppCompatActivity {
             int assessmentId = extras.getInt(ASSESSMENT_ID_KEY);
             mViewModel.loadData(assessmentId);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_assessment_editor, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            saveAndReturn();
+            return true;
+        } else if (item.getItemId() == R.id.action_delete_assessment) {
+            mViewModel.deleteAssessment();
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        saveAndReturn();
+    }
+
+    private void saveAndReturn() {
+        mViewModel.saveAssessment(mAssmntTitle.getText().toString(),
+                mAssmntDueDate.getText().toString(),
+                mAssmntSwitch.getText().toString());
+        finish();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putBoolean(EDITING_ASSESSMENT_KEY, true);
+        super.onSaveInstanceState(outState);
     }
 }
