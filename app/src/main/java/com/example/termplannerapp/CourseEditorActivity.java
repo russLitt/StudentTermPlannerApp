@@ -108,15 +108,11 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //        Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_course_editor, menu);
-        return true;
-
-//        if (!mNewCourse) {
-//            MenuInflater inflater = getMenuInflater();
-//            inflater.inflate(R.menu.menu_course_editor, menu);
-//        }
-//        return super.onCreateOptionsMenu(menu);
+        if (!mNewCourse) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_course_editor, menu);
+        }
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

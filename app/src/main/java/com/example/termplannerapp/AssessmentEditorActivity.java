@@ -2,6 +2,7 @@ package com.example.termplannerapp;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -76,9 +77,11 @@ public class AssessmentEditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_assessment_editor, menu);
-        return true;
+        if (!mNewAssessment) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_assessment_editor, menu);
+        }
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

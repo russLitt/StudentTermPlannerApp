@@ -20,7 +20,6 @@
         <activity android:name=".CourseListActivity" />
         <activity
             android:name=".CourseEditorActivity"
-            android:label="@string/title_activity_course_editor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TermEditorActivity"
