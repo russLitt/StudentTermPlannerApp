@@ -1,5 +1,6 @@
 package com.example.termplannerapp;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -108,11 +109,15 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNewCourse) {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_course_editor, menu);
-        }
-        return super.onCreateOptionsMenu(menu);
+        //        Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_course_editor, menu);
+        return true;
+
+//        if (!mNewCourse) {
+//            MenuInflater inflater = getMenuInflater();
+//            inflater.inflate(R.menu.menu_course_editor, menu);
+//        }
+//        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

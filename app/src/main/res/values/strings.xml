@@ -32,4 +32,5 @@
     <string name="new_assessment">New assessment</string>
     <string name="edit_assessment">Edit assessment</string>
     <string name="delete_assessment">Delete assessment</string>
+    //assessment strings
 </resources>
