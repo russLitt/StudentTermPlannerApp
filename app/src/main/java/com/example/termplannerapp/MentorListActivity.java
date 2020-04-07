@@ -41,6 +41,7 @@ public class MentorListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mentor_list);
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("Mentors");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
         initRecyclerView();

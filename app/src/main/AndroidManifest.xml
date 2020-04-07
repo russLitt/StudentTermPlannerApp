@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TermListActivity">
+            android:name=".TermListActivity"
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".AssessmentEditorActivity"
@@ -18,9 +19,12 @@
         <activity
             android:name=".MentorEditorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AssessmentListActivity" />
-        <activity android:name=".MentorListActivity" />
-        <activity android:name=".CourseListActivity" />
+        <activity android:name=".AssessmentListActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".MentorListActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".CourseListActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".CourseEditorActivity"
             android:label="@string/title_activity_course_editor"

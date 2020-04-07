@@ -41,6 +41,7 @@ public class CourseListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course_list);
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("Courses");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
         initRecyclerView();

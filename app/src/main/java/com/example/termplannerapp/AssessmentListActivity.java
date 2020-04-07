@@ -41,6 +41,7 @@ public class AssessmentListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assessment_list);
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("Assessments");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
         initRecyclerView();
