@@ -3,7 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="130dp">
+    android:layout_height="60dp">
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/course_start_date"-->
+    <!--        android:layout_width="108dp"-->
+    <!--        android:layout_height="26dp"-->
+    <!--        android:layout_marginStart="72dp"-->
+    <!--        android:layout_marginLeft="72dp"-->
+    <!--        android:layout_marginTop="28dp"-->
+    <!--        android:text="TextView"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/course_title" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/course_end_date"-->
+    <!--        android:layout_width="98dp"-->
+    <!--        android:layout_height="25dp"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        android:layout_marginLeft="8dp"-->
+    <!--        android:layout_marginTop="28dp"-->
+    <!--        android:text="TextView"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/course_start_date"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/course_title" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/course_edit_fab"
@@ -13,9 +35,9 @@
         android:layout_marginLeft="@dimen/list_fab_margin"
         android:layout_marginTop="@dimen/list_fab_margin"
         android:layout_marginBottom="@dimen/list_fab_margin"
+        android:backgroundTint="@color/colorPrimary"
         android:clickable="true"
         app:fabSize="mini"
-        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,48 +45,34 @@
 
     <TextView
         android:id="@+id/course_title"
-        android:layout_width="105dp"
-        android:layout_height="27dp"
+        android:layout_width="177dp"
+        android:layout_height="41dp"
         android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.414"
+        android:layout_marginLeft="30dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Course title"
+        android:textColor="@color/term_text_color"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/course_status_rb_group"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/course_edit_fab"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/course_start_date"
-        android:layout_width="108dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="28dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_title" />
-
-    <TextView
-        android:id="@+id/course_end_date"
-        android:layout_width="98dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/course_start_date"
-        app:layout_constraintTop_toBottomOf="@+id/course_title" />
-
-    <TextView
         android:id="@+id/course_status_rb_group"
-        android:layout_width="97dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/course_end_date"
-        app:layout_constraintTop_toBottomOf="@+id/course_title" />
+        android:layout_width="116dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
