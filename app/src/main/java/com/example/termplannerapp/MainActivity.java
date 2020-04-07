@@ -1,5 +1,6 @@
 package com.example.termplannerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,8 +11,15 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
+
+    @OnClick(R.id.terms_list_btn)
+    void termsBtnHandler() {
+        Intent intent = new Intent(this, TermListActivity.class);
+        startActivity(intent);
+    }
 
     private MainViewModel mViewModel;
 
