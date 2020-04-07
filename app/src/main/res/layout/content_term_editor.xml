@@ -52,16 +52,4 @@
         app:layout_constraintStart_toEndOf="@+id/term_start_date"
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
 
-<!--    <Button-->
-<!--        android:id="@+id/course_list_btn"-->
-<!--        android:layout_width="119dp"-->
-<!--        android:layout_height="54dp"-->
-<!--        android:layout_marginStart="240dp"-->
-<!--        android:layout_marginLeft="240dp"-->
-<!--        android:layout_marginTop="64dp"-->
-<!--        android:clickable="true"-->
-<!--        android:text="View/Add Courses"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/term_end_date" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

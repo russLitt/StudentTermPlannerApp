@@ -27,20 +27,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @OnClick(R.id.add_mentor_btn)
+    @OnClick(R.id.mentor_list_btn)
     void mentorBtnHandler() {
         Intent intent = new Intent(this, MentorListActivity.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.add_assessment_btn)
+    @OnClick(R.id.assessment_list_btn)
     void assessmentBtnHandler() {
         Intent intent = new Intent(this, AssessmentListActivity.class);
         startActivity(intent);
     }
-
-    private MainViewModel mViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-
         return super.onOptionsItemSelected(item);
     }
 }

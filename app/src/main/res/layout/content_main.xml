@@ -12,7 +12,7 @@
         android:id="@+id/terms_list_btn"
         android:layout_width="345dp"
         android:layout_height="48dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="212dp"
         android:text="Terms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,29 +22,30 @@
         android:id="@+id/course_list_btn"
         android:layout_width="345dp"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="Courses"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/terms_list_btn" />
 
     <Button
-        android:id="@+id/add_mentor_btn"
+        android:id="@+id/assessment_list_btn"
         android:layout_width="345dp"
         android:layout_height="48dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="16dp"
         android:text="Assessments"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/terms_list_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/course_list_btn" />
 
     <Button
-        android:id="@+id/add_assessment_btn"
+        android:id="@+id/mentor_list_btn"
         android:layout_width="345dp"
         android:layout_height="48dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="16dp"
         android:text="Mentors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/terms_list_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/assessment_list_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
