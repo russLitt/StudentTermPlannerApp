@@ -21,6 +21,24 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.course_list_btn)
+    void coursesBtnHandler() {
+        Intent intent = new Intent(this, CourseListActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.add_mentor_btn)
+    void mentorBtnHandler() {
+        Intent intent = new Intent(this, MentorListActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.add_assessment_btn)
+    void assessmentBtnHandler() {
+        Intent intent = new Intent(this, AssessmentListActivity.class);
+        startActivity(intent);
+    }
+
     private MainViewModel mViewModel;
 
 

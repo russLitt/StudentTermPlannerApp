@@ -27,9 +27,6 @@ import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermEditorActivity extends AppCompatActivity {
 
-    @BindView(R.id.view_course_list_btn)
-    Button mBtnViewCourseList;
-
     @BindView(R.id.term_text)
     EditText mTextView;
 
@@ -41,12 +38,6 @@ public class TermEditorActivity extends AppCompatActivity {
 
     private TermEditorViewModel mViewModel;
     private boolean mNewTerm, mEditing;
-
-    @OnClick(R.id.view_course_list_btn)
-    void CourseListBtnHandler() {
-        Intent intent = new Intent(this, CourseListActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +71,6 @@ public class TermEditorActivity extends AppCompatActivity {
         if (extras == null) {
             setTitle(getString(R.string.new_term));
             mNewTerm = true;
-            mBtnViewCourseList.setVisibility(View.INVISIBLE);
         } else {
             setTitle(getString(R.string.edit_term));
             int termId = extras.getInt(TERM_ID_KEY);

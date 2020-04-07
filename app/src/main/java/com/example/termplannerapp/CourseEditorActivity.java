@@ -55,18 +55,6 @@ public class CourseEditorActivity extends AppCompatActivity {
     private CourseEditorViewModel mViewModel;
     private Boolean mNewCourse, mEditingCourse;
 
-    @OnClick(R.id.add_mentor_btn)
-    void addMentorBtnHandler() {
-        Intent intent = new Intent(this, MentorListActivity.class);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.add_assessment_btn)
-    void addAssessmentBtnHandler() {
-        Intent intent = new Intent(this, AssessmentListActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

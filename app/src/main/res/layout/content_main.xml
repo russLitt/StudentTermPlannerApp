@@ -11,10 +11,40 @@
     <Button
         android:id="@+id/terms_list_btn"
         android:layout_width="345dp"
-        android:layout_height="47dp"
+        android:layout_height="48dp"
         android:layout_marginTop="260dp"
         android:text="Terms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/course_list_btn"
+        android:layout_width="345dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:text="Courses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/terms_list_btn" />
+
+    <Button
+        android:id="@+id/add_mentor_btn"
+        android:layout_width="345dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="92dp"
+        android:text="Assessments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/terms_list_btn" />
+
+    <Button
+        android:id="@+id/add_assessment_btn"
+        android:layout_width="345dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="160dp"
+        android:text="Mentors"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/terms_list_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
