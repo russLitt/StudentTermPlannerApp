@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MentorEditorActivity"
+    tools:showIn="@layout/activity_mentor_editor">
+
+    <EditText
+        android:id="@+id/mentor_name"
+        android:layout_width="248dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="48dp"
+        android:hint="Mentor name"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        app:layout_constraintEnd_toStartOf="@+id/mentor_phone"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/mentor_phone"
+        android:layout_width="248dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
+        android:hint="Mentor phone number"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/mentor_email"
+        android:layout_width="248dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="44dp"
+        android:hint="Mentor email"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mentor_phone" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
