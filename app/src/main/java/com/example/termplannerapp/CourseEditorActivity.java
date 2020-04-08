@@ -49,7 +49,7 @@ public class CourseEditorActivity extends AppCompatActivity {
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
 
-    @BindDrawable(R.drawable.ic_delete)
+    @BindDrawable(R.drawable.ic_delete_green)
     Drawable mDeleteIcon;
 
     private CourseEditorViewModel mViewModel;
@@ -76,12 +76,10 @@ public class CourseEditorActivity extends AppCompatActivity {
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(CourseEditorViewModel.class);
         mViewModel.mLiveCourses.observe(this, (CourseEntity) -> {
-            //if (CourseEntity != null && !mEditingCourse) {
             mCourseTitle.setText(CourseEntity.getCourseTitle());
             mCourseStartDate.setText(CourseEntity.getCourseStartDate());
             mCourseEndDate.setText(CourseEntity.getCourseEndDate());
             mRadioButton.setText(CourseEntity.getStatus());
-            //}
         });
 
         Bundle extras = getIntent().getExtras();
@@ -97,15 +95,10 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //        Inflate the menu; this adds items to the action bar if it is present.
+        //Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_course_editor, menu);
         return true;
 
-//        if (!mNewCourse) {
-//            MenuInflater inflater = getMenuInflater();
-//            inflater.inflate(R.menu.menu_course_editor, menu);
-//        }
-//        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

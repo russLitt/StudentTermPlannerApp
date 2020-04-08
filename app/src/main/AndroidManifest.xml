@@ -11,20 +11,22 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".TermListActivity"
-            android:parentActivityName=".MainActivity" >
-        </activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AssessmentEditorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MentorEditorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AssessmentListActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".MentorListActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".CourseListActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".AssessmentListActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MentorListActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".CourseListActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CourseEditorActivity"
             android:label="@string/title_activity_course_editor"
