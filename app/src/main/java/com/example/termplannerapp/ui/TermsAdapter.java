@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.R;
+import com.example.termplannerapp.TermDetailsActivity;
 import com.example.termplannerapp.TermEditorActivity;
 import com.example.termplannerapp.database.TermEntity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -55,6 +57,15 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
                 mContext.startActivity(intent);
             }
         });
+
+        holder.mTermDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, TermDetailsActivity.class);
+                intent.putExtra(TERM_ID_KEY, term.getId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -71,6 +82,8 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
 //        TextView mEndDate;
         @BindView(R.id.fab)
         FloatingActionButton mFab;
+        @BindView(R.id.term_details_layout)
+        ConstraintLayout mTermDetails;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
