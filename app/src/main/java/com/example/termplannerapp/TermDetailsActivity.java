@@ -34,6 +34,7 @@ public class TermDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_term_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Term Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CourseDetailsActivity">
+
+    <TextView
+        android:id="@+id/course_title"
+        android:layout_width="141dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="196dp"
+        android:text="Course title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/course_start_date"
+        android:layout_width="98dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="88dp"
+        android:text="Start date"
+        app:layout_constraintEnd_toStartOf="@+id/course_end_date"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_title" />
+
+    <TextView
+        android:id="@+id/course_end_date"
+        android:layout_width="105dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:text="End date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_title" />
+
+    <TextView
+        android:id="@+id/rb_completed"
+        android:layout_width="112dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="96dp"
+        android:text="Status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_end_date" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

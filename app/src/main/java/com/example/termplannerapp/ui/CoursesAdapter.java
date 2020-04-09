@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.termplannerapp.CourseDetailsActivity;
 import com.example.termplannerapp.CourseEditorActivity;
 import com.example.termplannerapp.R;
 import com.example.termplannerapp.database.CourseEntity;
@@ -56,6 +58,15 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
                 mContext.startActivity(intent);
             }
         });
+
+        holder.mCourseDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, CourseDetailsActivity.class);
+                intent.putExtra(COURSE_ID_KEY, course.getId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -74,6 +85,8 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         TextView mCourseStatus;
         @BindView(R.id.course_edit_fab)
         FloatingActionButton mFab;
+        @BindView(R.id.course_details_layout)
+        ConstraintLayout mCourseDetails;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

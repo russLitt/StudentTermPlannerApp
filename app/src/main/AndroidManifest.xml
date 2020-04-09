@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TermDetailsActivity"
+        <activity android:name=".CourseDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".TermListActivity"/>
+            android:parentActivityName=".CourseListActivity"/>
+        <activity
+            android:name=".TermDetailsActivity"
+            android:parentActivityName=".TermListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TermListActivity"
             android:parentActivityName=".MainActivity" />
