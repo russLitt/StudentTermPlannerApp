@@ -60,7 +60,7 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
 
         holder.mTermDetails.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(mContext, TermDetailsActivity.class);
                 intent.putExtra(TERM_ID_KEY, term.getId());
                 mContext.startActivity(intent);

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TermDetailsActivity"></activity>
+        <activity android:name=".TermDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".TermListActivity"/>
         <activity
             android:name=".TermListActivity"
             android:parentActivityName=".MainActivity" />

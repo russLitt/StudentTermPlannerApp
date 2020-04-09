@@ -1,6 +1,7 @@
 package com.example.termplannerapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermDetailsActivity extends AppCompatActivity {
 
@@ -29,6 +32,9 @@ public class TermDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_details);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
 
@@ -42,5 +48,9 @@ public class TermDetailsActivity extends AppCompatActivity {
                 mTermStartDate.setText(termEntity.getTermStartDate());
                 mTermEndDate.setText(termEntity.getTermEndDate());
         });
+
+        Bundle extras = getIntent().getExtras();
+        int termId = extras.getInt(TERM_ID_KEY);
+        mViewModel.loadData(termId);
     }
 }
