@@ -51,9 +51,6 @@ public class AssessmentEditorActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-//        mAssmntSwitch.setTextOn("Objective");
-//        mAssmntSwitch.setTextOff("Performance");
-
         intiViewModel();
 
         mAssmntSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
