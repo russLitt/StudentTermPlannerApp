@@ -34,7 +34,7 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assessment_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Course Details");
+        getSupportActionBar().setTitle("Assessment Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
