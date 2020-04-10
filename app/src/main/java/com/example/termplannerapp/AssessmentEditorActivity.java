@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -50,18 +51,31 @@ public class AssessmentEditorActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+//        mAssmntSwitch.setTextOn("Objective");
+//        mAssmntSwitch.setTextOff("Performance");
+
         intiViewModel();
+
+        mAssmntSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mAssmntSwitch.setText("Objective");
+                }
+                else {
+                    mAssmntSwitch.setText("Performance");
+                }
+            }
+        });
 
     }
 
     private void intiViewModel() {
         mViewModel = new ViewModelProvider(this).get(AssessmentEditorViewModel.class);
         mViewModel.mLiveAssessments.observe(this, (AssessmentEntity) -> {
-            //if (CourseEntity != null && !mEditingCourse) {
             mAssmntTitle.setText(AssessmentEntity.getAssessmentTitle());
             mAssmntDueDate.setText(AssessmentEntity.getAssessmentDueDate());
             mAssmntSwitch.setText(AssessmentEntity.getAssessmentType());
-            //}
         });
 
         Bundle extras = getIntent().getExtras();
