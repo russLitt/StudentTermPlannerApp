@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -33,8 +34,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
-        layout="@layout/content_course_details"
-        tools:layout_editor_absoluteX="-98dp"
-        tools:layout_editor_absoluteY="-109dp" />
+        layout="@layout/content_course_details" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

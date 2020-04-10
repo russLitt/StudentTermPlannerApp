@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.termplannerapp.AssessmentDetailsActivity;
 import com.example.termplannerapp.AssessmentEditorActivity;
 import com.example.termplannerapp.R;
 import com.example.termplannerapp.database.AssessmentEntity;
@@ -21,6 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.termplannerapp.utilities.Constants.ASSESSMENT_ID_KEY;
+import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 
 public class AssessmentsAdapter extends RecyclerView.Adapter<AssessmentsAdapter.ViewHolder> {
 
@@ -44,13 +47,22 @@ public class AssessmentsAdapter extends RecyclerView.Adapter<AssessmentsAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final AssessmentEntity assessment = mAssessments.get(position);
         holder.mAssmntTitle.setText(assessment.getAssessmentTitle());
-        holder.mAssmntDueDate.setText(assessment.getAssessmentDueDate());
-        holder.mAssmntSwitch.setText(assessment.getAssessmentType());
+//        holder.mAssmntDueDate.setText(assessment.getAssessmentDueDate());
+//        holder.mAssmntSwitch.setText(assessment.getAssessmentType());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, AssessmentEditorActivity.class);
+                intent.putExtra(ASSESSMENT_ID_KEY, assessment.getId());
+                mContext.startActivity(intent);
+            }
+        });
+
+        holder.mAssmntDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, AssessmentDetailsActivity.class);
                 intent.putExtra(ASSESSMENT_ID_KEY, assessment.getId());
                 mContext.startActivity(intent);
             }
@@ -65,12 +77,14 @@ public class AssessmentsAdapter extends RecyclerView.Adapter<AssessmentsAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.assmnt_title)
         TextView mAssmntTitle;
-        @BindView(R.id.assmnt_due_date)
-        TextView mAssmntDueDate;
-        @BindView(R.id.assmnt_switch)
-        TextView mAssmntSwitch;
+//        @BindView(R.id.assmnt_due_date)
+//        TextView mAssmntDueDate;
+//        @BindView(R.id.assmnt_switch)
+//        TextView mAssmntSwitch;
         @BindView(R.id.assessment_edit_fab)
         FloatingActionButton mFab;
+        @BindView(R.id.assmnt_details_layout)
+        ConstraintLayout mAssmntDetails;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
