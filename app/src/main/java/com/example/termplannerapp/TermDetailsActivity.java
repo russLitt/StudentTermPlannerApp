@@ -1,12 +1,11 @@
 package com.example.termplannerapp;
 
+import android.os.Bundle;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
@@ -45,9 +44,9 @@ public class TermDetailsActivity extends AppCompatActivity {
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(TermEditorViewModel.class);
         mViewModel.mLiveTerms.observe(this, (termEntity) -> {
-                mTextView.setText(termEntity.getTermTitle());
-                mTermStartDate.setText(termEntity.getTermStartDate());
-                mTermEndDate.setText(termEntity.getTermEndDate());
+            mTextView.setText(termEntity.getTermTitle());
+            mTermStartDate.setText(termEntity.getTermStartDate());
+            mTermEndDate.setText(termEntity.getTermEndDate());
         });
 
         Bundle extras = getIntent().getExtras();

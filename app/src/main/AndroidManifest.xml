@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AssessmentDetailsActivity"
+        <activity android:name=".MentorDetailsActivity"
+            android:parentActivityName=".MentorListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AssessmentDetailsActivity"
             android:parentActivityName=".AssessmentListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

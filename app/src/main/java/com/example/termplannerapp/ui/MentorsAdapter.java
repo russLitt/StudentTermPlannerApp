@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.termplannerapp.CourseDetailsActivity;
+import com.example.termplannerapp.MentorDetailsActivity;
 import com.example.termplannerapp.MentorEditorActivity;
 import com.example.termplannerapp.R;
 import com.example.termplannerapp.database.MentorEntity;
@@ -20,6 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 import static com.example.termplannerapp.utilities.Constants.MENTOR_ID_KEY;
 
 public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHolder> {
@@ -44,13 +48,22 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHold
     public void onBindViewHolder(@NonNull MentorsAdapter.ViewHolder holder, int position) {
         final MentorEntity mentor = mMentors.get(position);
         holder.mMentorName.setText(mentor.getMentorName());
-        holder.mMentorEmail.setText(mentor.getMentorEmail());
-        holder.mMentorPhone.setText(mentor.getMentorPhone());
+//        holder.mMentorEmail.setText(mentor.getMentorEmail());
+//        holder.mMentorPhone.setText(mentor.getMentorPhone());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, MentorEditorActivity.class);
+                intent.putExtra(MENTOR_ID_KEY, mentor.getId());
+                mContext.startActivity(intent);
+            }
+        });
+
+        holder.mMentorDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, MentorDetailsActivity.class);
                 intent.putExtra(MENTOR_ID_KEY, mentor.getId());
                 mContext.startActivity(intent);
             }
@@ -66,12 +79,14 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHold
 
         @BindView(R.id.mentor_name)
         TextView mMentorName;
-        @BindView(R.id.mentor_phone)
-        TextView mMentorPhone;
-        @BindView(R.id.mentor_email)
-        TextView mMentorEmail;
+//        @BindView(R.id.mentor_phone)
+//        TextView mMentorPhone;
+//        @BindView(R.id.mentor_email)
+//        TextView mMentorEmail;
         @BindView(R.id.mentor_edit_fab)
         FloatingActionButton mFab;
+        @BindView(R.id.mentor_details_layout)
+        ConstraintLayout mMentorDetails;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
