@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/term_details_layout"
     android:layout_width="match_parent"
     android:layout_height="60dp">
@@ -41,27 +40,5 @@
         app:layout_constraintHorizontal_bias="0.368"
         app:layout_constraintStart_toEndOf="@+id/fab"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--    <TextView-->
-<!--        android:id="@+id/term_start"-->
-<!--        android:layout_width="84dp"-->
-<!--        android:layout_height="26dp"-->
-<!--        android:layout_marginStart="92dp"-->
-<!--        android:layout_marginLeft="92dp"-->
-<!--        android:layout_marginTop="44dp"-->
-<!--        android:text="TextView"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/term_text" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/term_end"-->
-<!--        android:layout_width="84dp"-->
-<!--        android:layout_height="26dp"-->
-<!--        android:layout_marginStart="80dp"-->
-<!--        android:layout_marginLeft="80dp"-->
-<!--        android:layout_marginTop="44dp"-->
-<!--        android:text="TextView"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/term_start"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/term_text" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

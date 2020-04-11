@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mentor_details_layout"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:id="@+id/mentor_details_layout">
+    android:layout_height="60dp">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/mentor_edit_fab"
@@ -28,10 +27,10 @@
         android:layout_height="34dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:gravity="center"
-        android:text="Mentor name"
         android:ellipsize="end"
+        android:gravity="center"
         android:maxLines="1"
+        android:text="Mentor name"
         android:textColor="@color/term_text_color"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,28 +38,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/mentor_edit_fab"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--    <TextView-->
-<!--        android:id="@+id/mentor_phone"-->
-<!--        android:layout_width="135dp"-->
-<!--        android:layout_height="28dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:text="Mentor phone"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.365"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/mentor_name"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/mentor_email"-->
-<!--        android:layout_width="135dp"-->
-<!--        android:layout_height="28dp"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        android:text="Mentor email"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/mentor_phone"-->
-<!--        app:layout_constraintVertical_bias="1.0" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
