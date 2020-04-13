@@ -12,7 +12,7 @@
         android:id="@+id/term_text"
         android:layout_width="240dp"
         android:layout_height="36dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="40dp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
@@ -68,5 +68,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/term_start_date"
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/course_recycler_view"
+        android:layout_width="398dp"
+        android:layout_height="203dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

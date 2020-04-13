@@ -34,4 +34,6 @@
 
     <include layout="@layout/content_term_details" />
 
+    <include layout="@layout/content_course_list" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

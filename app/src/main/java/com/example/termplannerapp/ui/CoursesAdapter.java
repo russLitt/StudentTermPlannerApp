@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.termplannerapp.CourseDetailsActivity;
 import com.example.termplannerapp.CourseEditorActivity;
 import com.example.termplannerapp.R;
+import com.example.termplannerapp.TermDetailsActivity;
 import com.example.termplannerapp.database.CourseEntity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -28,10 +29,12 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
+    private CourseSelectedListener courseSelectedListener;
 
-    public CoursesAdapter(List<CourseEntity> mCourses, Context mContext) {
+    public CoursesAdapter(List<CourseEntity> mCourses, Context mContext, CourseSelectedListener courseSelectedListener) {
         this.mCourses = mCourses;
         this.mContext = mContext;
+        this.courseSelectedListener = courseSelectedListener;
     }
 
     @NonNull
@@ -39,7 +42,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.course_list_item, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, courseSelectedListener);
     }
 
     @Override
@@ -74,10 +77,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         return mCourses.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.course_title)
         TextView mCourseTitle;
-//        @BindView(R.id.course_start_date)
+        //        @BindView(R.id.course_start_date)
 //        TextView mCourseStartDate;
 //        @BindView(R.id.course_end_date)
 //        TextView mCourseEndDate;
@@ -87,10 +90,23 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         FloatingActionButton mFab;
         @BindView(R.id.course_details_layout)
         ConstraintLayout mCourseDetails;
+        CourseSelectedListener courseSelectedListener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, CourseSelectedListener courseSelectedListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            this.courseSelectedListener = courseSelectedListener;
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            courseSelectedListener.onCourseSelected(getAdapterPosition(), mCourses.get(getAdapterPosition()));
+        }
+    }
+
+    public interface CourseSelectedListener {
+        void onCourseSelected(int position, CourseEntity course);
     }
 }
