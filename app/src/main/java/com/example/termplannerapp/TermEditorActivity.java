@@ -12,10 +12,19 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.ui.CoursesAdapter;
+import com.example.termplannerapp.viewmodel.MainViewModel;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -25,7 +34,7 @@ import butterknife.OnClick;
 import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
-public class TermEditorActivity extends AppCompatActivity {
+public class TermEditorActivity extends AppCompatActivity implements CoursesAdapter.CourseSelectedListener {
 
     @BindView(R.id.term_text)
     EditText mTextView;
@@ -36,7 +45,14 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
+    @BindView(R.id.course_select_recycler_view)
+    RecyclerView mCourseRecyclerView;
+
+    private List<CourseEntity> coursesData = new ArrayList<>();
+    private Toolbar toolbar;
+    private CoursesAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
+    private MainViewModel mMainViewModel;
     private boolean mNewTerm, mEditing;
 
     @Override
@@ -54,6 +70,7 @@ public class TermEditorActivity extends AppCompatActivity {
             mEditing = savedInstanceState.getBoolean(EDITING_TERM_KEY);
         }
 
+        initRecyclerView();
         initViewModel();
     }
 
@@ -67,6 +84,22 @@ public class TermEditorActivity extends AppCompatActivity {
             }
         });
 
+        final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
+            coursesData.clear();
+            coursesData.addAll(courseEntities);
+
+            if (mCoursesAdapter == null) {
+                mCoursesAdapter = new CoursesAdapter(coursesData,
+                        TermEditorActivity.this, this);
+                mCourseRecyclerView.setAdapter(mCoursesAdapter);
+            } else {
+                mCoursesAdapter.notifyDataSetChanged();
+            }
+        };
+
+        mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mMainViewModel.mCourses.observe(this, coursesObserver);
+
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
             setTitle(getString(R.string.new_term));
@@ -76,6 +109,19 @@ public class TermEditorActivity extends AppCompatActivity {
             int termId = extras.getInt(TERM_ID_KEY);
             mViewModel.loadData(termId);
         }
+    }
+
+    private void initRecyclerView() {
+        mCourseRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mCourseRecyclerView.setLayoutManager(layoutManager);
+
+        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
+                layoutManager.getOrientation());
+        mCourseRecyclerView.addItemDecoration(divider);
+
+        mCoursesAdapter = new CoursesAdapter(coursesData, this, this);
+        mCourseRecyclerView.setAdapter(mCoursesAdapter);
     }
 
     @Override
@@ -115,6 +161,11 @@ public class TermEditorActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putBoolean(EDITING_TERM_KEY, true);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onCourseSelected(int position, CourseEntity course) {
+
     }
 }
 

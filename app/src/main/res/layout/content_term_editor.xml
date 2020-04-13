@@ -25,9 +25,9 @@
         android:id="@+id/term_start_date"
         android:layout_width="160dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="enter start date"
         android:inputType="date"
@@ -40,15 +40,24 @@
         android:layout_height="48dp"
         android:layout_marginStart="33dp"
         android:layout_marginLeft="33dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="enter end date"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toEndOf="@+id/term_start_date"
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/course_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="589dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/term_end_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

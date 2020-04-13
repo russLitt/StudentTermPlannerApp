@@ -42,6 +42,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.course_list_item, parent, false);
+        View view2 = inflater.inflate(R.layout.course_select_item, parent, false);
         return new ViewHolder(view, courseSelectedListener);
     }
 
@@ -51,7 +52,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         holder.mCourseTitle.setText(course.getCourseTitle());
         //holder.mCourseStartDate.setText(course.getCourseStartDate());
         //holder.mCourseEndDate.setText(course.getCourseEndDate());
-        holder.mCourseStatus.setText(course.getStatus());
+        //holder.mCourseStatus.setText(course.getStatus());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +85,8 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 //        TextView mCourseStartDate;
 //        @BindView(R.id.course_end_date)
 //        TextView mCourseEndDate;
-        @BindView(R.id.course_status_rb_group)
-        TextView mCourseStatus;
+//        @BindView(R.id.course_status_rb_group)
+//        TextView mCourseStatus;
         @BindView(R.id.course_edit_fab)
         FloatingActionButton mFab;
         @BindView(R.id.course_details_layout)
