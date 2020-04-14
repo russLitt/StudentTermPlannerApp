@@ -7,8 +7,7 @@
     tools:context=".CourseListActivity">
 
     <include layout="@layout/content_course_list" />
-
-<!--    <include layout="@layout/course_select_item" />-->
+    <include layout="@layout/content_course_select_list" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/course_edit_fab"

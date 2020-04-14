@@ -45,7 +45,7 @@ public class TermEditorActivity extends AppCompatActivity implements CoursesAdap
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
-    @BindView(R.id.course_select_recycler_view)
+    @BindView(R.id.course_recycler_view)
     RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
