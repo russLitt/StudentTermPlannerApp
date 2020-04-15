@@ -35,4 +35,6 @@
 
     <include layout="@layout/content_term_editor" />
 
+    <include layout="@layout/content_course_select_list" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

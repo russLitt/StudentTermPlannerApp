@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".TermEditorActivity"
-    tools:showIn="@layout/activity_term_editor">
+    tools:context=".TermEditorActivity">
 
     <EditText
         android:id="@+id/term_text"
@@ -52,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/course_recycler_view"
+        android:id="@+id/course_select_recycler_view"
         android:layout_width="0dp"
         android:layout_height="589dp"
         android:layout_marginTop="48dp"

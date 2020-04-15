@@ -34,7 +34,7 @@ import butterknife.OnClick;
 import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
-public class TermEditorActivity extends AppCompatActivity implements CoursesAdapter.CourseSelectedListener {
+public class TermEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.term_text)
     EditText mTextView;
@@ -45,7 +45,7 @@ public class TermEditorActivity extends AppCompatActivity implements CoursesAdap
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
-    @BindView(R.id.course_recycler_view)
+    @BindView(R.id.course_select_recycler_view)
     RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
@@ -90,7 +90,7 @@ public class TermEditorActivity extends AppCompatActivity implements CoursesAdap
 
             if (mCoursesAdapter == null) {
                 mCoursesAdapter = new CoursesAdapter(coursesData,
-                        TermEditorActivity.this, this);
+                        TermEditorActivity.this);
                 mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
                 mCoursesAdapter.notifyDataSetChanged();
@@ -120,7 +120,7 @@ public class TermEditorActivity extends AppCompatActivity implements CoursesAdap
                 layoutManager.getOrientation());
         mCourseRecyclerView.addItemDecoration(divider);
 
-        mCoursesAdapter = new CoursesAdapter(coursesData, this, this);
+        mCoursesAdapter = new CoursesAdapter(coursesData, this);
         mCourseRecyclerView.setAdapter(mCoursesAdapter);
     }
 
@@ -163,9 +163,9 @@ public class TermEditorActivity extends AppCompatActivity implements CoursesAdap
         super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public void onCourseSelected(int position, CourseEntity course) {
-
-    }
+//    @Override
+//    public void onCourseSelected(int position, CourseEntity course) {
+//
+//    }
 }
 

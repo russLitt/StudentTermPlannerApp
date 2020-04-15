@@ -71,11 +71,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/course_recycler_view"
-        android:layout_width="398dp"
-        android:layout_height="203dp"
+        android:layout_width="399dp"
+        android:layout_height="323dp"
         android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 

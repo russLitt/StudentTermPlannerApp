@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
-public class TermDetailsActivity extends AppCompatActivity implements CoursesAdapter.CourseSelectedListener{
+public class TermDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.term_text)
     TextView mTextView;
@@ -75,7 +75,7 @@ public class TermDetailsActivity extends AppCompatActivity implements CoursesAda
 
             if (mCoursesAdapter == null) {
                 mCoursesAdapter = new CoursesAdapter(coursesData,
-                        TermDetailsActivity.this, this);
+                        TermDetailsActivity.this);
                 mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
                 mCoursesAdapter.notifyDataSetChanged();
@@ -99,12 +99,12 @@ public class TermDetailsActivity extends AppCompatActivity implements CoursesAda
                 layoutManager.getOrientation());
         mCourseRecyclerView.addItemDecoration(divider);
 
-        mCoursesAdapter = new CoursesAdapter(coursesData, this, this);
+        mCoursesAdapter = new CoursesAdapter(coursesData, this);
         mCourseRecyclerView.setAdapter(mCoursesAdapter);
     }
 
-    @Override
-    public void onCourseSelected(int position, CourseEntity course) {
-
-    }
+//    @Override
+//    public void onCourseSelected(int position, CourseEntity course) {
+//
+//    }
 }

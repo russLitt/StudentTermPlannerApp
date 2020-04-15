@@ -29,12 +29,20 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
-    private CourseSelectedListener courseSelectedListener;
+   // private CourseSelectedListener courseSelectedListener;
 
-    public CoursesAdapter(List<CourseEntity> mCourses, Context mContext, CourseSelectedListener courseSelectedListener) {
+    public CoursesAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
         this.mContext = mContext;
-        this.courseSelectedListener = courseSelectedListener;
+        //this.courseSelectedListener = courseSelectedListener;
+    }
+
+    class Courses extends RecyclerView.ViewHolder {
+
+        public Courses(@NonNull View itemView) {
+            super(itemView);
+            TextView mCourseTitle;
+        }
     }
 
     @NonNull
@@ -42,8 +50,14 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.course_list_item, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @NonNull
+    public ViewHolder onCreateViewHolder2(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view2 = inflater.inflate(R.layout.course_select_item, parent, false);
-        return new ViewHolder(view, courseSelectedListener);
+        return new ViewHolder(view2);
     }
 
     @Override
@@ -78,10 +92,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         return mCourses.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.course_title)
         TextView mCourseTitle;
-        //        @BindView(R.id.course_start_date)
+        //@BindView(R.id.course_start_date)
 //        TextView mCourseStartDate;
 //        @BindView(R.id.course_end_date)
 //        TextView mCourseEndDate;
@@ -91,23 +105,24 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         FloatingActionButton mFab;
         @BindView(R.id.course_details_layout)
         ConstraintLayout mCourseDetails;
-        CourseSelectedListener courseSelectedListener;
+        //CourseSelectedListener courseSelectedListener;
 
-        public ViewHolder(@NonNull View itemView, CourseSelectedListener courseSelectedListener) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            this.courseSelectedListener = courseSelectedListener;
+            //this.courseSelectedListener = courseSelectedListener;
 
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View view) {
-            courseSelectedListener.onCourseSelected(getAdapterPosition(), mCourses.get(getAdapterPosition()));
-        }
-    }
-
-    public interface CourseSelectedListener {
-        void onCourseSelected(int position, CourseEntity course);
+//        @Override
+//        public void onClick(View view) {
+//            courseSelectedListener.onCourseSelected(getAdapterPosition(), mCourses.get(getAdapterPosition()));
+//        }
+//    }
+//
+//    public interface CourseSelectedListener {
+//        void onCourseSelected(int position, CourseEntity course);
+//    }
     }
 }
