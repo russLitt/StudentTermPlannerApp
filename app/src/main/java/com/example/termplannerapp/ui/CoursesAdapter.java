@@ -29,19 +29,27 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
-   // private CourseSelectedListener courseSelectedListener;
+    final int VIEW_TERM_EDIT = 1;
+    final int VIEW_TERM_DETAILS = 2;
 
     public CoursesAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
         this.mContext = mContext;
-        //this.courseSelectedListener = courseSelectedListener;
     }
 
-    class Courses extends RecyclerView.ViewHolder {
-
-        public Courses(@NonNull View itemView) {
+    private class ViewHolder1 extends RecyclerView.ViewHolder {
+        @BindView(R.id.course_title)
+        TextView mCourseTitle;
+        public ViewHolder1(@NonNull View itemView) {
             super(itemView);
-            TextView mCourseTitle;
+            mCourseTitle = itemView.findViewById(R.id.course_select_recycler_view);
+        }
+    }
+
+    private class ViewHolder2 extends RecyclerView.ViewHolder {
+
+        public ViewHolder2(@NonNull View itemView) {
+            super(itemView);
         }
     }
 
@@ -53,12 +61,6 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         return new ViewHolder(view);
     }
 
-    @NonNull
-    public ViewHolder onCreateViewHolder2(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view2 = inflater.inflate(R.layout.course_select_item, parent, false);
-        return new ViewHolder(view2);
-    }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -105,24 +107,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         FloatingActionButton mFab;
         @BindView(R.id.course_details_layout)
         ConstraintLayout mCourseDetails;
-        //CourseSelectedListener courseSelectedListener;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            //this.courseSelectedListener = courseSelectedListener;
-
-            //itemView.setOnClickListener(this);
         }
-
-//        @Override
-//        public void onClick(View view) {
-//            courseSelectedListener.onCourseSelected(getAdapterPosition(), mCourses.get(getAdapterPosition()));
-//        }
-//    }
-//
-//    public interface CourseSelectedListener {
-//        void onCourseSelected(int position, CourseEntity course);
-//    }
     }
 }
