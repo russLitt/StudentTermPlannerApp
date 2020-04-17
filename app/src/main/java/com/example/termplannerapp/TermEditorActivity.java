@@ -1,12 +1,9 @@
 package com.example.termplannerapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -19,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.CourseEntity;
-import com.example.termplannerapp.ui.CoursesAdapter;
+import com.example.termplannerapp.ui.CoursesSelectAdapter;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
@@ -29,7 +26,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
@@ -50,7 +46,7 @@ public class TermEditorActivity extends AppCompatActivity {
 
     private List<CourseEntity> coursesData = new ArrayList<>();
     private Toolbar toolbar;
-    private CoursesAdapter mCoursesAdapter;
+    private CoursesSelectAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
     private MainViewModel mMainViewModel;
     private boolean mNewTerm, mEditing;
@@ -89,7 +85,7 @@ public class TermEditorActivity extends AppCompatActivity {
             coursesData.addAll(courseEntities);
 
             if (mCoursesAdapter == null) {
-                mCoursesAdapter = new CoursesAdapter(coursesData,
+                mCoursesAdapter = new CoursesSelectAdapter(coursesData,
                         TermEditorActivity.this);
                 mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
@@ -120,7 +116,7 @@ public class TermEditorActivity extends AppCompatActivity {
                 layoutManager.getOrientation());
         mCourseRecyclerView.addItemDecoration(divider);
 
-        mCoursesAdapter = new CoursesAdapter(coursesData, this);
+        mCoursesAdapter = new CoursesSelectAdapter(coursesData, this);
         mCourseRecyclerView.setAdapter(mCoursesAdapter);
     }
 

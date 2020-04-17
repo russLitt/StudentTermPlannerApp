@@ -29,38 +29,20 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
-    final int VIEW_TERM_EDIT = 1;
-    final int VIEW_TERM_DETAILS = 2;
 
     public CoursesAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
         this.mContext = mContext;
     }
 
-    private class ViewHolder1 extends RecyclerView.ViewHolder {
-        @BindView(R.id.course_title)
-        TextView mCourseTitle;
-        public ViewHolder1(@NonNull View itemView) {
-            super(itemView);
-            mCourseTitle = itemView.findViewById(R.id.course_select_recycler_view);
-        }
-    }
-
-    private class ViewHolder2 extends RecyclerView.ViewHolder {
-
-        public ViewHolder2(@NonNull View itemView) {
-            super(itemView);
-        }
-    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.course_list_item, parent, false);
-        return new ViewHolder(view);
-    }
-
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            View view = inflater.inflate(R.layout.course_list_item, parent, false);
+            return new ViewHolder(view);
+        }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -94,7 +76,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         return mCourses.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.course_title)
         TextView mCourseTitle;
         //@BindView(R.id.course_start_date)

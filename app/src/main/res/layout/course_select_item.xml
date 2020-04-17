@@ -5,14 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    tools:context=".TermEditorActivity">
+    tools:context=".TermEditorActivity"
+    android:id="@+id/course_details_layout">
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/course_select_check_box"
         android:layout_width="29dp"
         android:layout_height="29dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,6 +35,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
+        app:layout_constraintStart_toEndOf="@+id/course_select_check_box"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
