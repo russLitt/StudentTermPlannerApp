@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,6 +29,7 @@ import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 import static com.example.termplannerapp.utilities.Constants.EDITING_COURSE_KEY;
 import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
@@ -48,6 +50,9 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
+
+    @BindView(R.id.course_select_check_box)
+    CheckBox mCheckBox;
 
     @BindDrawable(R.drawable.ic_delete_green)
     Drawable mDeleteIcon;
@@ -80,6 +85,7 @@ public class CourseEditorActivity extends AppCompatActivity {
             mCourseStartDate.setText(CourseEntity.getCourseStartDate());
             mCourseEndDate.setText(CourseEntity.getCourseEndDate());
             mRadioButton.setText(CourseEntity.getStatus());
+            mCheckBox.setChecked(CourseEntity.getCourseChecked());
         });
 
         Bundle extras = getIntent().getExtras();
@@ -122,7 +128,8 @@ public class CourseEditorActivity extends AppCompatActivity {
         mViewModel.saveCourse(mCourseTitle.getText().toString(),
                 mCourseStartDate.getText().toString(),
                 mCourseEndDate.getText().toString(),
-                mRadioButton.getText().toString());
+                mRadioButton.getText().toString(),
+                mCheckBox.getText().toString());
         finish();
     }
 
