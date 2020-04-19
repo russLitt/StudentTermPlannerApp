@@ -93,7 +93,7 @@ public class TermListActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_add_sample_data) {
-            addSampleData();
+            //addSampleData();
             return true;
         } else if (id == R.id.action_delete_all) {
             deleteAllTerms();
@@ -106,8 +106,8 @@ public class TermListActivity extends AppCompatActivity {
         mViewModel.deleteAllTerms();
     }
 
-    private void addSampleData() {
-        mViewModel.addSampleData();
-    }
+//    private void addSampleData() {
+//        mViewModel.addSampleData();
+//    }
 }
 

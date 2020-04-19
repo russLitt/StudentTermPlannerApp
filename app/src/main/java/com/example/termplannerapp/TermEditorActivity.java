@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.CoursesSelectAdapter;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
@@ -41,6 +43,9 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
+//    @BindView(R.id.course_select_check_box)
+//    CheckBox mCheckBox;
+
     @BindView(R.id.course_select_recycler_view)
     RecyclerView mCourseRecyclerView;
 
@@ -55,6 +60,7 @@ public class TermEditorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_editor);
+        //setContentView(R.layout.activity_course_select_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_check);
@@ -158,10 +164,5 @@ public class TermEditorActivity extends AppCompatActivity {
         outState.putBoolean(EDITING_TERM_KEY, true);
         super.onSaveInstanceState(outState);
     }
-
-//    @Override
-//    public void onCourseSelected(int position, CourseEntity course) {
-//
-//    }
 }
 

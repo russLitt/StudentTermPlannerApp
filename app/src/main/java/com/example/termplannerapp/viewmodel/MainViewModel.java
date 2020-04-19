@@ -32,9 +32,9 @@ public class MainViewModel extends AndroidViewModel {
         mAssessments = mRepository.mAssessments;
     }
 
-    public void addSampleData() {
-        mRepository.addSampleData();
-    }
+//    public void addSampleData() {
+//        mRepository.addSampleData();
+//    }
 
     public void deleteAllTerms() {
         mRepository.deleteAllTerms();

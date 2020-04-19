@@ -29,7 +29,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="156dp"
         android:layout_marginLeft="156dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="enter start date"
         android:imeOptions="actionDone|flagNoExtractUi"
@@ -43,7 +43,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="33dp"
         android:layout_marginLeft="33dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
@@ -51,8 +51,17 @@
         android:imeOptions="actionDone|flagNoExtractUi"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.276"
         app:layout_constraintStart_toEndOf="@+id/term_start_date"
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/course_select_recycler_view"
+        android:layout_width="375dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/term_start_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

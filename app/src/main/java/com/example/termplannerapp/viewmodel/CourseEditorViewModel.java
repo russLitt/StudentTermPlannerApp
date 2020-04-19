@@ -34,22 +34,19 @@ public class CourseEditorViewModel extends AndroidViewModel {
         });
     }
 
-    public void saveCourse(String courseTitle, String courseStart, String courseEnd, String courseStatus,
-                           String courseChecked) {
+    public void saveCourse(String courseTitle, String courseStart, String courseEnd, String courseStatus) {
         CourseEntity course = mLiveCourses.getValue();
 
         if (course == null) {
             if (TextUtils.isEmpty(courseTitle.trim())) {
                 return;
             }
-            course = new CourseEntity(courseTitle.trim(), courseStart.trim(), courseEnd.trim(), courseStatus.trim(),
-                    courseChecked.isEmpty());
+            course = new CourseEntity(courseTitle.trim(), courseStart.trim(), courseEnd.trim(), courseStatus.trim());
         } else {
             course.setCourseTitle(courseTitle.trim());
             course.setCourseStartDate(courseStart.trim());
             course.setCourseEndDate(courseEnd.trim());
             course.setStatus(courseStatus.trim());
-            course.setCourseChecked(courseChecked.isEmpty());
         }
         mRepository.insertCourse(course);
     }

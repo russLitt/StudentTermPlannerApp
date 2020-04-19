@@ -12,7 +12,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.R;
+import com.example.termplannerapp.TermEditorActivity;
 import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.database.TermEntity;
 
 import java.util.List;
 
@@ -41,7 +43,6 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final CourseEntity course = mCourses.get(position);
         holder.mCourseTitle.setText(course.getCourseTitle());
-        holder.mCheckBox.setChecked(course.getCourseChecked());
     }
 
     @Override
@@ -52,8 +53,6 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.course_title)
         TextView mCourseTitle;
-        @BindView(R.id.course_select_check_box)
-        CheckBox mCheckBox;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

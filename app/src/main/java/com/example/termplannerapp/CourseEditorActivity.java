@@ -51,9 +51,6 @@ public class CourseEditorActivity extends AppCompatActivity {
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
 
-    @BindView(R.id.course_select_check_box)
-    CheckBox mCheckBox;
-
     @BindDrawable(R.drawable.ic_delete_green)
     Drawable mDeleteIcon;
 
@@ -85,7 +82,6 @@ public class CourseEditorActivity extends AppCompatActivity {
             mCourseStartDate.setText(CourseEntity.getCourseStartDate());
             mCourseEndDate.setText(CourseEntity.getCourseEndDate());
             mRadioButton.setText(CourseEntity.getStatus());
-            mCheckBox.setChecked(CourseEntity.getCourseChecked());
         });
 
         Bundle extras = getIntent().getExtras();
@@ -104,7 +100,6 @@ public class CourseEditorActivity extends AppCompatActivity {
         //Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_course_editor, menu);
         return true;
-
     }
 
     @Override
@@ -128,8 +123,7 @@ public class CourseEditorActivity extends AppCompatActivity {
         mViewModel.saveCourse(mCourseTitle.getText().toString(),
                 mCourseStartDate.getText().toString(),
                 mCourseEndDate.getText().toString(),
-                mRadioButton.getText().toString(),
-                mCheckBox.getText().toString());
+                mRadioButton.getText().toString());
         finish();
     }
 

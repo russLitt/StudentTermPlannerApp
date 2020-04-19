@@ -15,7 +15,6 @@ public class TermEntity {
     private Date date;
     private String termTitle, termStartDate, termEndDate;
 
-    //for creating term and assigning values individually
     @Ignore
     public TermEntity() {
     }
@@ -77,6 +76,14 @@ public class TermEntity {
     public void setTermEndDate(String termEndDate) {
         this.termEndDate = termEndDate;
     }
+
+//    public boolean getCourseChecked() {
+//        return courseChecked;
+//    }
+//
+//    public void setCourseChecked(Boolean courseChecked) {
+//        this.courseChecked = courseChecked;
+//    }
 
     //for debugging
     @Override
