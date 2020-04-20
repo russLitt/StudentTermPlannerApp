@@ -164,5 +164,9 @@ public class TermEditorActivity extends AppCompatActivity {
         outState.putBoolean(EDITING_TERM_KEY, true);
         super.onSaveInstanceState(outState);
     }
+
+    public void onCourseChecked() {
+
+    }
 }
 
