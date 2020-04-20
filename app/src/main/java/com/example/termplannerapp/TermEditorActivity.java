@@ -1,11 +1,14 @@
 package com.example.termplannerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,8 +46,8 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
-//    @BindView(R.id.course_select_check_box)
-//    CheckBox mCheckBox;
+    @BindView(R.id.course_select_check_box)
+    CheckBox mCheckBox;
 
     @BindView(R.id.course_select_recycler_view)
     RecyclerView mCourseRecyclerView;
@@ -155,7 +158,8 @@ public class TermEditorActivity extends AppCompatActivity {
     private void saveAndReturn() {
         mViewModel.saveTerm(mTextView.getText().toString(),
                 mTermStartDate.getText().toString(),
-                mTermEndDate.getText().toString());
+                mTermEndDate.getText().toString(),
+                mCheckBox.isChecked());
         finish();
     }
 
@@ -165,8 +169,19 @@ public class TermEditorActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
-    public void onCourseChecked() {
+    public void onCourseChecked(View view) {
 
+        boolean checked = ((CheckBox) view).isChecked();
+
+        Toast.makeText(this, "Course selected" + mCheckBox.getText(), Toast.LENGTH_SHORT).show();
+
+        if (mCheckBox.isChecked()) {
+            Intent intent = new Intent(TermEditorActivity.this, TermDetailsActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("Course selected: ", mCheckBox.getText().toString());
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 }
 
