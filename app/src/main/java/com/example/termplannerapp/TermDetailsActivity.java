@@ -71,7 +71,7 @@ public class TermDetailsActivity extends AppCompatActivity {
             //mTextView.setText(termEntity.getTermTitle());
             mTermStartDate.setText(termEntity.getTermStartDate());
             mTermEndDate.setText(termEntity.getTermEndDate());
-            mCheckBoxSelection.setAllCaps(termEntity.getCourseChecked());
+            mCheckBoxSelection.toString();
         });
 
         final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
