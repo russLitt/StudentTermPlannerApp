@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.CoursesAdapter;
+import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
@@ -37,8 +38,8 @@ public class TermDetailsActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     TextView mTermEndDate;
 
-    @BindView(R.id.courses_selected)
-    TextView mCheckBoxSelection;
+    @BindView(R.id.course_title)
+    TextView mCourseTitle;
 
 //    @BindView(R.id.course_recycler_view)
 //    RecyclerView mCourseRecyclerView;
@@ -47,6 +48,7 @@ public class TermDetailsActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private CoursesAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
+    private CourseEditorViewModel mViewCourseModel;
     private MainViewModel mMainViewModel;
 
     @Override
@@ -68,10 +70,10 @@ public class TermDetailsActivity extends AppCompatActivity {
         mViewModel = new ViewModelProvider(this).get(TermEditorViewModel.class);
         mViewModel.mLiveTerms.observe(this, (termEntity) -> {
             toolbar.setTitle(termEntity.getTermTitle());
-            //mTextView.setText(termEntity.getTermTitle());
+            mTextView.setText(termEntity.getTermTitle());
             mTermStartDate.setText(termEntity.getTermStartDate());
             mTermEndDate.setText(termEntity.getTermEndDate());
-            mCheckBoxSelection.toString();
+            //mCourseTitle.setText(termEntity.getCourseChecked());
         });
 
         final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
@@ -108,8 +110,4 @@ public class TermDetailsActivity extends AppCompatActivity {
 //        mCourseRecyclerView.setAdapter(mCoursesAdapter);
 //    }
 
-//    @Override
-//    public void onCourseSelected(int position, CourseEntity course) {
-//
-//    }
 }

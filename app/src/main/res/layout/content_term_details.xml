@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
 
     <TextView
-        android:id="@+id/courses_selected"
+        android:id="@+id/course_title"
         android:layout_width="193dp"
         android:layout_height="129dp"
         android:layout_marginTop="56dp"

@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.CoursesSelectAdapter;
+import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
@@ -60,6 +61,7 @@ public class TermEditorActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private CoursesSelectAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
+    private CourseEditorViewModel mViewCourseModel;
     private MainViewModel mMainViewModel;
     private boolean mNewTerm, mEditing;
 
@@ -90,7 +92,8 @@ public class TermEditorActivity extends AppCompatActivity {
                 mTextView.setText(termEntity.getTermTitle());
                 mTermStartDate.setText(termEntity.getTermStartDate());
                 mTermEndDate.setText(termEntity.getTermEndDate());
-                //mCheckBox.setText(termEntity.getCourseChecked());
+                mCheckBox.isChecked();
+                mCourseTitle.setText(termEntity.toString());
             }
         });
 
@@ -164,7 +167,8 @@ public class TermEditorActivity extends AppCompatActivity {
         mViewModel.saveTerm(mTextView.getText().toString(),
                 mTermStartDate.getText().toString(),
                 mTermEndDate.getText().toString(),
-                mCheckBox.isChecked());
+                mCheckBox.isChecked(),
+                mCourseTitle.getText().toString());
         finish();
     }
 
@@ -178,8 +182,10 @@ public class TermEditorActivity extends AppCompatActivity {
 
         boolean checked = ((CheckBox) view).isChecked();
 
+        //mCourseTitle.findViewById(mCheckBox.getId());
+
         if (checked) {
-            Toast.makeText(this, "Course selected: " + mCourseTitle.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Course selected: " + mCourseTitle.getText().toString(), Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -28,7 +28,6 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:text="Course title"
         android:textColor="@color/term_text_color"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
