@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -43,6 +45,22 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final CourseEntity course = mCourses.get(position);
         holder.mCourseTitle.setText(course.getCourseTitle());
+
+        holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(mContext, "Course selected: " + mCourses.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
@@ -50,13 +68,20 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
         return mCourses.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @BindView(R.id.course_select_check_box)
+        CheckBox mCheckBox;
         @BindView(R.id.course_title)
         TextView mCourseTitle;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mCourseTitle = view.findViewById(R.id.course_title);
         }
     }
 }
