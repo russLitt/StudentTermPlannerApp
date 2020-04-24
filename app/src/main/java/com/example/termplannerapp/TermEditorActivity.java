@@ -177,18 +177,5 @@ public class TermEditorActivity extends AppCompatActivity {
         outState.putBoolean(EDITING_TERM_KEY, true);
         super.onSaveInstanceState(outState);
     }
-
-//    public void onCourseChecked(View view) {
-//
-////        int selectedStatus = mCourseStatus.getCheckedRadioButtonId();
-////        mRadioButton = findViewById(selectedStatus);
-//        boolean checked = ((CheckBox) view).isChecked();
-//
-//        //String courseSelected = mCheckBox;
-//
-//        if (checked) {
-//            Toast.makeText(this, "Course selected: " + mCourseTitle.getText().toString(), Toast.LENGTH_SHORT).show();
-//        }
-//    }
 }
 

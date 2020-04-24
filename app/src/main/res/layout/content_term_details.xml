@@ -69,17 +69,26 @@
         app:layout_constraintStart_toEndOf="@+id/term_start_date"
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
 
+<!--    <ListView-->
+<!--        android:id="@+id/course_title"-->
+<!--        android:layout_width="409dp"-->
+<!--        android:layout_height="563dp"-->
+<!--        android:layout_marginTop="44dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+
     <TextView
         android:id="@+id/course_title"
-        android:layout_width="193dp"
-        android:layout_height="129dp"
+        android:layout_width="268dp"
+        android:layout_height="307dp"
         android:layout_marginTop="56dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/course_recycler_view"-->
 <!--        android:layout_width="399dp"-->
 <!--        android:layout_height="323dp"-->

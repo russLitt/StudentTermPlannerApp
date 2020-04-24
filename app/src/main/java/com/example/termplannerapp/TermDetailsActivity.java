@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.CoursesAdapter;
+import com.example.termplannerapp.ui.CoursesSelectAdapter;
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
@@ -45,8 +46,9 @@ public class TermDetailsActivity extends AppCompatActivity {
 //    RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
+    private List<String> mCoursesSelected = new ArrayList<>();
     private Toolbar toolbar;
-    private CoursesAdapter mCoursesAdapter;
+    private CoursesSelectAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
     private CourseEditorViewModel mViewCourseModel;
     private MainViewModel mMainViewModel;
@@ -73,7 +75,7 @@ public class TermDetailsActivity extends AppCompatActivity {
             mTextView.setText(termEntity.getTermTitle());
             mTermStartDate.setText(termEntity.getTermStartDate());
             mTermEndDate.setText(termEntity.getTermEndDate());
-            //mCourseTitle.setText(termEntity.getCourseChecked());
+            mCourseTitle.setText(termEntity.getCourseTitle());
         });
 
         final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
@@ -81,7 +83,7 @@ public class TermDetailsActivity extends AppCompatActivity {
             coursesData.addAll(courseEntities);
 
             if (mCoursesAdapter == null) {
-                mCoursesAdapter = new CoursesAdapter(coursesData,
+                mCoursesAdapter = new CoursesSelectAdapter(coursesData,
                         TermDetailsActivity.this);
                 //mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {

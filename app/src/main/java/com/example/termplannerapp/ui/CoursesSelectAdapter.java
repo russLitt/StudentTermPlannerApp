@@ -10,14 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.R;
-import com.example.termplannerapp.TermEditorActivity;
 import com.example.termplannerapp.database.CourseEntity;
-import com.example.termplannerapp.database.TermEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,6 +25,7 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
+    private final List<String> mCoursesSelected = new ArrayList<>();
 
     public CoursesSelectAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
@@ -45,12 +44,12 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final CourseEntity course = mCourses.get(position);
         holder.mCourseTitle.setText(course.getCourseTitle());
-
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     Toast.makeText(mContext, "Course selected: " + mCourses.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
+                    mCoursesSelected.add(mCourses.get(position).getCourseTitle());
                 } else {
 
                 }
