@@ -49,11 +49,11 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
-    @BindView(R.id.course_select_check_box)
-    CheckBox mCheckBox;
-
-    @BindView(R.id.course_title)
-    TextView mCourseTitle;
+//    @BindView(R.id.course_select_check_box)
+//    CheckBox mCheckBox;
+//
+//    @BindView(R.id.course_title)
+//    TextView mCourseTitle;
 
     @BindView(R.id.course_select_recycler_view)
     RecyclerView mCourseRecyclerView;
@@ -94,8 +94,8 @@ public class TermEditorActivity extends AppCompatActivity {
                 mTextView.setText(termEntity.getTermTitle());
                 mTermStartDate.setText(termEntity.getTermStartDate());
                 mTermEndDate.setText(termEntity.getTermEndDate());
-                mCheckBox.isChecked();
-                mCourseTitle.setText(termEntity.toString());
+//                mCheckBox.isChecked();
+//                mCourseTitle.setText(termEntity.toString());
             }
         });
 
@@ -168,9 +168,7 @@ public class TermEditorActivity extends AppCompatActivity {
     private void saveAndReturn() {
         mViewModel.saveTerm(mTextView.getText().toString(),
                 mTermStartDate.getText().toString(),
-                mTermEndDate.getText().toString(),
-                mCheckBox.isChecked(),
-                mCourseTitle.getText().toString());
+                mTermEndDate.getText().toString());
         finish();
     }
 
