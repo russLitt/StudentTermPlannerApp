@@ -56,6 +56,7 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     private CourseEditorViewModel mViewModel;
     private Boolean mNewCourse, mEditingCourse;
+    private int termId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +124,8 @@ public class CourseEditorActivity extends AppCompatActivity {
         mViewModel.saveCourse(mCourseTitle.getText().toString(),
                 mCourseStartDate.getText().toString(),
                 mCourseEndDate.getText().toString(),
-                mRadioButton.getText().toString());
+                mRadioButton.getText().toString(),
+                termId);
         finish();
     }
 

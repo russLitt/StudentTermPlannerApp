@@ -62,12 +62,16 @@ public class AppRepository {
 
     //course methods
 
-    public LiveData<List<CourseEntity>> getAllCourses() {
+    private LiveData<List<CourseEntity>> getAllCourses() {
         return mDb.courseDao().getAll();
     }
 
     public CourseEntity getCourseById(int courseId) {
         return mDb.courseDao().getCourseById(courseId);
+    }
+
+    public LiveData<List<CourseEntity>> getCourseByTerm(final int termId) {
+        return mDb.courseDao().getCourseByTerm(termId);
     }
 
     public void deleteAllCourses() {

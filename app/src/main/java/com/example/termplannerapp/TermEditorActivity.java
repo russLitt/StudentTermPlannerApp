@@ -65,6 +65,7 @@ public class TermEditorActivity extends AppCompatActivity {
     private CourseEditorViewModel mViewCourseModel;
     private MainViewModel mMainViewModel;
     private boolean mNewTerm, mEditing;
+    private int termId = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +113,7 @@ public class TermEditorActivity extends AppCompatActivity {
         };
 
         mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mMainViewModel.mCourses.observe(this, coursesObserver);
+        mViewCourseModel.getCourseInTerm(termId).observe(this, coursesObserver);
 
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
