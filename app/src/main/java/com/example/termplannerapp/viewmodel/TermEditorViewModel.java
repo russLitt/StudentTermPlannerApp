@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.termplannerapp.database.AppRepository;
+import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.TermEntity;
 
 import java.util.Date;
@@ -58,4 +59,5 @@ public class TermEditorViewModel extends AndroidViewModel {
     public void deleteTerm() {
         mRepository.deleteTerm(mLiveTerms.getValue());
     }
+
 }

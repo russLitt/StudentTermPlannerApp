@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -26,6 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermDetailsActivity extends AppCompatActivity {
@@ -39,18 +41,19 @@ public class TermDetailsActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     TextView mTermEndDate;
 
-    @BindView(R.id.course_title)
-    TextView mCourseTitle;
+//    @BindView(R.id.course_title)
+//    TextView mCourseTitle;
 
-//    @BindView(R.id.course_recycler_view)
-//    RecyclerView mCourseRecyclerView;
+    @BindView(R.id.course_recycler_view)
+    RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
-    private List<String> mCoursesSelected = new ArrayList<>();
+    //private List<String> mCoursesSelected = new ArrayList<>();
     private Toolbar toolbar;
-    private CoursesSelectAdapter mCoursesAdapter;
+    private CoursesAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
-    private CourseEditorViewModel mViewCourseModel;
+    private CourseEditorViewModel mCourseViewModel;
+    private static int numCourses;
     private MainViewModel mMainViewModel;
 
     @Override
@@ -59,23 +62,23 @@ public class TermDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_term_details);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("Term Details");
+        getSupportActionBar().setTitle("Term Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
 
-        //initRecyclerView();
+        initRecyclerView();
         initViewModel();
     }
 
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(TermEditorViewModel.class);
         mViewModel.mLiveTerms.observe(this, (termEntity) -> {
-            toolbar.setTitle(termEntity.getTermTitle());
+            //toolbar.setTitle(termEntity.getTermTitle());
             mTextView.setText(termEntity.getTermTitle());
             mTermStartDate.setText(termEntity.getTermStartDate());
             mTermEndDate.setText(termEntity.getTermEndDate());
-            mCourseTitle.setText(termEntity.getCourseTitle());
+            //mCourseTitle.setText(termEntity.getCourseTitle());
         });
 
         final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
@@ -83,9 +86,9 @@ public class TermDetailsActivity extends AppCompatActivity {
             coursesData.addAll(courseEntities);
 
             if (mCoursesAdapter == null) {
-                mCoursesAdapter = new CoursesSelectAdapter(coursesData,
+                mCoursesAdapter = new CoursesAdapter(coursesData,
                         TermDetailsActivity.this);
-                //mCourseRecyclerView.setAdapter(mCoursesAdapter);
+                mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
                 mCoursesAdapter.notifyDataSetChanged();
             }
@@ -99,17 +102,29 @@ public class TermDetailsActivity extends AppCompatActivity {
         mViewModel.loadData(termId);
     }
 
-//    private void initRecyclerView() {
-//        mCourseRecyclerView.setHasFixedSize(true);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//        mCourseRecyclerView.setLayoutManager(layoutManager);
-//
-//        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
-//                layoutManager.getOrientation());
-//        mCourseRecyclerView.addItemDecoration(divider);
-//
-//        mCoursesAdapter = new CoursesAdapter(coursesData, this);
-//        mCourseRecyclerView.setAdapter(mCoursesAdapter);
-//    }
+    private void initRecyclerView() {
+        mCourseRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mCourseRecyclerView.setLayoutManager(layoutManager);
+
+        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
+                layoutManager.getOrientation());
+        mCourseRecyclerView.addItemDecoration(divider);
+
+        mCoursesAdapter = new CoursesAdapter(coursesData, this);
+        mCourseRecyclerView.setAdapter(mCoursesAdapter);
+
+        //        mCourseViewModel.getAllCourses().observe(this, new Observer<List<CourseEntity>>() {
+//            @Override
+//            public void onChanged(@Nullable final List<CourseEntity> courses) {
+//                List<CourseEntity> filteredCourses = new ArrayList<>();
+//                for (CourseEntity course : courses)
+//                    if (course.getTermId() == getIntent().getIntExtra
+//                            ("termID", 0)) filteredCourses.add(course);
+//                mCoursesAdapter.setCourses(filteredCourses);
+//                numCourses=filteredCourses.size();
+//            }
+//        });
+    }
 
 }

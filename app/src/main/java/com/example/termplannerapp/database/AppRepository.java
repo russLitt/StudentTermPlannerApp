@@ -62,7 +62,7 @@ public class AppRepository {
 
     //course methods
 
-    private LiveData<List<CourseEntity>> getAllCourses() {
+    public LiveData<List<CourseEntity>> getAllCourses() {
         return mDb.courseDao().getAll();
     }
 

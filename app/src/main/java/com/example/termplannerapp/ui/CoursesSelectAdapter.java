@@ -25,7 +25,7 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
-    private final List<String> mCoursesSelected = new ArrayList<>();
+    private final ArrayList<String> mCoursesSelected = new ArrayList<>();
 
     public CoursesSelectAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
@@ -50,6 +50,7 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
                 if (isChecked) {
                     Toast.makeText(mContext, "Course selected: " + mCourses.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
                     mCoursesSelected.add(mCourses.get(position).getCourseTitle());
+                   //Log.i(TAG, "onCheckedChanged: " + mCoursesSelected );
                 } else {
 
                 }
@@ -65,6 +66,10 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
     @Override
     public int getItemCount() {
         return mCourses.size();
+    }
+
+    public List<String> showSelectedCourses() {
+        return mCoursesSelected;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

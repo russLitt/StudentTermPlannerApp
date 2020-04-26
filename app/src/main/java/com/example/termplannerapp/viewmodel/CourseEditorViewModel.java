@@ -5,11 +5,13 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.termplannerapp.database.AppRepository;
 import com.example.termplannerapp.database.CourseEntity;
 
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -54,4 +56,5 @@ public class CourseEditorViewModel extends AndroidViewModel {
     public void deleteCourse() {
         mRepository.deleteCourse(mLiveCourses.getValue());
     }
+
 }

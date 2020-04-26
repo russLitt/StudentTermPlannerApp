@@ -70,31 +70,21 @@
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
 
 <!--    <ListView-->
-<!--        android:id="@+id/course_title"-->
+<!--        android:id="@+id/course_selected_list"-->
 <!--        android:layout_width="409dp"-->
 <!--        android:layout_height="563dp"-->
-<!--        android:layout_marginTop="44dp"-->
+<!--        android:layout_marginTop="40dp"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
-    <TextView
-        android:id="@+id/course_title"
-        android:layout_width="268dp"
-        android:layout_height="307dp"
-        android:layout_marginTop="56dp"
-        android:text="TextView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/course_recycler_view"
+        android:layout_width="399dp"
+        android:layout_height="323dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/course_recycler_view"-->
-<!--        android:layout_width="399dp"-->
-<!--        android:layout_height="323dp"-->
-<!--        android:layout_marginTop="52dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,7 +27,7 @@ import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 
 public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHolder> {
 
-    private final List<CourseEntity> mCourses;
+    private List<CourseEntity> mCourses;
     private final Context mContext;
 
     public CoursesAdapter(List<CourseEntity> mCourses, Context mContext) {
@@ -74,6 +74,11 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     @Override
     public int getItemCount() {
         return mCourses.size();
+    }
+
+    public void setCourses(List<CourseEntity> courses) {
+        mCourses = courses;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

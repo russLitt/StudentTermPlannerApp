@@ -32,4 +32,7 @@ public interface CourseDao {
 
     @Query("SELECT COUNT(*) FROM courses")
     int getCount();
+
+    @Query("SELECT * FROM courses WHERE termId = :termId")
+    LiveData<List<CourseEntity>> getCourseByTerm(final int termId);
 }
