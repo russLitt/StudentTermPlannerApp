@@ -95,8 +95,8 @@ public class TermDetailsActivity extends AppCompatActivity {
         };
 
         mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        //mMainViewModel.mCourses.observe(this, coursesObserver);
-        mCourseViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
+        mMainViewModel.mCourses.observe(this, coursesObserver);
+        //mCourseViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
 
         Bundle extras = getIntent().getExtras();
         int termId = extras.getInt(TERM_ID_KEY);
@@ -114,18 +114,5 @@ public class TermDetailsActivity extends AppCompatActivity {
 
         mCoursesAdapter = new CoursesAdapter(coursesData, this);
         mCourseRecyclerView.setAdapter(mCoursesAdapter);
-
-        //        mCourseViewModel.getAllCourses().observe(this, new Observer<List<CourseEntity>>() {
-//            @Override
-//            public void onChanged(@Nullable final List<CourseEntity> courses) {
-//                List<CourseEntity> filteredCourses = new ArrayList<>();
-//                for (CourseEntity course : courses)
-//                    if (course.getTermId() == getIntent().getIntExtra
-//                            ("termID", 0)) filteredCourses.add(course);
-//                mCoursesAdapter.setCourses(filteredCourses);
-//                numCourses=filteredCourses.size();
-//            }
-//        });
     }
-
 }

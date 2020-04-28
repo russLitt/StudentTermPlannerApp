@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.termplannerapp.database.AppRepository;
 import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.database.TermEntity;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -59,8 +60,11 @@ public class CourseEditorViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<CourseEntity>> getCourseInTerm(int termId) {
-
         return (mRepository.getCourseByTerm(termId));
+    }
+
+    public TermEntity getTermById(int termId) {
+        return mRepository.getTermById(termId);
     }
 
 }

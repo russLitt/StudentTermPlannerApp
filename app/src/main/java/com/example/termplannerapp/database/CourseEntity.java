@@ -1,8 +1,10 @@
 package com.example.termplannerapp.database;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "courses")
 public class CourseEntity {

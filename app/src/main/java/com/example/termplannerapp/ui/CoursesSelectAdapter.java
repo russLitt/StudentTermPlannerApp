@@ -50,7 +50,6 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
                 if (isChecked) {
                     Toast.makeText(mContext, "Course selected: " + mCourses.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
                     mCoursesSelected.add(mCourses.get(position).getCourseTitle());
-                   //Log.i(TAG, "onCheckedChanged: " + mCoursesSelected );
                 } else {
 
                 }

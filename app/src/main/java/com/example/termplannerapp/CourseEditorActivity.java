@@ -57,7 +57,7 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     private CourseEditorViewModel mViewModel;
     private Boolean mNewCourse, mEditingCourse;
-    private int termId;
+    private int termId = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
