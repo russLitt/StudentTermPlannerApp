@@ -105,7 +105,7 @@ public class TermListActivity extends AppCompatActivity {
     private void deleteAllTerms() {
         mViewModel.deleteAllTerms();
     }
-
+//
 //    private void addSampleData() {
 //        mViewModel.addSampleData();
 //    }

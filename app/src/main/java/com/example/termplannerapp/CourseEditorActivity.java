@@ -33,6 +33,7 @@ import butterknife.Optional;
 
 import static com.example.termplannerapp.utilities.Constants.EDITING_COURSE_KEY;
 import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
+import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class CourseEditorActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     private CourseEditorViewModel mViewModel;
     private Boolean mNewCourse, mEditingCourse;
-    private int termId = -1;
+    private int termId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,10 @@ public class CourseEditorActivity extends AppCompatActivity {
         if (extras == null) {
             setTitle(getString(R.string.new_course));
             mNewCourse = true;
-        } else {
+        } else if (extras.containsKey(TERM_ID_KEY)) {
+            termId = extras.getInt(TERM_ID_KEY);
+        }
+        else {
             setTitle(getString(R.string.edit_course));
             int courseId = extras.getInt(COURSE_ID_KEY);
             mViewModel.loadData(courseId);

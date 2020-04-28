@@ -49,8 +49,8 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
-//    @BindView(R.id.course_select_check_box)
-//    CheckBox mCheckBox;
+    @BindView(R.id.course_select_check_box)
+    CheckBox mCheckBox;
 //
 //    @BindView(R.id.course_title)
 //    TextView mCourseTitle;
@@ -65,7 +65,7 @@ public class TermEditorActivity extends AppCompatActivity {
     private CourseEditorViewModel mViewCourseModel;
     private MainViewModel mMainViewModel;
     private boolean mNewTerm, mEditing;
-    private int termId = 1;
+    private int termId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +94,8 @@ public class TermEditorActivity extends AppCompatActivity {
                 mTextView.setText(termEntity.getTermTitle());
                 mTermStartDate.setText(termEntity.getTermStartDate());
                 mTermEndDate.setText(termEntity.getTermEndDate());
-//                mCheckBox.isChecked();
-//                mCourseTitle.setText(termEntity.toString());
+                mCheckBox.isChecked();
+                //mCourseTitle.setText(termEntity.toString());
             }
         });
 
@@ -113,7 +113,8 @@ public class TermEditorActivity extends AppCompatActivity {
         };
 
         mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mViewCourseModel.getCourseInTerm(termId).observe(this, coursesObserver);
+        mMainViewModel.mCourses.observe(this, coursesObserver);
+        //mViewCourseModel.getCourseInTerm(termId).observe(this, coursesObserver);
 
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
@@ -168,7 +169,8 @@ public class TermEditorActivity extends AppCompatActivity {
     private void saveAndReturn() {
         mViewModel.saveTerm(mTextView.getText().toString(),
                 mTermStartDate.getText().toString(),
-                mTermEndDate.getText().toString());
+                mTermEndDate.getText().toString(),
+                mCheckBox.isChecked());
         finish();
     }
 

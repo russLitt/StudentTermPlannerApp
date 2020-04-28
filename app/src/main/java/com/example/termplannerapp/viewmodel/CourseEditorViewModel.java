@@ -59,6 +59,7 @@ public class CourseEditorViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<CourseEntity>> getCourseInTerm(int termId) {
+
         return (mRepository.getCourseByTerm(termId));
     }
 

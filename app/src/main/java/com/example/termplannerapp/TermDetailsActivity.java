@@ -53,8 +53,8 @@ public class TermDetailsActivity extends AppCompatActivity {
     private CoursesAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
     private CourseEditorViewModel mCourseViewModel;
-    private static int numCourses;
     private MainViewModel mMainViewModel;
+    private int termId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +95,8 @@ public class TermDetailsActivity extends AppCompatActivity {
         };
 
         mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mMainViewModel.mCourses.observe(this, coursesObserver);
+        //mMainViewModel.mCourses.observe(this, coursesObserver);
+        mCourseViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
 
         Bundle extras = getIntent().getExtras();
         int termId = extras.getInt(TERM_ID_KEY);
