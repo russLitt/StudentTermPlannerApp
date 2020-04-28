@@ -50,29 +50,13 @@
         app:layout_constraintStart_toEndOf="@+id/term_start_date"
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="120dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="Add courses"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/term_start_date" />
-
-    <include layout="@layout/course_select_item"
-        android:visibility="invisible"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/course_select_recycler_view"
-        android:layout_width="411dp"
-        android:layout_height="589dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="425dp"
+        android:layout_height="349dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/term_end_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

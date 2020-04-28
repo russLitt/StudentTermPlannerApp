@@ -43,9 +43,9 @@ public class TermDetailsActivity extends AppCompatActivity {
 
 //    @BindView(R.id.course_title)
 //    TextView mCourseTitle;
-
-    @BindView(R.id.course_recycler_view)
-    RecyclerView mCourseRecyclerView;
+//
+//    @BindView(R.id.course_recycler_view)
+//    RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
     //private List<String> mCoursesSelected = new ArrayList<>();
@@ -67,7 +67,7 @@ public class TermDetailsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        initRecyclerView();
+        //initRecyclerView();
         initViewModel();
     }
 
@@ -78,7 +78,6 @@ public class TermDetailsActivity extends AppCompatActivity {
             mTextView.setText(termEntity.getTermTitle());
             mTermStartDate.setText(termEntity.getTermStartDate());
             mTermEndDate.setText(termEntity.getTermEndDate());
-            //mCourseTitle.setText(termEntity.getCourseTitle());
         });
 
         final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
@@ -88,7 +87,7 @@ public class TermDetailsActivity extends AppCompatActivity {
             if (mCoursesAdapter == null) {
                 mCoursesAdapter = new CoursesAdapter(coursesData,
                         TermDetailsActivity.this);
-                mCourseRecyclerView.setAdapter(mCoursesAdapter);
+                //mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
                 mCoursesAdapter.notifyDataSetChanged();
             }
@@ -103,16 +102,16 @@ public class TermDetailsActivity extends AppCompatActivity {
         mViewModel.loadData(termId);
     }
 
-    private void initRecyclerView() {
-        mCourseRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mCourseRecyclerView.setLayoutManager(layoutManager);
-
-        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
-                layoutManager.getOrientation());
-        mCourseRecyclerView.addItemDecoration(divider);
-
-        mCoursesAdapter = new CoursesAdapter(coursesData, this);
-        mCourseRecyclerView.setAdapter(mCoursesAdapter);
-    }
+//    private void initRecyclerView() {
+//        mCourseRecyclerView.setHasFixedSize(true);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        mCourseRecyclerView.setLayoutManager(layoutManager);
+//
+//        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
+//                layoutManager.getOrientation());
+//        mCourseRecyclerView.addItemDecoration(divider);
+//
+//        mCoursesAdapter = new CoursesAdapter(coursesData, this);
+//        mCourseRecyclerView.setAdapter(mCoursesAdapter);
+//    }
 }

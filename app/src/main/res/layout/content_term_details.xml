@@ -78,13 +78,13 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/course_recycler_view"
-        android:layout_width="399dp"
-        android:layout_height="323dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/course_recycler_view"-->
+<!--        android:layout_width="399dp"-->
+<!--        android:layout_height="323dp"-->
+<!--        android:layout_marginTop="52dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
