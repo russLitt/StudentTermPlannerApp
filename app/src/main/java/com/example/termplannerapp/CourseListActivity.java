@@ -57,7 +57,7 @@ public class CourseListActivity extends AppCompatActivity {
 
             if (mCoursesAdapter == null) {
                 mCoursesAdapter = new CoursesAdapter(coursesData,
-                        CourseListActivity.this);
+                        CourseListActivity.this, this);
                 mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
                 mCoursesAdapter.notifyDataSetChanged();
@@ -77,7 +77,7 @@ public class CourseListActivity extends AppCompatActivity {
                 layoutManager.getOrientation());
         mCourseRecyclerView.addItemDecoration(divider);
 
-        mCoursesAdapter = new CoursesAdapter(coursesData, this);
+        mCoursesAdapter = new CoursesAdapter(coursesData, this, CoursesAdapter.CourseSelectedListener);
         mCourseRecyclerView.setAdapter(mCoursesAdapter);
     }
 

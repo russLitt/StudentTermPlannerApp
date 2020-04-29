@@ -54,9 +54,6 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final CourseEntity course = mCourses.get(position);
         holder.mCourseTitle.setText(course.getCourseTitle());
-        //holder.mCourseStartDate.setText(course.getCourseStartDate());
-        //holder.mCourseEndDate.setText(course.getCourseEndDate());
-        //holder.mCourseStatus.setText(course.getStatus());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,12 +82,6 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.course_title)
         TextView mCourseTitle;
-        //@BindView(R.id.course_start_date)
-//        TextView mCourseStartDate;
-//        @BindView(R.id.course_end_date)
-//        TextView mCourseEndDate;
-//        @BindView(R.id.course_status_rb_group)
-//        TextView mCourseStatus;
         @BindView(R.id.course_edit_fab)
         FloatingActionButton mFab;
         @BindView(R.id.course_details_layout)

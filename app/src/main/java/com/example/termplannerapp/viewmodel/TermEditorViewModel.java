@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.termplannerapp.database.AppRepository;
@@ -12,6 +13,7 @@ import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.TermEntity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -61,4 +63,15 @@ public class TermEditorViewModel extends AndroidViewModel {
         mRepository.insertCourse(course);
     }
 
+    public LiveData<List<CourseEntity>> getCourseInTerm(int termId) {
+        return (mRepository.getCourseByTerm(termId));
+    }
+
+    public LiveData<List<CourseEntity>> getUnassignedCourses() {
+        return (mRepository.getCourseByTerm(-1));
+    }
+
+    public TermEntity getTermById(int termId) {
+        return mRepository.getTermById(termId);
+    }
 }

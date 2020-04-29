@@ -99,7 +99,7 @@ public class TermDetailsActivity extends AppCompatActivity {
 
             if (mCoursesAdapter == null) {
                 mCoursesAdapter = new CoursesAdapter(coursesData,
-                        TermDetailsActivity.this);
+                        TermDetailsActivity.this, this::onCourseSelected); //may have to change this
                 //mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
                 mCoursesAdapter.notifyDataSetChanged();
@@ -116,8 +116,16 @@ public class TermDetailsActivity extends AppCompatActivity {
         };
 
         Bundle extras = getIntent().getExtras();
-        int termId = extras.getInt(TERM_ID_KEY);
-        mViewModel.loadData(termId);
+        if (extras != null) {
+            termId = extras.getInt(TERM_ID_KEY);
+            mViewModel.loadData(termId);
+        } else {
+            finish();
+        }
+
+        mViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
+        mViewModel.getUnassignedCourses().observe(this, unassignedCourseObserver);
+
     }
 
     @OnClick(R.id.course_add_fab)
@@ -133,7 +141,7 @@ public class TermDetailsActivity extends AppCompatActivity {
             this.startActivity(intent);
         });
         builder.setNegativeButton("Existing", (dialog, id) -> {
-            // Ensure at least once unassigned course is available
+            // determines if at least one unassigned course is listed
             if (unassignedCourses.size() >= 1) {
                 final CourseDropdownMenu menu = new CourseDropdownMenu(this, unassignedCourses);
                 menu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
@@ -146,8 +154,8 @@ public class TermDetailsActivity extends AppCompatActivity {
                     course.setTermId(termId);
                     mViewModel.overwriteCourse(course, termId);
                 });
-            } else { // No unassigned courses.  Notify user.
-                Toast.makeText(getApplicationContext(), "There are no unassigned courses.  Create a new course.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "No unassigned courses found.  Create a new course.", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -170,14 +178,14 @@ public class TermDetailsActivity extends AppCompatActivity {
 //
 //        mCoursesAdapter = new CoursesAdapter(coursesData, this);
 //        mCourseRecyclerView.setAdapter(mCoursesAdapter);
-//    }
+  //  }
 
-    @Override
+    //@Override
     public void onCourseSelected(int position, CourseEntity course) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Remove this course from term?");
         builder.setMessage("Course won't be deleted - only removed from term.");
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        //builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setPositiveButton("Continue", (dialog, id) -> {
             dialog.dismiss();
             mViewModel.overwriteCourse(course, -1);

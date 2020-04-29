@@ -78,7 +78,7 @@ public class TermEditorActivity extends AppCompatActivity {
             mEditing = savedInstanceState.getBoolean(EDITING_TERM_KEY);
         }
 
-        initRecyclerView();
+        //initRecyclerView();
         initViewModel();
     }
 
@@ -96,13 +96,13 @@ public class TermEditorActivity extends AppCompatActivity {
             coursesData.clear();
             coursesData.addAll(courseEntities);
 
-            if (mCoursesAdapter == null) {
-                mCoursesAdapter = new CoursesAdapter(coursesData,
-                        TermEditorActivity.this);
-                mCourseRecyclerView.setAdapter(mCoursesAdapter);
-            } else {
-                mCoursesAdapter.notifyDataSetChanged();
-            }
+//            if (mCoursesAdapter == null) {
+//                mCoursesAdapter = new CoursesAdapter(coursesData,
+//                        TermEditorActivity.this);
+//                mCourseRecyclerView.setAdapter(mCoursesAdapter);
+//            } else {
+//                mCoursesAdapter.notifyDataSetChanged();
+//            }
         };
 
         mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
@@ -120,18 +120,18 @@ public class TermEditorActivity extends AppCompatActivity {
         }
     }
 
-    private void initRecyclerView() {
-        mCourseRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mCourseRecyclerView.setLayoutManager(layoutManager);
-
-        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
-                layoutManager.getOrientation());
-        mCourseRecyclerView.addItemDecoration(divider);
-
-        mCoursesAdapter = new CoursesAdapter(coursesData, this);
-        mCourseRecyclerView.setAdapter(mCoursesAdapter);
-    }
+//    private void initRecyclerView() {
+//        mCourseRecyclerView.setHasFixedSize(true);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        mCourseRecyclerView.setLayoutManager(layoutManager);
+//
+//        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
+//                layoutManager.getOrientation());
+//        mCourseRecyclerView.addItemDecoration(divider);
+//
+//        mCoursesAdapter = new CoursesAdapter(coursesData, this, this);
+//        mCourseRecyclerView.setAdapter(mCoursesAdapter);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
