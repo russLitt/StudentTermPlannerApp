@@ -27,12 +27,18 @@ import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 
 public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHolder> {
 
-    private List<CourseEntity> mCourses;
+    private final List<CourseEntity> mCourses;
     private final Context mContext;
+    private CourseSelectedListener mCourseSelectedListener;
 
-    public CoursesAdapter(List<CourseEntity> mCourses, Context mContext) {
+    public interface CourseSelectedListener {
+        void onCourseSelected(int position, CourseEntity course);
+    }
+
+    public CoursesAdapter(List<CourseEntity> mCourses, Context mContext, CourseSelectedListener mCourseSelectedListener) {
         this.mCourses = mCourses;
         this.mContext = mContext;
+        this.mCourseSelectedListener = mCourseSelectedListener;
     }
 
 
@@ -41,7 +47,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.course_list_item, parent, false);
-            return new ViewHolder(view);
+            return new ViewHolder(view, mCourseSelectedListener);
         }
 
     @Override
@@ -76,12 +82,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         return mCourses.size();
     }
 
-    public void setCourses(List<CourseEntity> courses) {
-        mCourses = courses;
-        notifyDataSetChanged();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.course_title)
         TextView mCourseTitle;
         //@BindView(R.id.course_start_date)
@@ -94,10 +95,18 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         FloatingActionButton mFab;
         @BindView(R.id.course_details_layout)
         ConstraintLayout mCourseDetails;
+        CourseSelectedListener mCourseSelectedListener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, CourseSelectedListener mCourseSelectedListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            this.mCourseSelectedListener = mCourseSelectedListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mCourseSelectedListener.onCourseSelected(getAdapterPosition(), mCourses.get(getAdapterPosition()));
         }
     }
 }

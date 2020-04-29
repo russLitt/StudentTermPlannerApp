@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.TermEntity;
+import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.ui.CoursesSelectAdapter;
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 import com.example.termplannerapp.viewmodel.MainViewModel;
@@ -49,12 +50,12 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
-    @BindView(R.id.course_select_recycler_view)
+    @BindView(R.id.course_recycler_view)
     RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
     private Toolbar toolbar;
-    private CoursesSelectAdapter mCoursesAdapter;
+    private CoursesAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
     private CourseEditorViewModel mViewCourseModel;
     private MainViewModel mMainViewModel;
@@ -96,7 +97,7 @@ public class TermEditorActivity extends AppCompatActivity {
             coursesData.addAll(courseEntities);
 
             if (mCoursesAdapter == null) {
-                mCoursesAdapter = new CoursesSelectAdapter(coursesData,
+                mCoursesAdapter = new CoursesAdapter(coursesData,
                         TermEditorActivity.this);
                 mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
@@ -128,7 +129,7 @@ public class TermEditorActivity extends AppCompatActivity {
                 layoutManager.getOrientation());
         mCourseRecyclerView.addItemDecoration(divider);
 
-        mCoursesAdapter = new CoursesSelectAdapter(coursesData, this);
+        mCoursesAdapter = new CoursesAdapter(coursesData, this);
         mCourseRecyclerView.setAdapter(mCoursesAdapter);
     }
 

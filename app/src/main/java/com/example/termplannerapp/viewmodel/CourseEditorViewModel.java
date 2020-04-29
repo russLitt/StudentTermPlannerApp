@@ -63,6 +63,10 @@ public class CourseEditorViewModel extends AndroidViewModel {
         return (mRepository.getCourseByTerm(termId));
     }
 
+    public LiveData<List<CourseEntity>> getUnassignedCourses() {
+        return (mRepository.getCourseByTerm(-1));
+    }
+
     public TermEntity getTermById(int termId) {
         return mRepository.getTermById(termId);
     }
