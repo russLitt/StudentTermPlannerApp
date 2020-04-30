@@ -51,14 +51,8 @@ public class TermDetailsActivity extends AppCompatActivity {
     @BindView(R.id.course_add_fab)
     FloatingActionButton mCourseAdd;
 
-//    @BindView(R.id.course_recycler_view)
-//    RecyclerView mCourseRecyclerView;
-
-    @OnClick(R.id.course_edit_fab)
-    void fabClickHandler() {
-        Intent intent = new Intent(this, CourseEditorActivity.class);
-        startActivity(intent);
-    }
+    @BindView(R.id.term_details_course_recycler_view)
+    RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
     private List<CourseEntity> unassignedCourses = new ArrayList<>();
@@ -80,7 +74,7 @@ public class TermDetailsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        //initRecyclerView();
+        initRecyclerView();
         initViewModel();
     }
 
@@ -100,7 +94,7 @@ public class TermDetailsActivity extends AppCompatActivity {
             if (mCoursesAdapter == null) {
                 mCoursesAdapter = new CoursesAdapter(coursesData,
                         TermDetailsActivity.this, this::onCourseSelected); //may have to change this
-                //mCourseRecyclerView.setAdapter(mCoursesAdapter);
+                mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
                 mCoursesAdapter.notifyDataSetChanged();
             }
@@ -141,11 +135,11 @@ public class TermDetailsActivity extends AppCompatActivity {
             this.startActivity(intent);
         });
         builder.setNegativeButton("Existing", (dialog, id) -> {
-            // determines if at least one unassigned course is listed
-            if (unassignedCourses.size() >= 1) {
+            if (unassignedCourses.size() >= 1) { // determines if at least one unassigned course is listed
                 final CourseDropdownMenu menu = new CourseDropdownMenu(this, unassignedCourses);
-                menu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-                menu.setWidth(getPxFromDp(200));
+                //menu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+                menu.setHeight(1000);
+                //menu.setWidth(getPxFromDp(800));
                 menu.setOutsideTouchable(true);
                 menu.setFocusable(true);
                 menu.showAsDropDown(mCourseAdd);
@@ -167,6 +161,11 @@ public class TermDetailsActivity extends AppCompatActivity {
         return (int) (dp * getResources().getDisplayMetrics().density);
     }
 
+    private void initRecyclerView() {
+        mCourseRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mCourseRecyclerView.setLayoutManager(layoutManager);
+    }
 //    private void initRecyclerView() {
 //        mCourseRecyclerView.setHasFixedSize(true);
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -178,7 +177,7 @@ public class TermDetailsActivity extends AppCompatActivity {
 //
 //        mCoursesAdapter = new CoursesAdapter(coursesData, this);
 //        mCourseRecyclerView.setAdapter(mCoursesAdapter);
-  //  }
+    //  }
 
     //@Override
     public void onCourseSelected(int position, CourseEntity course) {

@@ -29,7 +29,7 @@ public class CoursePopUpAdapter extends RecyclerView.Adapter<CoursePopUpAdapter.
     @NonNull
     @Override
     public CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CourseViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.course_list_item, parent, false));
+        return new CourseViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.course_select_item, parent, false));
     }
 
     @Override

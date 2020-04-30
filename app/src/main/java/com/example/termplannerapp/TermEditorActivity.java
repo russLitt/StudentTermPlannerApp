@@ -50,8 +50,8 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
-    @BindView(R.id.course_recycler_view)
-    RecyclerView mCourseRecyclerView;
+//    @BindView(R.id.course_recycler_view)
+//    RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
     private Toolbar toolbar;

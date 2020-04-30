@@ -44,17 +44,17 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final CourseEntity course = mCourses.get(position);
         holder.mCourseTitle.setText(course.getCourseTitle());
-        holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    Toast.makeText(mContext, "Course selected: " + mCourses.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
-                    mCoursesSelected.add(mCourses.get(position).getCourseTitle());
-                } else {
-
-                }
-            }
-        });
+//        holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    Toast.makeText(mContext, "Course selected: " + mCourses.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
+//                    mCoursesSelected.add(mCourses.get(position).getCourseTitle());
+//                } else {
+//
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -72,8 +72,8 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.course_select_check_box)
-        CheckBox mCheckBox;
+//        @BindView(R.id.course_select_check_box)
+//        CheckBox mCheckBox;
         @BindView(R.id.course_title)
         TextView mCourseTitle;
 

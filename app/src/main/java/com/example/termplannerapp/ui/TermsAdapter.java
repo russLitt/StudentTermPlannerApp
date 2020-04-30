@@ -80,7 +80,7 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
 //        TextView mStartDate;
 //        @BindView(R.id.term_end)
 //        TextView mEndDate;
-        @BindView(R.id.fab)
+        @BindView(R.id.fab_term_edit)
         FloatingActionButton mFab;
         @BindView(R.id.term_details_layout)
         ConstraintLayout mTermDetails;

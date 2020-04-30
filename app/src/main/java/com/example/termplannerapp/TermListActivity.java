@@ -28,7 +28,7 @@ public class TermListActivity extends AppCompatActivity {
     @BindView(R.id.term_recycler_view)
     RecyclerView mTermRecyclerView;
 
-    @OnClick(R.id.fab)
+    @OnClick(R.id.fab_term_edit)
     void fabClickHandler() {
         Intent intent = new Intent(this, TermEditorActivity.class);
         startActivity(intent);

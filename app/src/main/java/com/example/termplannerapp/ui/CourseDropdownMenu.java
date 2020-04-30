@@ -21,7 +21,7 @@ public class CourseDropdownMenu extends PopupWindow {
     private CoursePopUpAdapter mCoursesAdapter;
 
     public CourseDropdownMenu(Context mContext, List<CourseEntity> mCourses) {
-        //super(mContext);
+        super(mContext);
         this.mContext = mContext;
         this.mCourses = mCourses;
         initView();
@@ -32,9 +32,9 @@ public class CourseDropdownMenu extends PopupWindow {
     }
 
     private void initView() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.popup_menu, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.popup_selector, null);
 
-        mRecyclerPopUp = view.findViewById(R.id.recyclerView_popup);
+        mRecyclerPopUp = view.findViewById(R.id.popup_recyclerview);
         mRecyclerPopUp.setHasFixedSize(true);
         mRecyclerPopUp.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mRecyclerPopUp.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
