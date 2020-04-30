@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.R;
+import com.example.termplannerapp.TermDetailsActivity;
 import com.example.termplannerapp.database.CourseEntity;
 
 import java.util.ArrayList;
@@ -27,10 +28,15 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
     private final Context mContext;
     private final ArrayList<String> mCoursesSelected = new ArrayList<>();
 
+    public interface CourseSelectedListener {
+        void onCourseSelected(int position, CourseEntity course);
+    }
+
     public CoursesSelectAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
         this.mContext = mContext;
     }
+
 
     @NonNull
     @Override

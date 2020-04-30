@@ -61,6 +61,7 @@ public class TermDetailsActivity extends AppCompatActivity {
     private TermEditorViewModel mViewModel;
     private CourseEditorViewModel mCourseViewModel;
     private MainViewModel mMainViewModel;
+    private FloatingActionButton mCourseEditFab;
     private int termId;
 
     @Override
@@ -100,14 +101,14 @@ public class TermDetailsActivity extends AppCompatActivity {
             }
         };
 
-        mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mMainViewModel.mCourses.observe(this, coursesObserver);
-        //mCourseViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
-
         final Observer<List<CourseEntity>> unassignedCourseObserver = courseEntities -> {
             unassignedCourses.clear();
             unassignedCourses.addAll(courseEntities);
         };
+
+//        mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+//        mMainViewModel.mCourses.observe(this, coursesObserver);
+        //mCourseViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -123,42 +124,20 @@ public class TermDetailsActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.course_add_fab)
-    public void courseAddButton() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("New or existing course?");
-        builder.setMessage("Create and add new course or add existing course to term?");
-        builder.setIcon(R.drawable.ic_add);
-        builder.setPositiveButton("New", (dialog, id) -> {
-            dialog.dismiss();
-            Intent intent = new Intent(this, CourseEditorActivity.class);
-            intent.putExtra(TERM_ID_KEY, termId);
-            this.startActivity(intent);
-        });
-        builder.setNegativeButton("Existing", (dialog, id) -> {
-            if (unassignedCourses.size() >= 1) { // determines if at least one unassigned course is listed
-                final CourseDropdownMenu menu = new CourseDropdownMenu(this, unassignedCourses);
-                //menu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-                menu.setHeight(1000);
-                //menu.setWidth(getPxFromDp(800));
-                menu.setOutsideTouchable(true);
-                menu.setFocusable(true);
-                menu.showAsDropDown(mCourseAdd);
-                menu.setCourseSelectedListener((position, course) -> {
-                    menu.dismiss();
-                    course.setTermId(termId);
-                    mViewModel.overwriteCourse(course, termId);
-                });
-            } else {
-                Toast.makeText(getApplicationContext(), "No unassigned courses found.  Create a new course.", Toast.LENGTH_SHORT).show();
-            }
-
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
-    private int getPxFromDp(int dp) {
-        return (int) (dp * getResources().getDisplayMetrics().density);
+    public void courseAddHandler() {
+        if (unassignedCourses.size() >= 1) { // determines if at least one unassigned course is listed
+            final CourseDropdownMenu menu = new CourseDropdownMenu(this, unassignedCourses);
+            menu.setHeight(1000);
+            menu.setOutsideTouchable(true);
+            menu.showAsDropDown(mCourseAdd);
+            menu.setCourseSelectedListener((position, course) -> {
+                menu.dismiss();
+                course.setTermId(termId);
+                mViewModel.overwriteCourse(course, termId);
+            });
+        } else {
+            Toast.makeText(getApplicationContext(), "No unassigned courses found.  Create a new course.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initRecyclerView() {
@@ -166,18 +145,6 @@ public class TermDetailsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mCourseRecyclerView.setLayoutManager(layoutManager);
     }
-//    private void initRecyclerView() {
-//        mCourseRecyclerView.setHasFixedSize(true);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//        mCourseRecyclerView.setLayoutManager(layoutManager);
-//
-//        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
-//                layoutManager.getOrientation());
-//        mCourseRecyclerView.addItemDecoration(divider);
-//
-//        mCoursesAdapter = new CoursesAdapter(coursesData, this);
-//        mCourseRecyclerView.setAdapter(mCoursesAdapter);
-    //  }
 
     //@Override
     public void onCourseSelected(int position, CourseEntity course) {

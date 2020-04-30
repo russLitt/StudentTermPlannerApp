@@ -55,6 +55,10 @@ public class CourseEditorViewModel extends AndroidViewModel {
         mRepository.insertCourse(course);
     }
 
+//    public LiveData<List<CourseEntity>> getCourseInTerm(int termId) {
+//        return (mRepository.getCourseByTerm(termId));
+//    }
+
     public void deleteCourse() {
         mRepository.deleteCourse(mLiveCourses.getValue());
     }

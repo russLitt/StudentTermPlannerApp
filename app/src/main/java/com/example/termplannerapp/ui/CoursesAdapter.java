@@ -55,7 +55,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         final CourseEntity course = mCourses.get(position);
         holder.mCourseTitle.setText(course.getCourseTitle());
 
-        holder.mFab.setOnClickListener(new View.OnClickListener() {
+        holder.mCourseEditFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, CourseEditorActivity.class);
@@ -83,7 +83,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         @BindView(R.id.course_title)
         TextView mCourseTitle;
         @BindView(R.id.course_edit_fab)
-        FloatingActionButton mFab;
+        FloatingActionButton mCourseEditFab;
         @BindView(R.id.course_details_layout)
         ConstraintLayout mCourseDetails;
         CourseSelectedListener mCourseSelectedListener;
