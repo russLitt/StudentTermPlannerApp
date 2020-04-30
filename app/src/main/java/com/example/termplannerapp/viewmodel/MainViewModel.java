@@ -39,4 +39,8 @@ public class MainViewModel extends AndroidViewModel {
     public void deleteAllTerms() {
         mRepository.deleteAllTerms();
     }
+
+    public void deleteAllCourses() {
+        mRepository.deleteAllCourses();
+    }
 }

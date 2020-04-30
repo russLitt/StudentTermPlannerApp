@@ -26,7 +26,6 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
-    private final ArrayList<String> mCoursesSelected = new ArrayList<>();
 
     public interface CourseSelectedListener {
         void onCourseSelected(int position, CourseEntity course);
@@ -36,7 +35,6 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
         this.mCourses = mCourses;
         this.mContext = mContext;
     }
-
 
     @NonNull
     @Override
@@ -50,17 +48,6 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final CourseEntity course = mCourses.get(position);
         holder.mCourseTitle.setText(course.getCourseTitle());
-//        holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    Toast.makeText(mContext, "Course selected: " + mCourses.get(position).getCourseTitle(), Toast.LENGTH_SHORT).show();
-//                    mCoursesSelected.add(mCourses.get(position).getCourseTitle());
-//                } else {
-//
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -73,13 +60,7 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
         return mCourses.size();
     }
 
-    public List<String> showSelectedCourses() {
-        return mCoursesSelected;
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-//        @BindView(R.id.course_select_check_box)
-//        CheckBox mCheckBox;
         @BindView(R.id.course_title)
         TextView mCourseTitle;
 

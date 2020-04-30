@@ -25,12 +25,13 @@
     <string name="new_course">New course</string>
     <string name="edit_course">Edit course</string>
     <string name="delete_course">Delete</string>
+    <string name="delete_all_courses">Delete all courses</string>
     //mentor strings
     <string name="new_mentor">New mentor</string>
     <string name="edit_mentor">Edit mentor</string>
     <string name="delete_mentor">Delete</string>
+    //assessment strings
     <string name="new_assessment">New assessment</string>
     <string name="edit_assessment">Edit assessment</string>
     <string name="delete_assessment">Delete assessment</string>
-    //assessment strings
 </resources>

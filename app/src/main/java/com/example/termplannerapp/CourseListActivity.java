@@ -2,6 +2,8 @@ package com.example.termplannerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -79,6 +81,31 @@ public class CourseListActivity extends AppCompatActivity implements CoursesAdap
 
         mCoursesAdapter = new CoursesAdapter(coursesData, this, this);
         mCourseRecyclerView.setAdapter(mCoursesAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_course_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+//        if (id == R.id.action_add_sample_data) {
+//            addSampleData();
+//            return true;
+//        } else
+        if (id == R.id.action_delete_all) {
+            deleteAllCourses();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteAllCourses() {
+        mViewModel.deleteAllCourses();
     }
 
     @Override

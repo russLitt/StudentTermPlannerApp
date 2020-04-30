@@ -46,8 +46,6 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final TermEntity term = mTerms.get(position);
         holder.mTextView.setText(term.getTermTitle());
-//        holder.mStartDate.setText(term.getTermStartDate());
-//        holder.mEndDate.setText(term.getTermEndDate());
 
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +74,6 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.term_text)
         TextView mTextView;
-//        @BindView(R.id.term_start)
-//        TextView mStartDate;
-//        @BindView(R.id.term_end)
-//        TextView mEndDate;
         @BindView(R.id.fab_term_edit)
         FloatingActionButton mFab;
         @BindView(R.id.term_details_layout)
