@@ -4,19 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.R;
-import com.example.termplannerapp.TermDetailsActivity;
 import com.example.termplannerapp.database.CourseEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -26,10 +21,6 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
 
     private final List<CourseEntity> mCourses;
     private final Context mContext;
-
-    public interface CourseSelectedListener {
-        void onCourseSelected(int position, CourseEntity course);
-    }
 
     public CoursesSelectAdapter(List<CourseEntity> mCourses, Context mContext) {
         this.mCourses = mCourses;
@@ -60,18 +51,13 @@ public class CoursesSelectAdapter extends RecyclerView.Adapter<CoursesSelectAdap
         return mCourses.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.course_title)
         TextView mCourseTitle;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-        }
-
-        @Override
-        public void onClick(View view) {
-            mCourseTitle = view.findViewById(R.id.course_title);
         }
     }
 }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -54,6 +55,7 @@ public class TermEditorActivity extends AppCompatActivity {
 //    RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
+    private List<CourseEntity> unassignedCourses = new ArrayList<>();
     private Toolbar toolbar;
     private CoursesAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
@@ -118,20 +120,15 @@ public class TermEditorActivity extends AppCompatActivity {
             int termId = extras.getInt(TERM_ID_KEY);
             mViewModel.loadData(termId);
         }
-    }
 
-//    private void initRecyclerView() {
-//        mCourseRecyclerView.setHasFixedSize(true);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//        mCourseRecyclerView.setLayoutManager(layoutManager);
-//
-//        DividerItemDecoration divider = new DividerItemDecoration(mCourseRecyclerView.getContext(),
-//                layoutManager.getOrientation());
-//        mCourseRecyclerView.addItemDecoration(divider);
-//
-//        mCoursesAdapter = new CoursesAdapter(coursesData, this, this);
-//        mCourseRecyclerView.setAdapter(mCoursesAdapter);
-//    }
+        final Observer<List<CourseEntity>> unassignedCourseObserver = courseEntities -> {
+            unassignedCourses.clear();
+            unassignedCourses.addAll(courseEntities);
+        };
+
+        mViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
+        mViewModel.getUnassignedCourses().observe(this, unassignedCourseObserver);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -148,10 +145,43 @@ public class TermEditorActivity extends AppCompatActivity {
             saveAndReturn();
             return true;
         } else if (item.getItemId() == R.id.action_delete_term) {
-            mViewModel.deleteTerm();
-            finish();
+            deleteTermHandler();
+            //finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteTermHandler() {
+        if (mViewModel.mLiveTerms.getValue() != null) {
+            String termTitle = mViewModel.mLiveTerms.getValue().getTermTitle();
+            if (unassignedCourses != null && unassignedCourses.size() != 0) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(termTitle + " cannot be deleted");
+                builder.setMessage("This term has courses assigned to it, courses must be deleted" +
+                        " before term can be deleted");
+                builder.setPositiveButton("Yes", (dialog, id) -> {
+                    dialog.dismiss();
+                    //mViewModel.deleteTerm();
+                    finish();
+                });
+                builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Delete " + termTitle + "?");
+                builder.setMessage("Are you sure you want to delete term '" + termTitle + "'?");
+                builder.setPositiveButton("Yes", (dialog, id) -> {
+                    dialog.dismiss();
+                    mViewModel.deleteTerm();
+                    finish();
+                });
+                builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+            }
+        }
     }
 
     @Override

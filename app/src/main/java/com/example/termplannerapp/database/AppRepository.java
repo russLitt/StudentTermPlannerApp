@@ -92,7 +92,6 @@ public class AppRepository {
         return mDb.mentorDao().getAll();
     }
 
-
     public MentorEntity getMentorById(int mentorId) {
         return mDb.mentorDao().getMentorById(mentorId);
     }

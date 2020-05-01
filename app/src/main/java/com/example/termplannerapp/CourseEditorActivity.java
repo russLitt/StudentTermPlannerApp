@@ -52,9 +52,6 @@ public class CourseEditorActivity extends AppCompatActivity {
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
 
-    @BindDrawable(R.drawable.ic_delete_green)
-    Drawable mDeleteIcon;
-
     private CourseEditorViewModel mViewModel;
     private Boolean mNewCourse, mEditingCourse;
     private int termId = -1;

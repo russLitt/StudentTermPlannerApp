@@ -41,7 +41,6 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         this.mCourseSelectedListener = mCourseSelectedListener;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -58,7 +58,7 @@ public class TermEditorViewModel extends AndroidViewModel {
         mRepository.deleteTerm(mLiveTerms.getValue());
     }
 
-    public void overwriteCourse(CourseEntity course, int termId) {
+    public void setCourseToTerm(CourseEntity course, int termId) {
         course.setTermId(termId);
         mRepository.insertCourse(course);
     }

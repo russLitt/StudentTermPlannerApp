@@ -78,6 +78,4 @@ public class AssessmentListActivity extends AppCompatActivity {
         mAssessmentsAdapter = new AssessmentsAdapter(assessmentsData, this);
         mAssmntRecyclerView.setAdapter(mAssessmentsAdapter);
     }
-
-
 }
