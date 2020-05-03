@@ -44,7 +44,8 @@ public class TermEditorActivity extends AppCompatActivity {
     RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
-    private List<CourseEntity> coursesInTerm = new ArrayList<>();
+    //private List<CourseEntity> coursesInTerm = new ArrayList<>();
+    //private List<CourseEntity> unassignedCourses = new ArrayList<>();
     private CoursesAdapter mCoursesAdapter;
     private Toolbar toolbar;
     private TermEditorViewModel mViewModel;
@@ -78,28 +79,21 @@ public class TermEditorActivity extends AppCompatActivity {
                 mTextView.setText(termEntity.getTermTitle());
                 mTermStartDate.setText(termEntity.getTermStartDate());
                 mTermEndDate.setText(termEntity.getTermEndDate());
-            } else {
-                mTextView.setText(termEntity.getTermTitle());
-                mTermStartDate.setText(termEntity.getTermStartDate());
-                mTermEndDate.setText(termEntity.getTermEndDate());
             }
         });
-
-//        final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
-//            coursesInTerm.clear();
-//            coursesInTerm.addAll(courseEntities);
 
         final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
             coursesData.clear();
             coursesData.addAll(courseEntities);
 
             if (mCoursesAdapter == null) {
-                mCoursesAdapter = new CoursesAdapter(coursesInTerm,
+                mCoursesAdapter = new CoursesAdapter(coursesData,
                         TermEditorActivity.this, this::onCourseSelected);
                 mCourseRecyclerView.setAdapter(mCoursesAdapter);
             } else {
                 mCoursesAdapter.notifyDataSetChanged();
             }
+            };
 
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
@@ -110,7 +104,6 @@ public class TermEditorActivity extends AppCompatActivity {
                 termId = extras.getInt(TERM_ID_KEY);
                 mViewModel.loadData(termId);
             }
-        };
         mViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
     }
 
@@ -130,13 +123,11 @@ public class TermEditorActivity extends AppCompatActivity {
             return true;
         } else if (item.getItemId() == R.id.action_delete_term) {
             deleteTermHandler();
-            //finish();
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void deleteTermHandler() {
-        if (mViewModel.mLiveTerms.getValue() != null) {
             String termTitle = mViewModel.mLiveTerms.getValue().getTermTitle();
             if (coursesData.size() != 0) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -145,12 +136,9 @@ public class TermEditorActivity extends AppCompatActivity {
                         " before term can be deleted");
                 builder.setPositiveButton("Ok", (dialog, id) -> {
                     dialog.dismiss();
-                    //mViewModel.deleteTerm();
-                    finish();
                 });
-//                builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
-//                AlertDialog dialog = builder.create();
-//                dialog.show();
+                AlertDialog dialog = builder.create();
+                dialog.show();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Delete " + termTitle + "?");
@@ -165,7 +153,6 @@ public class TermEditorActivity extends AppCompatActivity {
                 dialog.show();
             }
         }
-    }
 
     @Override
     public void onBackPressed() {
