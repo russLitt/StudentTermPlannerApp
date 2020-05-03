@@ -50,9 +50,6 @@ public class TermDetailsActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private CoursesAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
-    private CourseEditorViewModel mCourseViewModel;
-    private MainViewModel mMainViewModel;
-    private FloatingActionButton mCourseEditFab;
     private int termId;
 
     @Override
@@ -111,8 +108,6 @@ public class TermDetailsActivity extends AppCompatActivity {
 
     @OnClick(R.id.course_add_fab)
     public void courseAddHandler() {
-        //Toast.makeText(getApplicationContext(), "unassigned courses: " + unassignedCourses.toString(), Toast.LENGTH_SHORT).show();
-
         if (unassignedCourses.size() != 0) {
             final CourseDropdownMenu menu = new CourseDropdownMenu(this, unassignedCourses);
             menu.setHeight(1000);
@@ -124,7 +119,8 @@ public class TermDetailsActivity extends AppCompatActivity {
                 mViewModel.setCourseToTerm(course, termId);
             });
         } else {
-            Toast.makeText(getApplicationContext(), "No unassigned courses found.  Create a new course.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No unassigned courses found.  Create a new course to add it to term.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -134,18 +130,6 @@ public class TermDetailsActivity extends AppCompatActivity {
         mCourseRecyclerView.setLayoutManager(layoutManager);
     }
 
-    //@Override
     public void onCourseSelected(int position, CourseEntity course) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("Remove this course from term?");
-//        builder.setMessage("Course won't be deleted - only removed from term.");
-//        builder.setPositiveButton("Continue", (dialog, id) -> {
-//            dialog.dismiss();
-//            mViewModel.overwriteCourse(course, -1);
-//            mCoursesAdapter.notifyDataSetChanged();
-//        });
-//        builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
     }
 }

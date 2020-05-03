@@ -44,8 +44,6 @@ public class TermEditorActivity extends AppCompatActivity {
     RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
-    //private List<CourseEntity> coursesInTerm = new ArrayList<>();
-    //private List<CourseEntity> unassignedCourses = new ArrayList<>();
     private CoursesAdapter mCoursesAdapter;
     private Toolbar toolbar;
     private TermEditorViewModel mViewModel;
@@ -93,17 +91,17 @@ public class TermEditorActivity extends AppCompatActivity {
             } else {
                 mCoursesAdapter.notifyDataSetChanged();
             }
-            };
+        };
 
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                setTitle(getString(R.string.new_term));
-                mNewTerm = true;
-            } else {
-                setTitle(getString(R.string.edit_term));
-                termId = extras.getInt(TERM_ID_KEY);
-                mViewModel.loadData(termId);
-            }
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            setTitle(getString(R.string.new_term));
+            mNewTerm = true;
+        } else {
+            setTitle(getString(R.string.edit_term));
+            termId = extras.getInt(TERM_ID_KEY);
+            mViewModel.loadData(termId);
+        }
         mViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
     }
 
@@ -128,31 +126,31 @@ public class TermEditorActivity extends AppCompatActivity {
     }
 
     private void deleteTermHandler() {
-            String termTitle = mViewModel.mLiveTerms.getValue().getTermTitle();
-            if (coursesData.size() != 0) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(termTitle + " cannot be deleted");
-                builder.setMessage("This term has courses assigned to it, courses must be deleted" +
-                        " before term can be deleted");
-                builder.setPositiveButton("Ok", (dialog, id) -> {
-                    dialog.dismiss();
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Delete " + termTitle + "?");
-                builder.setMessage("Are you sure you want to delete this term?");
-                builder.setPositiveButton("Yes", (dialog, id) -> {
-                    dialog.dismiss();
-                    mViewModel.deleteTerm();
-                    finish();
-                });
-                builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
+        String termTitle = mViewModel.mLiveTerms.getValue().getTermTitle();
+        if (coursesData.size() != 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(termTitle + " cannot be deleted");
+            builder.setMessage("This term has courses assigned to it, courses must be deleted" +
+                    " before term can be deleted");
+            builder.setPositiveButton("Ok", (dialog, id) -> {
+                dialog.dismiss();
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Delete " + termTitle + "?");
+            builder.setMessage("Are you sure you want to delete this term?");
+            builder.setPositiveButton("Yes", (dialog, id) -> {
+                dialog.dismiss();
+                mViewModel.deleteTerm();
+                finish();
+            });
+            builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
+    }
 
     @Override
     public void onBackPressed() {

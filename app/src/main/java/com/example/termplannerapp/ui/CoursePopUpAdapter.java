@@ -18,7 +18,7 @@ public class CoursePopUpAdapter extends RecyclerView.Adapter<CoursePopUpAdapter.
     private CourseSelectedListener mCourseSelectedListener;
 
     public CoursePopUpAdapter(List<CourseEntity> mCourses) {
-        super();
+        //super();
         this.mCourses = mCourses;
     }
 
