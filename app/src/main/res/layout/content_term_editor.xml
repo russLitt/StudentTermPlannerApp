@@ -50,4 +50,14 @@
         app:layout_constraintStart_toEndOf="@+id/term_start_date"
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/term_details_course_recycler_view"
+        android:layout_width="410dp"
+        android:layout_height="487dp"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/term_end_date" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,10 @@
 package com.example.termplannerapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -17,16 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.CourseEntity;
-import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.CoursesAdapter;
-import com.example.termplannerapp.ui.CoursesSelectAdapter;
-import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
-import com.example.termplannerapp.viewmodel.MainViewModel;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
 import java.util.ArrayList;
@@ -36,7 +26,6 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
@@ -51,16 +40,14 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
-//    @BindView(R.id.course_recycler_view)
-//    RecyclerView mCourseRecyclerView;
+    @BindView(R.id.term_details_course_recycler_view)
+    RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
-    private List<CourseEntity> unassignedCourses = new ArrayList<>();
-    private Toolbar toolbar;
+    private List<CourseEntity> coursesInTerm = new ArrayList<>();
     private CoursesAdapter mCoursesAdapter;
+    private Toolbar toolbar;
     private TermEditorViewModel mViewModel;
-    private CourseEditorViewModel mViewCourseModel;
-    private MainViewModel mMainViewModel;
     private boolean mNewTerm, mEditing;
     private int termId;
 
@@ -80,8 +67,8 @@ public class TermEditorActivity extends AppCompatActivity {
             mEditing = savedInstanceState.getBoolean(EDITING_TERM_KEY);
         }
 
-        //initRecyclerView();
         initViewModel();
+        initRecyclerView();
     }
 
     private void initViewModel() {
@@ -91,43 +78,40 @@ public class TermEditorActivity extends AppCompatActivity {
                 mTextView.setText(termEntity.getTermTitle());
                 mTermStartDate.setText(termEntity.getTermStartDate());
                 mTermEndDate.setText(termEntity.getTermEndDate());
+            } else {
+                mTextView.setText(termEntity.getTermTitle());
+                mTermStartDate.setText(termEntity.getTermStartDate());
+                mTermEndDate.setText(termEntity.getTermEndDate());
             }
         });
+
+//        final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
+//            coursesInTerm.clear();
+//            coursesInTerm.addAll(courseEntities);
 
         final Observer<List<CourseEntity>> coursesObserver = courseEntities -> {
             coursesData.clear();
             coursesData.addAll(courseEntities);
 
-//            if (mCoursesAdapter == null) {
-//                mCoursesAdapter = new CoursesAdapter(coursesData,
-//                        TermEditorActivity.this);
-//                mCourseRecyclerView.setAdapter(mCoursesAdapter);
-//            } else {
-//                mCoursesAdapter.notifyDataSetChanged();
-//            }
+            if (mCoursesAdapter == null) {
+                mCoursesAdapter = new CoursesAdapter(coursesInTerm,
+                        TermEditorActivity.this, this::onCourseSelected);
+                mCourseRecyclerView.setAdapter(mCoursesAdapter);
+            } else {
+                mCoursesAdapter.notifyDataSetChanged();
+            }
+
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                setTitle(getString(R.string.new_term));
+                mNewTerm = true;
+            } else {
+                setTitle(getString(R.string.edit_term));
+                termId = extras.getInt(TERM_ID_KEY);
+                mViewModel.loadData(termId);
+            }
         };
-
-        mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mMainViewModel.mCourses.observe(this, coursesObserver);
-        //mViewCourseModel.getCourseInTerm(termId).observe(this, coursesObserver);
-
-        Bundle extras = getIntent().getExtras();
-        if (extras == null) {
-            setTitle(getString(R.string.new_term));
-            mNewTerm = true;
-        } else {
-            setTitle(getString(R.string.edit_term));
-            int termId = extras.getInt(TERM_ID_KEY);
-            mViewModel.loadData(termId);
-        }
-
-        final Observer<List<CourseEntity>> unassignedCourseObserver = courseEntities -> {
-            unassignedCourses.clear();
-            unassignedCourses.addAll(courseEntities);
-        };
-
         mViewModel.getCourseInTerm(termId).observe(this, coursesObserver);
-        mViewModel.getUnassignedCourses().observe(this, unassignedCourseObserver);
     }
 
     @Override
@@ -154,23 +138,23 @@ public class TermEditorActivity extends AppCompatActivity {
     private void deleteTermHandler() {
         if (mViewModel.mLiveTerms.getValue() != null) {
             String termTitle = mViewModel.mLiveTerms.getValue().getTermTitle();
-            if (unassignedCourses != null && unassignedCourses.size() != 0) {
+            if (coursesData.size() != 0) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(termTitle + " cannot be deleted");
                 builder.setMessage("This term has courses assigned to it, courses must be deleted" +
                         " before term can be deleted");
-                builder.setPositiveButton("Yes", (dialog, id) -> {
+                builder.setPositiveButton("Ok", (dialog, id) -> {
                     dialog.dismiss();
                     //mViewModel.deleteTerm();
                     finish();
                 });
-                builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
-                AlertDialog dialog = builder.create();
-                dialog.show();
+//                builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
+//                AlertDialog dialog = builder.create();
+//                dialog.show();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Delete " + termTitle + "?");
-                builder.setMessage("Are you sure you want to delete term '" + termTitle + "'?");
+                builder.setMessage("Are you sure you want to delete this term?");
                 builder.setPositiveButton("Yes", (dialog, id) -> {
                     dialog.dismiss();
                     mViewModel.deleteTerm();
@@ -179,7 +163,6 @@ public class TermEditorActivity extends AppCompatActivity {
                 builder.setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
             }
         }
     }
@@ -200,6 +183,15 @@ public class TermEditorActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putBoolean(EDITING_TERM_KEY, true);
         super.onSaveInstanceState(outState);
+    }
+
+    private void initRecyclerView() {
+        mCourseRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mCourseRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    private void onCourseSelected(int position, CourseEntity course) {
     }
 }
 

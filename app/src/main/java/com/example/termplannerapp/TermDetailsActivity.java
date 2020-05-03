@@ -1,27 +1,19 @@
 package com.example.termplannerapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.WindowManager;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.CourseEntity;
-import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.CourseDropdownMenu;
 import com.example.termplannerapp.ui.CoursesAdapter;
-import com.example.termplannerapp.ui.CoursesSelectAdapter;
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 import com.example.termplannerapp.viewmodel.MainViewModel;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
@@ -34,7 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermDetailsActivity extends AppCompatActivity {
