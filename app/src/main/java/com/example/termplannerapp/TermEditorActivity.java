@@ -131,7 +131,7 @@ public class TermEditorActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(termTitle + " cannot be deleted");
             builder.setMessage("This term has courses assigned to it, courses must be deleted" +
-                    " before term can be deleted");
+                    " or removed before the term can be deleted");
             builder.setPositiveButton("Ok", (dialog, id) -> {
                 dialog.dismiss();
             });
