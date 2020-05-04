@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AssessmentListActivity extends AppCompatActivity {
+public class AssessmentListActivity extends AppCompatActivity implements AssessmentsAdapter.AssessmentSelectedListener {
 
     @BindView(R.id.assessment_recycler_view)
     RecyclerView mAssmntRecyclerView;
@@ -55,7 +55,7 @@ public class AssessmentListActivity extends AppCompatActivity {
 
             if (mAssessmentsAdapter == null) {
                 mAssessmentsAdapter = new AssessmentsAdapter(assessmentsData,
-                        AssessmentListActivity.this);
+                        AssessmentListActivity.this, this);
                 mAssmntRecyclerView.setAdapter(mAssessmentsAdapter);
             } else {
                 mAssessmentsAdapter.notifyDataSetChanged();
@@ -75,7 +75,12 @@ public class AssessmentListActivity extends AppCompatActivity {
                 layoutManager.getOrientation());
         mAssmntRecyclerView.addItemDecoration(divider);
 
-        mAssessmentsAdapter = new AssessmentsAdapter(assessmentsData, this);
+        mAssessmentsAdapter = new AssessmentsAdapter(assessmentsData, this, this);
         mAssmntRecyclerView.setAdapter(mAssessmentsAdapter);
+    }
+
+    @Override
+    public void onAssessmentSelected(int position, AssessmentEntity assessment) {
+        
     }
 }

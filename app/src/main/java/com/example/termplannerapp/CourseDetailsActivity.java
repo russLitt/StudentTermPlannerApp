@@ -5,10 +5,19 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.termplannerapp.database.AssessmentEntity;
+import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.ui.AssessmentsAdapter;
+import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +41,10 @@ public class CourseDetailsActivity extends AppCompatActivity {
     @BindView(R.id.course_details_assessment_recycler_view)
     RecyclerView mAssessmentRecyclerView;
 
+    private List<AssessmentEntity> assessmentsData = new ArrayList<>();
+    private List<AssessmentEntity> unassignedAssessments = new ArrayList<>();
     private CourseEditorViewModel mViewModel;
+    private AssessmentsAdapter mAssessmentsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +58,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initViewModel();
+        initRecyclerView();
     }
 
     private void initViewModel() {
@@ -57,8 +70,30 @@ public class CourseDetailsActivity extends AppCompatActivity {
             mRadioButton.setText(CourseEntity.getStatus());
         });
 
+        final Observer<List<AssessmentEntity>> assessmentsObserver = assessmentEntities -> {
+            assessmentsData.clear();
+            assessmentsData.addAll(assessmentEntities);
+
+            if (mAssessmentsAdapter == null) {
+                mAssessmentsAdapter = new AssessmentsAdapter(assessmentsData,
+                        CourseDetailsActivity.this, this::onAssessmentSelected);
+                mAssessmentRecyclerView.setAdapter(mAssessmentsAdapter);
+            } else {
+                mAssessmentsAdapter.notifyDataSetChanged();
+            }
+        };
+
+        final Observer<List<AssessmentEntity>> unassignedAssessmentObserver = assessmentEntities -> {
+            unassignedAssessments.clear();
+            unassignedAssessments.addAll(assessmentEntities);
+        };
+
+
         Bundle extras = getIntent().getExtras();
-        int courseId = extras.getInt(COURSE_ID_KEY);
-        mViewModel.loadData(courseId);
+        int assessmentId = extras.getInt(COURSE_ID_KEY); //CHECK
+        mViewModel.loadData(assessmentId);
+    }
+
+    private void onAssessmentSelected(int i, AssessmentEntity assessmentEntity) {
     }
 }

@@ -35,7 +35,8 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         void onCourseSelected(int position, CourseEntity course);
     }
 
-    public CoursesAdapter(List<CourseEntity> mCourses, Context mContext, CourseSelectedListener mCourseSelectedListener) {
+    public CoursesAdapter(List<CourseEntity> mCourses, Context mContext,
+                          CourseSelectedListener mCourseSelectedListener) {
         this.mCourses = mCourses;
         this.mContext = mContext;
         this.mCourseSelectedListener = mCourseSelectedListener;
@@ -44,10 +45,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View view = inflater.inflate(R.layout.course_list_item, parent, false);
-            return new ViewHolder(view, mCourseSelectedListener);
-        }
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.course_list_item, parent, false);
+        return new ViewHolder(view, mCourseSelectedListener);
+    }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -78,7 +79,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         return mCourses.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.course_title)
         TextView mCourseTitle;
         @BindView(R.id.course_edit_fab)

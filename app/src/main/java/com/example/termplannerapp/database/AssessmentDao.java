@@ -33,4 +33,7 @@ public interface AssessmentDao {
 
     @Query("SELECT COUNT(*) FROM assessments")
     int getCount();
+
+    @Query("SELECT * FROM assessments WHERE courseId = :courseId")
+    LiveData<List<AssessmentEntity>> getAssessmentByCourse(int courseId);
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.termplannerapp.database.AppRepository;
+import com.example.termplannerapp.database.AssessmentEntity;
 import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.TermEntity;
 
@@ -57,6 +58,19 @@ public class CourseEditorViewModel extends AndroidViewModel {
 
     public void deleteCourse() {
         mRepository.deleteCourse(mLiveCourses.getValue());
+    }
+
+    public void setAssessmentToCourse(AssessmentEntity assessment, int courseId) {
+        assessment.setCourseId(courseId);
+        mRepository.insertAssessment(assessment);
+    }
+
+    public LiveData<List<AssessmentEntity>> getAssessmentInCourse(int courseId) {
+        return (mRepository.getAssessmentByCourse(courseId));
+    }
+
+    public LiveData<List<AssessmentEntity>> getUnassignedAssessments() {
+        return (mRepository.getAssessmentByCourse(-1));
     }
 
 }
