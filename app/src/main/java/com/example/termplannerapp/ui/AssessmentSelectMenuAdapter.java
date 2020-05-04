@@ -10,25 +10,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.R;
-import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.database.AssessmentEntity;
 
 import java.util.List;
 
-public class CourseDropdownMenu extends PopupWindow {
+public class AssessmentSelectMenuAdapter extends PopupWindow {
     private Context mContext;
-    private List<CourseEntity> mCourses;
+    private List<AssessmentEntity> mAssessments;
     private RecyclerView mRecyclerPopUp;
-    private CoursePopUpAdapter mCoursesAdapter;
+    private AssessmentPopUpAdapter mAssessmentsAdapter;
 
-    public CourseDropdownMenu(Context mContext, List<CourseEntity> mCourses) {
+    public AssessmentSelectMenuAdapter(Context mContext, List<AssessmentEntity> mAssessments) {
         super(mContext);
         this.mContext = mContext;
-        this.mCourses = mCourses;
+        this.mAssessments = mAssessments;
         initView();
     }
 
-    public void setCourseSelectedListener(CoursePopUpAdapter.CourseSelectedListener courseSelectedListener) {
-        mCoursesAdapter.setCourseSelectedListener(courseSelectedListener);
+    public void setAssessmentSelectedListener(AssessmentPopUpAdapter.AssessmentSelectedListener assessmentSelectedListener) {
+        mAssessmentsAdapter.setAssessmentSelectedListener(assessmentSelectedListener);
     }
 
     private void initView() {
@@ -39,9 +39,8 @@ public class CourseDropdownMenu extends PopupWindow {
         mRecyclerPopUp.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mRecyclerPopUp.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
 
-        mCoursesAdapter = new CoursePopUpAdapter(mCourses);
-        mRecyclerPopUp.setAdapter(mCoursesAdapter);
+        mAssessmentsAdapter = new AssessmentPopUpAdapter(mAssessments);
+        mRecyclerPopUp.setAdapter(mAssessmentsAdapter);
         setContentView(view);
     }
-
 }

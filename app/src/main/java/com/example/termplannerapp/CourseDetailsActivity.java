@@ -6,6 +6,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 
@@ -27,6 +28,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.rb_completed)
     TextView mRadioButton;
+
+    @BindView(R.id.course_details_assessment_recycler_view)
+    RecyclerView mAssessmentRecyclerView;
 
     private CourseEditorViewModel mViewModel;
 

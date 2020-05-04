@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.CourseEntity;
-import com.example.termplannerapp.ui.CourseDropdownMenu;
+import com.example.termplannerapp.ui.CourseSelectMenuAdapter;
 import com.example.termplannerapp.ui.CoursesAdapter;
-import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
-import com.example.termplannerapp.viewmodel.MainViewModel;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -109,7 +107,7 @@ public class TermDetailsActivity extends AppCompatActivity {
     @OnClick(R.id.course_add_fab)
     public void courseAddHandler() {
         if (unassignedCourses.size() != 0) {
-            final CourseDropdownMenu menu = new CourseDropdownMenu(this, unassignedCourses);
+            final CourseSelectMenuAdapter menu = new CourseSelectMenuAdapter(this, unassignedCourses);
             menu.setHeight(1000);
             menu.setOutsideTouchable(true);
             menu.showAsDropDown(mCourseAdd);
