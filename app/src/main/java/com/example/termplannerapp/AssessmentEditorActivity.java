@@ -1,6 +1,8 @@
 package com.example.termplannerapp;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.termplannerapp.viewmodel.AssessmentEditorViewModel;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -53,7 +56,19 @@ public class AssessmentEditorActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        intiViewModel();
+        mAssmntDueDate.setInputType(InputType.TYPE_NULL);
+        mAssmntDueDate.setOnClickListener(view -> {
+            final Calendar cal = Calendar.getInstance();
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            int year = cal.get(Calendar.YEAR);
+            DatePickerDialog picker;
+            // date picker dialog
+            picker = new DatePickerDialog(AssessmentEditorActivity.this,
+                    (view1, year1, monthOfYear, dayOfMonth) ->
+                            mAssmntDueDate.setText((monthOfYear + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
+            picker.show();
+        });
 
         mAssmntSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -66,6 +81,7 @@ public class AssessmentEditorActivity extends AppCompatActivity {
             }
         });
 
+        intiViewModel();
     }
 
     private void intiViewModel() {
