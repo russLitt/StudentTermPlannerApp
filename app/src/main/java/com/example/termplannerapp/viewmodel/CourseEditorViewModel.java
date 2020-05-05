@@ -72,5 +72,4 @@ public class CourseEditorViewModel extends AndroidViewModel {
     public LiveData<List<AssessmentEntity>> getUnassignedAssessments() {
         return (mRepository.getAssessmentByCourse(-1));
     }
-
 }

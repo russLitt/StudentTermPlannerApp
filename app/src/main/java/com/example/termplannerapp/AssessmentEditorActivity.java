@@ -21,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.termplannerapp.utilities.Constants.ASSESSMENT_ID_KEY;
+import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 import static com.example.termplannerapp.utilities.Constants.EDITING_ASSESSMENT_KEY;
 
 public class AssessmentEditorActivity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class AssessmentEditorActivity extends AppCompatActivity {
 
     private AssessmentEditorViewModel mViewModel;
     private boolean mNewAssessment, mEditingAssessment;
+    private int courseId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +60,7 @@ public class AssessmentEditorActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     mAssmntSwitch.setText("Objective");
-                }
-                else {
+                } else {
                     mAssmntSwitch.setText("Performance");
                 }
             }
@@ -79,12 +80,15 @@ public class AssessmentEditorActivity extends AppCompatActivity {
         if (extras == null) {
             setTitle(getString(R.string.new_assessment));
             mNewAssessment = true;
+        } else if (extras.containsKey(COURSE_ID_KEY)) {
+            courseId = extras.getInt(COURSE_ID_KEY);
         } else {
             setTitle(getString(R.string.edit_assessment));
             int assessmentId = extras.getInt(ASSESSMENT_ID_KEY);
             mViewModel.loadData(assessmentId);
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -115,7 +119,8 @@ public class AssessmentEditorActivity extends AppCompatActivity {
     private void saveAndReturn() {
         mViewModel.saveAssessment(mAssmntTitle.getText().toString(),
                 mAssmntDueDate.getText().toString(),
-                mAssmntSwitch.getText().toString());
+                mAssmntSwitch.getText().toString(),
+                courseId);
         finish();
     }
 

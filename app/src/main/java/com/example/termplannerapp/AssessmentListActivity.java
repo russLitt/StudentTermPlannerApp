@@ -79,8 +79,7 @@ public class AssessmentListActivity extends AppCompatActivity implements Assessm
         mAssmntRecyclerView.setAdapter(mAssessmentsAdapter);
     }
 
-    @Override
     public void onAssessmentSelected(int position, AssessmentEntity assessment) {
-        
+
     }
 }

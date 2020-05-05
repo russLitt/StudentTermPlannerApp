@@ -2,25 +2,27 @@ package com.example.termplannerapp;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.AssessmentEntity;
-import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.ui.AssessmentSelectMenuAdapter;
 import com.example.termplannerapp.ui.AssessmentsAdapter;
-import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 
@@ -38,6 +40,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
     @BindView(R.id.rb_completed)
     TextView mRadioButton;
 
+    @BindView(R.id.assessment_add_fab)
+    FloatingActionButton mAssessmentAdd;
+
     @BindView(R.id.course_details_assessment_recycler_view)
     RecyclerView mAssessmentRecyclerView;
 
@@ -45,6 +50,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
     private List<AssessmentEntity> unassignedAssessments = new ArrayList<>();
     private CourseEditorViewModel mViewModel;
     private AssessmentsAdapter mAssessmentsAdapter;
+    private int courseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,12 +94,43 @@ public class CourseDetailsActivity extends AppCompatActivity {
             unassignedAssessments.addAll(assessmentEntities);
         };
 
-
         Bundle extras = getIntent().getExtras();
-        int assessmentId = extras.getInt(COURSE_ID_KEY); //CHECK
-        mViewModel.loadData(assessmentId);
+        if (extras != null) {
+            courseId = extras.getInt(COURSE_ID_KEY);
+            mViewModel.loadData(courseId);
+        } else {
+            finish();
+        }
+
+        mViewModel.getAssessmentInCourse(courseId).observe(this, assessmentsObserver);
+        mViewModel.getUnassignedAssessments().observe(this, unassignedAssessmentObserver);
     }
 
-    private void onAssessmentSelected(int i, AssessmentEntity assessmentEntity) {
+    @OnClick(R.id.assessment_add_fab)
+    public void assessmentAddHandler() {
+        if (unassignedAssessments.size() != 0) {
+            final AssessmentSelectMenuAdapter menu = new AssessmentSelectMenuAdapter(this, unassignedAssessments);
+            menu.setHeight(1000);
+            menu.setOutsideTouchable(true);
+            menu.showAsDropDown(mAssessmentAdd);
+            menu.setAssessmentSelectedListener((position, assessment) -> {
+                menu.dismiss();
+                assessment.setCourseId(courseId);
+                mViewModel.setAssessmentToCourse(assessment, courseId);
+            });
+        } else {
+            Toast.makeText(getApplicationContext(), "No unassigned assessments found." +
+                            "  Create a new assessment to add it to course.",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void initRecyclerView() {
+        mAssessmentRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mAssessmentRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    private void onAssessmentSelected(int position, AssessmentEntity assessmentEntity) {
     }
 }

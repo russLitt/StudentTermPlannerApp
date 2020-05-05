@@ -68,7 +68,6 @@ public class TermDetailsActivity extends AppCompatActivity {
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(TermEditorViewModel.class);
         mViewModel.mLiveTerms.observe(this, (termEntity) -> {
-            //toolbar.setTitle(termEntity.getTermTitle());
             mTextView.setText(termEntity.getTermTitle());
             mTermStartDate.setText(termEntity.getTermStartDate());
             mTermEndDate.setText(termEntity.getTermEndDate());

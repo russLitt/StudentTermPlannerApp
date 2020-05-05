@@ -34,18 +34,19 @@ public class AssessmentEditorViewModel extends AndroidViewModel {
         });
     }
 
-    public void saveAssessment(String assessmentTitle, String assessmentDueDate, String assessmentType)  {
+    public void saveAssessment(String assessmentTitle, String assessmentDueDate, String assessmentType, int courseId)  {
         AssessmentEntity assessment = mLiveAssessments.getValue();
 
         if (assessment == null) {
             if (TextUtils.isEmpty(assessmentTitle.trim())) {
                 return;
             }
-            assessment = new AssessmentEntity(assessmentTitle.trim(), assessmentDueDate.trim(), assessmentType.trim());
+            assessment = new AssessmentEntity(assessmentTitle.trim(), assessmentDueDate.trim(), assessmentType.trim(), courseId);
         } else {
             assessment.setAssessmentTitle(assessmentTitle.trim());
             assessment.setAssessmentDueDate(assessmentDueDate.trim());
             assessment.setAssessmentType(assessmentType.trim());
+            assessment.setCourseId(courseId);
         }
         mRepository.insertAssessment(assessment);
     }
@@ -53,4 +54,5 @@ public class AssessmentEditorViewModel extends AndroidViewModel {
     public void deleteAssessment() {
         mRepository.deleteAssessment(mLiveAssessments.getValue());
     }
+
 }

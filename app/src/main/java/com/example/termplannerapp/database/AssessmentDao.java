@@ -21,7 +21,6 @@ public interface AssessmentDao {
     @Query("SELECT * FROM assessments ORDER BY id")
     LiveData<List<AssessmentEntity>> getAll();
 
-    //was assessmentId
     @Query("SELECT * FROM assessments WHERE id = :id")
     AssessmentEntity getAssessmentById(int id);
 

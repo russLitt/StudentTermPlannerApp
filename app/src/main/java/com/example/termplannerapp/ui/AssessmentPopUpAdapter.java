@@ -14,7 +14,6 @@ import com.example.termplannerapp.database.AssessmentEntity;
 import java.util.List;
 
 public class AssessmentPopUpAdapter extends RecyclerView.Adapter<AssessmentPopUpAdapter.AssessmentViewHolder> {
-
     private List<AssessmentEntity> mAssessments;
     private AssessmentPopUpAdapter.AssessmentSelectedListener mAssessmentSelectedListener;
 
@@ -29,8 +28,8 @@ public class AssessmentPopUpAdapter extends RecyclerView.Adapter<AssessmentPopUp
 
     @NonNull
     @Override
-    public AssessmentPopUpAdapter.AssessmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AssessmentPopUpAdapter.AssessmentViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.assessment_list_item, parent, false));
+    public AssessmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new AssessmentViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.assessment_list_item, parent, false));
     }
 
     @Override
