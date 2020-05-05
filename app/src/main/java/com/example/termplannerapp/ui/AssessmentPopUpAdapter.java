@@ -29,7 +29,7 @@ public class AssessmentPopUpAdapter extends RecyclerView.Adapter<AssessmentPopUp
     @NonNull
     @Override
     public AssessmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AssessmentViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.assessment_list_item, parent, false));
+        return new AssessmentViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.assessment_select_item, parent, false));
     }
 
     @Override
