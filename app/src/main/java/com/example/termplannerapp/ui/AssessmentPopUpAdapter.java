@@ -18,7 +18,6 @@ public class AssessmentPopUpAdapter extends RecyclerView.Adapter<AssessmentPopUp
     private AssessmentPopUpAdapter.AssessmentSelectedListener mAssessmentSelectedListener;
 
     public AssessmentPopUpAdapter(List<AssessmentEntity> mAssessments) {
-        //super();
         this.mAssessments = mAssessments;
     }
 

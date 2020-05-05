@@ -1,6 +1,8 @@
 package com.example.termplannerapp;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +22,7 @@ import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,7 +57,6 @@ public class TermEditorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_editor);
-        //setContentView(R.layout.activity_course_select_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_check);
@@ -65,6 +67,34 @@ public class TermEditorActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             mEditing = savedInstanceState.getBoolean(EDITING_TERM_KEY);
         }
+
+        mTermStartDate.setInputType(InputType.TYPE_NULL);
+        mTermStartDate.setOnClickListener(view -> {
+            final Calendar cal = Calendar.getInstance();
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            int year = cal.get(Calendar.YEAR);
+            DatePickerDialog picker;
+            // date picker dialog
+            picker = new DatePickerDialog(TermEditorActivity.this,
+                    (view1, year1, monthOfYear, dayOfMonth) ->
+                            mTermStartDate.setText((monthOfYear + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
+            picker.show();
+        });
+
+        mTermEndDate.setInputType(InputType.TYPE_NULL);
+        mTermEndDate.setOnClickListener(view -> {
+            final Calendar cal = Calendar.getInstance();
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            int year = cal.get(Calendar.YEAR);
+            DatePickerDialog picker;
+            // date picker dialog
+            picker = new DatePickerDialog(TermEditorActivity.this,
+                    (view1, year1, monthOfYear, dayOfMonth) ->
+                            mTermEndDate.setText((monthOfYear + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
+            picker.show();
+        });
 
         initViewModel();
         initRecyclerView();
@@ -176,8 +206,7 @@ public class TermEditorActivity extends AppCompatActivity {
         mCourseRecyclerView.setLayoutManager(layoutManager);
     }
 
+
     private void onCourseSelected(int position, CourseEntity course) {
     }
 }
-
-

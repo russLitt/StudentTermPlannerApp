@@ -29,7 +29,6 @@
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="enter start date"
-        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/term_text" />
 
@@ -44,7 +43,6 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="enter end date"
-        android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toEndOf="@+id/term_start_date"
