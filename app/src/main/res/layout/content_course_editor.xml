@@ -21,11 +21,11 @@
 
     <RadioGroup
         android:id="@+id/course_status_rb_group"
-        android:layout_width="298dp"
-        android:layout_height="137dp"
-        android:layout_marginTop="208dp"
+        android:layout_width="158dp"
+        android:layout_height="129dp"
+        android:layout_marginTop="216dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
+        app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
