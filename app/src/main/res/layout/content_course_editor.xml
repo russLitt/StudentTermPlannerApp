@@ -19,13 +19,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/course_end_date"
+        android:layout_width="160dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/course_end_date"
+        android:inputType="date"
+        app:layout_constraintStart_toEndOf="@+id/course_start_date"
+        app:layout_constraintTop_toBottomOf="@+id/course_title" />
+
+    <TextView
+        android:id="@+id/course_status_label"
+        android:layout_width="66dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="92dp"
+        android:text="@string/course_status"
+        android:textSize="@dimen/term_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/course_status_rb_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_title"
+        app:layout_constraintVertical_bias="1.0" />
+
     <RadioGroup
         android:id="@+id/course_status_rb_group"
-        android:layout_width="158dp"
-        android:layout_height="129dp"
-        android:layout_marginTop="216dp"
+        android:layout_width="162dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="192dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -61,33 +88,6 @@
             android:onClick="onRbClicked"
             android:text="@string/plan_to_take" />
     </RadioGroup>
-
-    <EditText
-        android:id="@+id/course_end_date"
-        android:layout_width="160dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/course_end_date"
-        android:inputType="date"
-        app:layout_constraintStart_toEndOf="@+id/course_start_date"
-        app:layout_constraintTop_toBottomOf="@+id/course_title" />
-
-    <TextView
-        android:id="@+id/course_status_label"
-        android:layout_width="66dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="92dp"
-        android:text="@string/course_status"
-        android:textSize="@dimen/term_text_size"
-        app:layout_constraintBottom_toTopOf="@+id/course_status_rb_group"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_title"
-        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/course_start_date"

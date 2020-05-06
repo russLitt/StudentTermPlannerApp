@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Term Planner App</string>
     <string name="action_add_sample_data">Add sample data</string>
+    <string name="help">Help</string>
     //term strings
     <string name="title_term_editor_activity">Edit Term Title</string>
     <string name="enter_term_title">Enter term title</string>
