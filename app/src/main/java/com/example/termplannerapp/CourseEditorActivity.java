@@ -1,10 +1,10 @@
 package com.example.termplannerapp;
 
 import android.app.DatePickerDialog;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -23,6 +23,7 @@ import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 import java.util.Calendar;
 import java.util.Objects;
 
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -46,6 +47,9 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
+
+    @BindView(R.id.course_note)
+    TextView mCourseNote;
 
     private CourseEditorViewModel mViewModel;
     private Boolean mNewCourse, mEditingCourse;
@@ -104,6 +108,7 @@ public class CourseEditorActivity extends AppCompatActivity {
             mCourseStartDate.setText(CourseEntity.getCourseStartDate());
             mCourseEndDate.setText(CourseEntity.getCourseEndDate());
             mRadioButton.setText(CourseEntity.getStatus());
+            mCourseNote.setText(CourseEntity.getNote());
         });
 
         Bundle extras = getIntent().getExtras();
@@ -121,11 +126,9 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNewCourse) {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_course_editor, menu);
-        }
-        return super.onCreateOptionsMenu(menu);
+        //Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_course_editor, menu);
+        return true;
     }
 
     @Override
@@ -150,6 +153,7 @@ public class CourseEditorActivity extends AppCompatActivity {
                 mCourseStartDate.getText().toString(),
                 mCourseEndDate.getText().toString(),
                 mRadioButton.getText().toString(),
+                mCourseNote.getText().toString(),
                 termId);
         finish();
     }

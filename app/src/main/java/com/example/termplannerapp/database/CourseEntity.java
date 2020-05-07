@@ -10,7 +10,7 @@ import static androidx.room.ForeignKey.CASCADE;
 public class CourseEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String courseTitle, courseStartDate, courseEndDate, status;
+    private String courseTitle, courseStartDate, courseEndDate, status, note;
     private int termId;
 
     @Ignore
@@ -18,29 +18,34 @@ public class CourseEntity {
     }
 
     @Ignore
-    public CourseEntity(int id, String courseTitle, String courseStartDate, String courseEndDate, String status, int termId) {
+    public CourseEntity(int id, String courseTitle, String courseStartDate, String courseEndDate,
+                        String status, String note, int termId) {
         this.id = id;
         this.courseTitle = courseTitle;
         this.courseStartDate = courseStartDate;
         this.courseEndDate = courseEndDate;
         this.status = status;
+        this.note = note;
         this.termId = termId;
     }
 
     @Ignore
-    public CourseEntity(String courseTitle, String courseStartDate, String courseEndDate, String status, int termId) {
+    public CourseEntity(String courseTitle, String courseStartDate, String courseEndDate,
+                        String status, String note, int termId) {
         this.courseTitle = courseTitle;
         this.courseStartDate = courseStartDate;
         this.courseEndDate = courseEndDate;
         this.status = status;
+        this.note = note;
         this.termId = termId;
     }
 
-    public CourseEntity(String courseTitle, String courseStartDate, String courseEndDate, String status) {
+    public CourseEntity(String courseTitle, String courseStartDate, String courseEndDate, String status, String note) {
         this.courseTitle = courseTitle;
         this.courseStartDate = courseStartDate;
         this.courseEndDate = courseEndDate;
         this.status = status;
+        this.note = note;
     }
 
     public int getId() {
@@ -90,5 +95,9 @@ public class CourseEntity {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getNote() { return note;}
+
+    public void setNote(String note) { this.note = note; }
 }
 

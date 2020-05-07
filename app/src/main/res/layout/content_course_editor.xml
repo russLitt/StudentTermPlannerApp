@@ -35,26 +35,23 @@
     <TextView
         android:id="@+id/course_status_label"
         android:layout_width="66dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="92dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="32dp"
         android:text="@string/course_status"
         android:textSize="@dimen/term_text_size"
-        app:layout_constraintBottom_toTopOf="@+id/course_status_rb_group"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintEnd_toStartOf="@+id/note_label"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_title"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/course_start_date" />
 
     <RadioGroup
         android:id="@+id/course_status_rb_group"
-        android:layout_width="162dp"
-        android:layout_height="139dp"
-        android:layout_marginTop="192dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.192"
+        android:layout_width="139dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/course_status_label">
 
         <RadioButton
             android:id="@+id/rb_in_progress"
@@ -101,6 +98,30 @@
         android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_title" />
+
+    <TextView
+        android:id="@+id/note_label"
+        android:layout_width="105dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:text="Add a note"
+        android:textSize="@dimen/term_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_end_date" />
+
+    <EditText
+        android:id="@+id/course_note"
+        android:layout_width="182dp"
+        android:layout_height="134dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.629"
+        app:layout_constraintStart_toEndOf="@+id/course_status_rb_group"
+        app:layout_constraintTop_toBottomOf="@+id/note_label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
