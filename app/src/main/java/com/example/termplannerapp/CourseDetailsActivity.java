@@ -1,6 +1,7 @@
 package com.example.termplannerapp;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.assessment_add_fab)
     FloatingActionButton mAssessmentAdd;
+
+    @BindView(R.id.assessments_recycler_view_label)
+    TextView mRecyclerLabel;
 
     @BindView(R.id.course_details_assessment_recycler_view)
     RecyclerView mAssessmentRecyclerView;
@@ -113,15 +117,17 @@ public class CourseDetailsActivity extends AppCompatActivity {
             menu.setHeight(1000);
             menu.setOutsideTouchable(true);
             menu.showAsDropDown(mAssessmentAdd);
+            mRecyclerLabel.setVisibility(View.VISIBLE);
             menu.setAssessmentSelectedListener((position, assessment) -> {
                 menu.dismiss();
                 assessment.setCourseId(courseId);
                 mViewModel.setAssessmentToCourse(assessment, courseId);
             });
         } else {
-            Toast.makeText(getApplicationContext(), "No unassigned assessments found." +
-                            "  Create a new assessment to add it to course.",
+            Toast.makeText(getApplicationContext(), "No unassigned assessments found. " +
+                            "Create a new assessment to add it to course.",
                     Toast.LENGTH_SHORT).show();
+            mRecyclerLabel.setVisibility(View.INVISIBLE);
         }
     }
 
