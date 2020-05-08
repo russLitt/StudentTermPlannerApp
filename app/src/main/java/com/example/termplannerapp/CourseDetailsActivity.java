@@ -1,10 +1,10 @@
 package com.example.termplannerapp;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -116,30 +116,41 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
     @OnClick(R.id.assessment_add_fab)
     public void assessmentAddHandler() {
-        if (unassignedAssessments.size() != 0) {
-            final AssessmentSelectMenuAdapter menu = new AssessmentSelectMenuAdapter(this, unassignedAssessments);
-            menu.setHeight(1000);
-            menu.setOutsideTouchable(true);
-            menu.showAsDropDown(mAssessmentAdd);
-            mRecyclerLabel.setVisibility(View.VISIBLE);
-            menu.setAssessmentSelectedListener((position, assessment) -> {
-                menu.dismiss();
-                assessment.setCourseId(courseId);
-                mViewModel.setAssessmentToCourse(assessment, courseId);
-            });
-        } else {
-            Toast.makeText(getApplicationContext(), "No unassigned assessments found. " +
-                            "Create a new assessment to add it to course.",
-                    Toast.LENGTH_SHORT).show();
-            mRecyclerLabel.setVisibility(View.INVISIBLE);
-        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add assessment or mentor?");
+//        builder.setMessage("This app is designed to help students track terms and courses " +
+//                "as well as assessments and mentors associated with each course." +
+//                "\n\nTerms, courses, assessments and mentors can be created in any order, " +
+//                "however a term must exist for a course to be added to it and a course " +
+//                "must exist for an assessment and or mentors to be added to it." +
+//                "\n\nFurthermore, a term cannot be deleted if it has courses assigned to it.");
+        builder.setPositiveButton("Assessment", (dialog, id) -> {
+            //dialog.dismiss();
+            if (unassignedAssessments.size() != 0) {
+                final AssessmentSelectMenuAdapter menu = new AssessmentSelectMenuAdapter(this, unassignedAssessments);
+                menu.setHeight(1000);
+                menu.setOutsideTouchable(true);
+                menu.showAsDropDown(mAssessmentAdd);
+                menu.setAssessmentSelectedListener((position, assessment) -> {
+                    menu.dismiss();
+                    assessment.setCourseId(courseId);
+                    mViewModel.setAssessmentToCourse(assessment, courseId);
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "No unassigned assessments found. " +
+                                "Create a new assessment to add it to course.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 
     private void initRecyclerView() {
         mAssessmentRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mAssessmentRecyclerView.setLayoutManager(layoutManager);
-        //mAssessmentRecyclerView.setNestedScrollingEnabled(true);
     }
 
     private void onAssessmentSelected(int position, AssessmentEntity assessmentEntity) {

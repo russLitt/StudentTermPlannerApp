@@ -10,25 +10,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.R;
-import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.database.MentorEntity;
 
 import java.util.List;
 
-public class CourseSelectMenuAdapter extends PopupWindow {
+public class MentorSelectMenuAdapter extends PopupWindow {
     private Context mContext;
-    private List<CourseEntity> mCourses;
+    private List<MentorEntity> mMentors;
     private RecyclerView mRecyclerPopUp;
-    private CoursePopUpAdapter mCoursesAdapter;
+    private MentorPopUpAdapter mMentorsAdapter;
 
-    public CourseSelectMenuAdapter(Context mContext, List<CourseEntity> mCourses) {
+    public MentorSelectMenuAdapter(Context mContext, List<MentorEntity> mMentors) {
         super(mContext);
         this.mContext = mContext;
-        this.mCourses = mCourses;
+        this.mMentors = mMentors;
         initView();
     }
 
-    public void setCourseSelectedListener(CoursePopUpAdapter.CourseSelectedListener courseSelectedListener) {
-        mCoursesAdapter.setCourseSelectedListener(courseSelectedListener);
+    public void setMentorSelectedListener(MentorPopUpAdapter.MentorSelectedListener mentorSelectedListener) {
+        mMentorsAdapter.setMentorSelectedListener(mentorSelectedListener);
     }
 
     private void initView() {
@@ -39,8 +39,8 @@ public class CourseSelectMenuAdapter extends PopupWindow {
         mRecyclerPopUp.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mRecyclerPopUp.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
 
-        mCoursesAdapter = new CoursePopUpAdapter(mCourses);
-        mRecyclerPopUp.setAdapter(mCoursesAdapter);
+        mMentorsAdapter = new MentorPopUpAdapter(mMentors);
+        mRecyclerPopUp.setAdapter(mMentorsAdapter);
         setContentView(view);
     }
 }
