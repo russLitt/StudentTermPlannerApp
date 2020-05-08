@@ -97,31 +97,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
         initMentorRecyclerView();
     }
 
-    private void sendEmail() {
-        Log.i("Send email", "");
-        String[] TO = {""};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        String noteSubject = "Note for " + mCourseTitle.getText().toString();
-        String noteText = "Note: " + mNoteText.getText().toString();
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, noteSubject);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, noteText);
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-            Log.i("Finished sending email", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(CourseDetailsActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(CourseEditorViewModel.class);
         mViewModel.mLiveCourses.observe(this, (CourseEntity) -> {
@@ -242,5 +217,29 @@ public class CourseDetailsActivity extends AppCompatActivity {
     }
 
     private void onMentorSelected(int position, MentorEntity mentorEntity) {
+    }
+
+    private void sendEmail() {
+        Log.i("Send email", "");
+        String[] TO = {""};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        String noteSubject = "Note for " + mCourseTitle.getText().toString();
+        String noteText = "Note: " + mNoteText.getText().toString();
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, noteSubject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, noteText);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(CourseDetailsActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

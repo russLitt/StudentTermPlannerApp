@@ -50,12 +50,23 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/term_details_course_recycler_view"
-        android:layout_width="410dp"
-        android:layout_height="487dp"
-        android:layout_marginTop="72dp"
+        android:layout_width="411dp"
+        android:layout_height="406dp"
+        android:layout_marginTop="88dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/term_dates_checkbox" />
+
+    <CheckBox
+        android:id="@+id/term_dates_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Send start and expected end dates alerts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/term_end_date" />
 

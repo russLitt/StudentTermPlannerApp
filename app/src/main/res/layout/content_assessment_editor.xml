@@ -48,10 +48,10 @@
         android:id="@+id/assmnt_alert_check"
         android:layout_width="178dp"
         android:layout_height="38dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:text="Send due date alert"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/assmnt_due_date" />
 
