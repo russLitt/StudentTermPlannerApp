@@ -182,7 +182,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
                 });
             } else {
                 Toast.makeText(getApplicationContext(), "No unassigned mentors found. " +
-                                "Create a new mentor to add it to course.",
+                                "Create a new mentor to add it to course. ",
                         Toast.LENGTH_SHORT).show();
             }
         });
