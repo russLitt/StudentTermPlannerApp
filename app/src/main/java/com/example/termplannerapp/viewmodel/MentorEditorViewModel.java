@@ -34,18 +34,19 @@ public class MentorEditorViewModel extends AndroidViewModel {
         });
     }
 
-    public void saveMentor(String mentorName, String mentorEmail, String mentorPhone) {
+    public void saveMentor(String mentorName, String mentorEmail, String mentorPhone, int courseId) {
         MentorEntity mentor = mLiveMentors.getValue();
 
         if (mentor == null) {
             if (TextUtils.isEmpty(mentorName.trim())) {
                 return;
             }
-            mentor = new MentorEntity(mentorName.trim(), mentorEmail.trim(), mentorPhone.trim());
+            mentor = new MentorEntity(mentorName.trim(), mentorEmail.trim(), mentorPhone.trim(), courseId);
         } else {
             mentor.setMentorName(mentorName.trim());
             mentor.setMentorEmail(mentorEmail.trim());
             mentor.setMentorPhone(mentorPhone.trim());
+            mentor.setCourseId(courseId);
         }
         mRepository.insertMentor(mentor);
     }

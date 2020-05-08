@@ -81,7 +81,8 @@ public class CourseDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initViewModel();
-        initRecyclerView();
+        initAssessmentRecyclerView();
+        initMentorRecyclerView();
     }
 
     private void initViewModel() {
@@ -190,10 +191,16 @@ public class CourseDetailsActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void initRecyclerView() {
+    private void initAssessmentRecyclerView() {
         mAssessmentRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mAssessmentRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    private void initMentorRecyclerView() {
+        mMentorRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mMentorRecyclerView.setLayoutManager(layoutManager);
     }
 
     private void onAssessmentSelected(int position, AssessmentEntity assessmentEntity) {

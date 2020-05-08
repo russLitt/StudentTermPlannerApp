@@ -22,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.termplannerapp.utilities.Constants.COURSE_ID_KEY;
 import static com.example.termplannerapp.utilities.Constants.EDITING_MENTOR_KEY;
 import static com.example.termplannerapp.utilities.Constants.MENTOR_ID_KEY;
 
@@ -38,6 +39,7 @@ public class MentorEditorActivity extends AppCompatActivity {
 
     private MentorEditorViewModel mViewModel;
     private boolean mNewMentor, mEditingMentor;
+    private int courseId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,8 @@ public class MentorEditorActivity extends AppCompatActivity {
         if (extras == null) {
             setTitle(getString(R.string.new_mentor));
             mNewMentor = true;
+        } else if (extras.containsKey(COURSE_ID_KEY)) {
+            courseId = extras.getInt(COURSE_ID_KEY);
         } else {
             setTitle(getString(R.string.edit_mentor));
             int mentorId = extras.getInt(MENTOR_ID_KEY);
@@ -105,7 +109,8 @@ public class MentorEditorActivity extends AppCompatActivity {
     private void saveAndReturn() {
         mViewModel.saveMentor(mMentorName.getText().toString(),
                 mMentorEmail.getText().toString(),
-                mMentorPhone.getText().toString());
+                mMentorPhone.getText().toString(),
+                courseId);
         finish();
     }
 

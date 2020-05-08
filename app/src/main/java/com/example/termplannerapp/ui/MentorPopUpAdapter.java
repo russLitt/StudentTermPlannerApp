@@ -28,7 +28,7 @@ public class MentorPopUpAdapter extends RecyclerView.Adapter<MentorPopUpAdapter.
     @NonNull
     @Override
     public MentorPopUpAdapter.MentorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MentorPopUpAdapter.MentorViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.mentor_list_item, parent, false));
+        return new MentorPopUpAdapter.MentorViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.mentor_select_item, parent, false));
     }
 
     @Override
