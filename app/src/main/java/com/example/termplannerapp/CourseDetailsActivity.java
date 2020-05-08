@@ -1,6 +1,11 @@
 package com.example.termplannerapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,9 +55,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
     @BindView(R.id.assessment_add_fab)
     FloatingActionButton mAssessmentAdd;
 
-    @BindView(R.id.assessments_recycler_view_label)
-    TextView mRecyclerLabel;
-
+    @BindView(R.id.share_note_btn)
+    Button mShareNoteBtn;
+    
     @BindView(R.id.course_details_assessment_recycler_view)
     RecyclerView mAssessmentRecyclerView;
 
@@ -80,10 +85,42 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        mShareNoteBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                sendEmail();
+            }
+        });
+    
+
         initViewModel();
         initAssessmentRecyclerView();
         initMentorRecyclerView();
     }
+
+    private void sendEmail() {
+        Log.i("Send email", "");
+        String[] TO = {""};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        String noteSubject = "Note for " + mCourseTitle.getText().toString();
+        String noteText = "Note: " + mNoteText.getText().toString();
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, noteSubject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, noteText);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(CourseDetailsActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(CourseEditorViewModel.class);
@@ -148,9 +185,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
     @OnClick(R.id.assessment_add_fab)
     public void assessmentAddHandler() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add assessment or mentor?");
-//        builder.setMessage("This app is designed to help students track terms and courses " +
-//                "as well as assessments and mentors associated with each course.");
+        builder.setTitle("Add mentor or assessment?");
         builder.setPositiveButton("Assessment", (dialog, id) -> {
             //dialog.dismiss();
             if (unassignedAssessments.size() != 0) {
