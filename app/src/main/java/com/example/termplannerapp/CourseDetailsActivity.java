@@ -13,8 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.AssessmentEntity;
+import com.example.termplannerapp.database.MentorEntity;
 import com.example.termplannerapp.ui.AssessmentSelectMenuAdapter;
 import com.example.termplannerapp.ui.AssessmentsAdapter;
+import com.example.termplannerapp.ui.MentorSelectMenuAdapter;
+import com.example.termplannerapp.ui.MentorsAdapter;
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -53,10 +56,17 @@ public class CourseDetailsActivity extends AppCompatActivity {
     @BindView(R.id.course_details_assessment_recycler_view)
     RecyclerView mAssessmentRecyclerView;
 
+    @BindView(R.id.course_details_mentor_recycler_view)
+    RecyclerView mMentorRecyclerView;
+
     private List<AssessmentEntity> assessmentsData = new ArrayList<>();
     private List<AssessmentEntity> unassignedAssessments = new ArrayList<>();
+    private List<MentorEntity> mentorsData = new ArrayList<>();
+    private List<MentorEntity> unassignedMentors = new ArrayList<>();
+
     private CourseEditorViewModel mViewModel;
     private AssessmentsAdapter mAssessmentsAdapter;
+    private MentorsAdapter mMentorsAdapter;
     private int courseId;
 
     @Override
@@ -102,6 +112,24 @@ public class CourseDetailsActivity extends AppCompatActivity {
             unassignedAssessments.addAll(assessmentEntities);
         };
 
+        final Observer<List<MentorEntity>> mentorsObserver = mentorEntities -> {
+            mentorsData.clear();
+            mentorsData.addAll(mentorEntities);
+
+            if (mMentorsAdapter == null) {
+                mMentorsAdapter = new MentorsAdapter(mentorsData,
+                        CourseDetailsActivity.this, this::onMentorSelected);
+                mMentorRecyclerView.setAdapter(mMentorsAdapter);
+            } else {
+                mMentorsAdapter.notifyDataSetChanged();
+            }
+        };
+
+        final Observer<List<MentorEntity>> unassignedMentorObserver = mentorEntities -> {
+            unassignedMentors.clear();
+            unassignedMentors.addAll(mentorEntities);
+        };
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             courseId = extras.getInt(COURSE_ID_KEY);
@@ -112,6 +140,8 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         mViewModel.getAssessmentInCourse(courseId).observe(this, assessmentsObserver);
         mViewModel.getUnassignedAssessments().observe(this, unassignedAssessmentObserver);
+        mViewModel.getMentorInCourse(courseId).observe(this, mentorsObserver);
+        mViewModel.getUnassignedMentors().observe(this, unassignedMentorObserver);
     }
 
     @OnClick(R.id.assessment_add_fab)
@@ -119,11 +149,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add assessment or mentor?");
 //        builder.setMessage("This app is designed to help students track terms and courses " +
-//                "as well as assessments and mentors associated with each course." +
-//                "\n\nTerms, courses, assessments and mentors can be created in any order, " +
-//                "however a term must exist for a course to be added to it and a course " +
-//                "must exist for an assessment and or mentors to be added to it." +
-//                "\n\nFurthermore, a term cannot be deleted if it has courses assigned to it.");
+//                "as well as assessments and mentors associated with each course.");
         builder.setPositiveButton("Assessment", (dialog, id) -> {
             //dialog.dismiss();
             if (unassignedAssessments.size() != 0) {
@@ -142,9 +168,26 @@ public class CourseDetailsActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
+
+        builder.setNegativeButton("Mentor", (dialog, id) -> {
+            if (unassignedMentors.size() != 0) {
+                final MentorSelectMenuAdapter menu = new MentorSelectMenuAdapter(this, unassignedMentors);
+                menu.setHeight(1000);
+                menu.setOutsideTouchable(true);
+                menu.showAsDropDown(mAssessmentAdd);
+                menu.setMentorSelectedListener((position, mentor) -> {
+                    menu.dismiss();
+                    mentor.setCourseId(courseId);
+                    mViewModel.setMentorToCourse(mentor, courseId);
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "No unassigned mentors found. " +
+                                "Create a new mentor to add it to course.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
 
     private void initRecyclerView() {
@@ -154,5 +197,8 @@ public class CourseDetailsActivity extends AppCompatActivity {
     }
 
     private void onAssessmentSelected(int position, AssessmentEntity assessmentEntity) {
+    }
+
+    private void onMentorSelected(int position, MentorEntity mentorEntity) {
     }
 }

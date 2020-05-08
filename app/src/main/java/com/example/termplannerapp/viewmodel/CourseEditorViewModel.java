@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.termplannerapp.database.AppRepository;
 import com.example.termplannerapp.database.AssessmentEntity;
 import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.database.MentorEntity;
 import com.example.termplannerapp.database.TermEntity;
 
 import java.util.List;
@@ -74,5 +75,18 @@ public class CourseEditorViewModel extends AndroidViewModel {
 
     public LiveData<List<AssessmentEntity>> getUnassignedAssessments() {
         return (mRepository.getAssessmentByCourse(-1));
+    }
+
+    public void setMentorToCourse(MentorEntity mentor, int courseId) {
+        mentor.setCourseId(courseId);
+        mRepository.insertMentor(mentor);
+    }
+
+    public LiveData<List<MentorEntity>> getMentorInCourse(int courseId) {
+        return (mRepository.getMentorByCourse(courseId));
+    }
+
+    public LiveData<List<MentorEntity>> getUnassignedMentors() {
+        return (mRepository.getMentorByCourse(-1));
     }
 }

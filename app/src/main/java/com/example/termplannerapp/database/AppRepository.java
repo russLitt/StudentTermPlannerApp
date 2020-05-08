@@ -104,6 +104,10 @@ public class AppRepository {
         executor.execute(() -> mDb.mentorDao().deleteMentor(mentor));
     }
 
+    public LiveData<List<MentorEntity>> getMentorByCourse(int courseId) {
+        return mDb.mentorDao().getMentorByCourse(courseId);
+    }
+
     //assessment methods
 
     private LiveData<List<AssessmentEntity>> getAllAssessments() {
@@ -125,4 +129,5 @@ public class AppRepository {
     public LiveData<List<AssessmentEntity>> getAssessmentByCourse(final int courseId) {
         return mDb.assessmentDao().getAssessmentByCourse(courseId);
     }
+
 }

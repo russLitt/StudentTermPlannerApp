@@ -23,4 +23,7 @@ interface MentorDao {
 
     @Query("SELECT * FROM mentors ORDER BY id")
     LiveData<List<MentorEntity>> getAll();
+
+    @Query("SELECT * FROM mentors WHERE courseId = :courseId")
+    LiveData<List<MentorEntity>> getMentorByCourse(int courseId);
 }
