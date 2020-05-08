@@ -40,4 +40,5 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.2.4"
     implementation 'com.github.stephanenicolas:butterknife:10.0.0.6'
     annotationProcessor 'com.github.stephanenicolas:butterknife-compiler:10.0.0.6'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }

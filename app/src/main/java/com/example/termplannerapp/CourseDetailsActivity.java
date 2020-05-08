@@ -41,6 +41,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
     @BindView(R.id.rb_completed)
     TextView mRadioButton;
 
+    @BindView(R.id.note_text)
+    TextView mNoteText;
+
     @BindView(R.id.assessment_add_fab)
     FloatingActionButton mAssessmentAdd;
 
@@ -78,6 +81,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
             mCourseStartDate.setText(CourseEntity.getCourseStartDate());
             mCourseEndDate.setText(CourseEntity.getCourseEndDate());
             mRadioButton.setText(CourseEntity.getStatus());
+            mNoteText.setText(CourseEntity.getNote());
         });
 
         final Observer<List<AssessmentEntity>> assessmentsObserver = assessmentEntities -> {
@@ -135,6 +139,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         mAssessmentRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mAssessmentRecyclerView.setLayoutManager(layoutManager);
+        //mAssessmentRecyclerView.setNestedScrollingEnabled(true);
     }
 
     private void onAssessmentSelected(int position, AssessmentEntity assessmentEntity) {
