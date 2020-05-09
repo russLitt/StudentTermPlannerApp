@@ -6,6 +6,7 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -38,8 +39,8 @@ public class AssessmentEditorActivity extends AppCompatActivity {
     @BindView(R.id.assmnt_due_date)
     EditText mAssmntDueDate;
 
-//    @BindView(R.id.assmnt_alert_check)
-//    CheckBox mAssmntAlertCheck;
+    @BindView(R.id.assmnt_alert_check)
+    CheckBox mCheckBox;
 
     private AssessmentEditorViewModel mViewModel;
     private boolean mNewAssessment, mEditingAssessment;

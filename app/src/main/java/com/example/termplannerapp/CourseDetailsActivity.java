@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,12 +86,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mShareNoteBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                sendEmail();
-            }
-        });
-    
+        mShareNoteBtn.setOnClickListener(view -> sendEmail());
 
         initViewModel();
         initAssessmentRecyclerView();

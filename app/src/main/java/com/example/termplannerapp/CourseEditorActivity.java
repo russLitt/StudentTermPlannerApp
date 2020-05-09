@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -47,6 +48,9 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
+
+    @BindView(R.id.course_dates_checkbox)
+    CheckBox mCheckBox;
 
     @BindView(R.id.course_note)
     TextView mCourseNote;

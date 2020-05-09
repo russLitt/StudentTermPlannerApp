@@ -1,17 +1,23 @@
 package com.example.termplannerapp;
 
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +35,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.termplannerapp.AppAlerts.CHANNEL_TERM_DATES;
 import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
@@ -43,6 +50,9 @@ public class TermEditorActivity extends AppCompatActivity {
     @BindView(R.id.term_end_date)
     EditText mTermEndDate;
 
+    @BindView(R.id.term_dates_checkbox)
+    CheckBox mCheckBox;
+
     @BindView(R.id.term_details_course_recycler_view)
     RecyclerView mCourseRecyclerView;
 
@@ -52,6 +62,7 @@ public class TermEditorActivity extends AppCompatActivity {
     private TermEditorViewModel mViewModel;
     private boolean mNewTerm, mEditing;
     private int termId;
+    private NotificationManagerCompat mNotificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +107,14 @@ public class TermEditorActivity extends AppCompatActivity {
             picker.show();
         });
 
+        mNotificationManager = NotificationManagerCompat.from(this);
+
         initViewModel();
         initRecyclerView();
+    }
+
+    public void sendTermDates() {
+
     }
 
     private void initViewModel() {
@@ -206,7 +223,40 @@ public class TermEditorActivity extends AppCompatActivity {
         mCourseRecyclerView.setLayoutManager(layoutManager);
     }
 
-
     private void onCourseSelected(int position, CourseEntity course) {
     }
+
+    //        mCheckBox.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                boolean checked = ((CheckBox) v).isChecked();
+//                if (checked) {
+//                    Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
+//                    //mBuilder.setSmallIcon(R.drawable.notification_icon)
+//                    .setContentTitle("Notification Alert, Click Me!")
+//                    .setContentText("Hi, This is Android Notification Detail!")
+//                            .build();
+//                    mNotificationManager.notify(1, notification);
+//                } else {
+//                }
+//            }
+//        });
+
+
+    //mCheckBox.setOnClickListener(new View.OnClickListener() {
+//            @Override
+    public void sendTermDates(View view) {
+        //public void onClick(View view) {
+            boolean checked = ((CheckBox) view).isChecked();
+            if (checked) {
+                Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
+                        //mBuilder.setSmallIcon(R.drawable.notification_icon)
+                        .setContentTitle("Notification Alert, Click Me!")
+                        .setContentText("Hi, This is Android Notification Detail!")
+                        .build();
+                mNotificationManager.notify(1, notification);
+            } else {
+            }
+        }
+    //}
 }
