@@ -109,11 +109,28 @@ public class TermEditorActivity extends AppCompatActivity {
 
         mNotificationManager = NotificationManagerCompat.from(this);
 
+        mCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((CheckBox) v).isChecked();
+                if (checked) {
+                    sendTermDates();
+                } else {
+                }
+            }
+        });
+
         initViewModel();
         initRecyclerView();
     }
 
     public void sendTermDates() {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle("Notification Alert, Click Me!")
+                .setContentText("Hi, This is Android Notification Detail!")
+                .build();
+        mNotificationManager.notify(1, notification);
 
     }
 
@@ -225,38 +242,4 @@ public class TermEditorActivity extends AppCompatActivity {
 
     private void onCourseSelected(int position, CourseEntity course) {
     }
-
-    //        mCheckBox.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                boolean checked = ((CheckBox) v).isChecked();
-//                if (checked) {
-//                    Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
-//                    //mBuilder.setSmallIcon(R.drawable.notification_icon)
-//                    .setContentTitle("Notification Alert, Click Me!")
-//                    .setContentText("Hi, This is Android Notification Detail!")
-//                            .build();
-//                    mNotificationManager.notify(1, notification);
-//                } else {
-//                }
-//            }
-//        });
-
-
-    //mCheckBox.setOnClickListener(new View.OnClickListener() {
-//            @Override
-    public void sendTermDates(View view) {
-        //public void onClick(View view) {
-            boolean checked = ((CheckBox) view).isChecked();
-            if (checked) {
-                Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
-                        //mBuilder.setSmallIcon(R.drawable.notification_icon)
-                        .setContentTitle("Notification Alert, Click Me!")
-                        .setContentText("Hi, This is Android Notification Detail!")
-                        .build();
-                mNotificationManager.notify(1, notification);
-            } else {
-            }
-        }
-    //}
 }
