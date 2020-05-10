@@ -2,13 +2,13 @@ package com.example.termplannerapp;
 
 import android.app.DatePickerDialog;
 import android.app.Notification;
-import android.app.NotificationManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
@@ -27,9 +27,12 @@ import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -86,7 +89,6 @@ public class TermEditorActivity extends AppCompatActivity {
             int day = cal.get(Calendar.DAY_OF_MONTH);
             int year = cal.get(Calendar.YEAR);
             DatePickerDialog picker;
-            // date picker dialog
             picker = new DatePickerDialog(TermEditorActivity.this,
                     (view1, year1, monthOfYear, dayOfMonth) ->
                             mTermStartDate.setText((monthOfYear + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
@@ -100,7 +102,6 @@ public class TermEditorActivity extends AppCompatActivity {
             int day = cal.get(Calendar.DAY_OF_MONTH);
             int year = cal.get(Calendar.YEAR);
             DatePickerDialog picker;
-            // date picker dialog
             picker = new DatePickerDialog(TermEditorActivity.this,
                     (view1, year1, monthOfYear, dayOfMonth) ->
                             mTermEndDate.setText((monthOfYear + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
@@ -109,14 +110,17 @@ public class TermEditorActivity extends AppCompatActivity {
 
         mNotificationManager = NotificationManagerCompat.from(this);
 
-        mCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean checked = ((CheckBox) v).isChecked();
-                if (checked) {
-                    sendTermDates();
-                } else {
-                }
+        //shared preferences is how checkbox state is maintained when app is closed
+        final SharedPreferences sharedPref = TermEditorActivity.this.getPreferences(Context.MODE_PRIVATE);
+        boolean isChecked = sharedPref.getBoolean("mCheckBox", false);
+        mCheckBox.setChecked(isChecked);
+        mCheckBox.setOnClickListener(view -> {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean("mCheckBox", ((CheckBox) view).isChecked());
+            editor.apply();
+            if (mCheckBox.isChecked()) {
+                sendTermDatesNotifications();
+            } else {
             }
         });
 
@@ -124,14 +128,27 @@ public class TermEditorActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
-    public void sendTermDates() {
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("Notification Alert, Click Me!")
-                .setContentText("Hi, This is Android Notification Detail!")
-                .build();
-        mNotificationManager.notify(1, notification);
-
+    public void sendTermDatesNotifications() {
+        String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
+        System.out.println(currentDate);
+        if (currentDate.equals(mTermStartDate.getText().toString())) {
+            Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setContentTitle("Term start date")
+                    .setContentText(mTextView.getText().toString() + " begins today: " + mTermStartDate.getText().toString())
+                    .build();
+            mNotificationManager.notify(1, notification);
+        } else {
+            System.out.println(currentDate);
+            if (currentDate.equals(mTermEndDate.getText().toString())) {
+                Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
+                        .setSmallIcon(R.drawable.ic_notification)
+                        .setContentTitle("Term end date")
+                        .setContentText(mTextView.getText().toString() + " ends today: " + mTermEndDate.getText().toString())
+                        .build();
+                mNotificationManager.notify(2, notification);
+            }
+        }
     }
 
     private void initViewModel() {
