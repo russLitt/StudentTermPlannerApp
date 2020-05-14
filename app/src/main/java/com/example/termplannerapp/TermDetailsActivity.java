@@ -184,20 +184,19 @@ public class TermDetailsActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(TermDetailsActivity.this, AppAlerts.class);
-                PendingIntent sender = PendingIntent.getBroadcast(TermDetailsActivity.this, 0, intent, 0);
                 //if (currentDate.equals(mTermStartDate.getText().toString())) {
                 intent.putExtra("key", mTextView.getText().toString() + " begins today: " + mTermStartDate.getText().toString());
-
+                PendingIntent sender = PendingIntent.getBroadcast(TermDetailsActivity.this, 0, intent, 0);
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 assert alarmManager != null;
                 alarmManager.set(AlarmManager.RTC_WAKEUP, startDate, sender);
 
-                //Intent intent2 = new Intent(TermDetailsActivity.this, AppAlerts.class);
-                intent.putExtra("key", mTextView.getText().toString() + " ends today: " + mTermEndDate.getText().toString());
-                //PendingIntent sender2 = PendingIntent.getBroadcast(TermDetailsActivity.this, 0, intent, 0);
-                //AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                assert alarmManager != null;
-                alarmManager.set(AlarmManager.RTC_WAKEUP, endDate, sender);
+                Intent intent2 = new Intent(TermDetailsActivity.this, AppAlerts.class);
+                intent2.putExtra("key", mTextView.getText().toString() + " ends today: " + mTermEndDate.getText().toString());
+                PendingIntent sender2 = PendingIntent.getBroadcast(TermDetailsActivity.this, 0, intent, 0);
+                AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                assert alarmManager2 != null;
+                alarmManager2.set(AlarmManager.RTC_WAKEUP, endDate, sender2);
 
 
                 // }
