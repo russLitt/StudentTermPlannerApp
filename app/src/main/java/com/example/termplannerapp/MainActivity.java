@@ -9,8 +9,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.termplannerapp.viewmodel.MainViewModel;
-
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -87,3 +85,4 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 }
+

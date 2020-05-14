@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.termplannerapp.database.DateConverter;
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 
 import java.util.Calendar;

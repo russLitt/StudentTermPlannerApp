@@ -1,16 +1,23 @@
 package com.example.termplannerapp;
 
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -24,9 +31,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.database.CourseEntity;
+import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -60,6 +69,7 @@ public class TermEditorActivity extends AppCompatActivity {
     RecyclerView mCourseRecyclerView;
 
     private List<CourseEntity> coursesData = new ArrayList<>();
+    private List<TermEntity> termsData = new ArrayList<>();
     private CoursesAdapter mCoursesAdapter;
     private Toolbar toolbar;
     private TermEditorViewModel mViewModel;
@@ -119,8 +129,7 @@ public class TermEditorActivity extends AppCompatActivity {
             editor.putBoolean("mCheckBox", ((CheckBox) view).isChecked());
             editor.apply();
             if (mCheckBox.isChecked()) {
-                sendTermDatesNotifications();
-            } else {
+                //setTermDatesNotifications();
             }
         });
 
@@ -128,28 +137,58 @@ public class TermEditorActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
-    public void sendTermDatesNotifications() {
-        String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
-        System.out.println(currentDate);
-        if (currentDate.equals(mTermStartDate.getText().toString())) {
-            Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
-                    .setSmallIcon(R.drawable.ic_notification)
-                    .setContentTitle("Term start date")
-                    .setContentText(mTextView.getText().toString() + " begins today: " + mTermStartDate.getText().toString())
-                    .build();
-            mNotificationManager.notify(1, notification);
-        } else {
-            System.out.println(currentDate);
-            if (currentDate.equals(mTermEndDate.getText().toString())) {
-                Notification notification = new NotificationCompat.Builder(this, CHANNEL_TERM_DATES)
-                        .setSmallIcon(R.drawable.ic_notification)
-                        .setContentTitle("Term end date")
-                        .setContentText(mTextView.getText().toString() + " ends today: " + mTermEndDate.getText().toString())
-                        .build();
-                mNotificationManager.notify(2, notification);
-            }
-        }
-    }
+//    public void setTermDatesNotifications() {
+//        String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
+//
+//
+//        Calendar calendar = Calendar.getInstance();
+//        long when = calendar.getTimeInMillis();
+//
+//        try {
+//            //String dateString = "30/09/2014";
+//            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy", Locale.US);
+//            Date date = sdf.parse(mTermStartDate.getText().toString());
+//            Date date2 = sdf.parse(mTermEndDate.getText().toString());
+//
+//            assert date != null;
+//            long startDate = date.getTime();
+//            long endDate = date2.getTime();
+//
+//            System.out.println("Start date " + startDate);
+//            System.out.println("End date " + endDate);
+//
+//
+//            System.out.println("Current date" + currentDate);
+//            Intent intent = new Intent(TermEditorActivity.this, AppAlerts.class);
+//            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//            PendingIntent sender = PendingIntent.getBroadcast(TermEditorActivity.this, 0, intent, 0);
+//            if (currentDate.equals(mTermStartDate.getText().toString())) {
+//                Notification notification = new NotificationCompat.Builder(TermEditorActivity.this, CHANNEL_TERM_DATES)
+//                        .setSmallIcon(R.drawable.ic_notification)
+//                        .setContentTitle("Term start date")
+//                        .setContentText(mTextView.getText().toString() + " begins today: " + mTermStartDate.getText().toString())
+//                        .build();
+//                assert alarmManager != null;
+//                alarmManager.set(AlarmManager.RTC_WAKEUP, startDate, sender);
+//                mNotificationManager.notify(1, notification);
+//            } else {
+//                System.out.println(currentDate);
+//                if (currentDate.equals(mTermEndDate.getText().toString())) {
+//                    Notification notification = new NotificationCompat.Builder(TermEditorActivity.this, CHANNEL_TERM_DATES)
+//                            .setSmallIcon(R.drawable.ic_notification)
+//                            .setContentTitle("Term end date")
+//                            .setContentText(mTextView.getText().toString() + " ends today: " + mTermEndDate.getText().toString())
+//                            .build();
+//                    assert alarmManager != null;
+//                    alarmManager.set(AlarmManager.RTC_WAKEUP, endDate, sender);
+//                    mNotificationManager.notify(2, notification);
+//                }
+//            }
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(TermEditorViewModel.class);
@@ -243,6 +282,7 @@ public class TermEditorActivity extends AppCompatActivity {
                 mTermStartDate.getText().toString(),
                 mTermEndDate.getText().toString());
         finish();
+        //setTermDatesNotifications();
     }
 
     @Override

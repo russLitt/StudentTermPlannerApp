@@ -1,11 +1,22 @@
 package com.example.termplannerapp;
 
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,13 +28,19 @@ import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.termplannerapp.AppAlerts.CHANNEL_TERM_DATES;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 
 public class TermDetailsActivity extends AppCompatActivity {
@@ -49,6 +66,7 @@ public class TermDetailsActivity extends AppCompatActivity {
     private CoursesAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
     private int termId;
+    NotificationManagerCompat mNotificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +78,8 @@ public class TermDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
+
+        mNotificationManager = NotificationManagerCompat.from(this);
 
         initRecyclerView();
         initViewModel();
@@ -129,4 +149,95 @@ public class TermDetailsActivity extends AppCompatActivity {
 
     public void onCourseSelected(int position, CourseEntity course) {
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.term_details_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+
+        if (id == R.id.notifications) {
+
+            String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
+
+            try {
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy", Locale.US);
+                Date date = sdf.parse(mTermStartDate.getText().toString());
+                Date date2 = sdf.parse(mTermEndDate.getText().toString());
+
+                assert date != null;
+                long startDate = date.getTime();
+                assert date2 != null;
+                long endDate = date2.getTime();
+
+                System.out.println(date);
+                System.out.println(date2);
+
+
+                Intent intent = new Intent(TermDetailsActivity.this, AppAlerts.class);
+                PendingIntent sender = PendingIntent.getBroadcast(TermDetailsActivity.this, 0, intent, 0);
+                //if (currentDate.equals(mTermStartDate.getText().toString())) {
+                intent.putExtra("key", mTextView.getText().toString() + " begins today: " + mTermStartDate.getText().toString());
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                assert alarmManager != null;
+                alarmManager.set(AlarmManager.RTC_WAKEUP, startDate, sender);
+
+                //Intent intent2 = new Intent(TermDetailsActivity.this, AppAlerts.class);
+                intent.putExtra("key", mTextView.getText().toString() + " ends today: " + mTermEndDate.getText().toString());
+                //PendingIntent sender2 = PendingIntent.getBroadcast(TermDetailsActivity.this, 0, intent, 0);
+                //AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                assert alarmManager != null;
+                alarmManager.set(AlarmManager.RTC_WAKEUP, endDate, sender);
+
+
+                // }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
+
+
+//        } else if (id == R.id.notifications2) {
+//            String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
+//
+//            try {
+//                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy", Locale.US);
+//                Date date2 = sdf.parse(mTermEndDate.getText().toString());
+//
+//                assert date2 != null;
+//                long endDate = date2.getTime();
+//
+//                System.out.println(date2);
+//                Intent intent = new Intent(TermDetailsActivity.this, AppAlerts.class);
+//
+//                //if (currentDate.equals(mTermEndDate.getText().toString())) {
+//
+////                    Notification notification2 = new NotificationCompat.Builder(TermDetailsActivity.this, CHANNEL_TERM_DATES)
+////                            .setSmallIcon(R.drawable.ic_notification)
+//                            //intent.putExtra("key","Term end date");
+//                            intent.putExtra("key", mTextView.getText().toString() + " ends today: " + mTermEndDate.getText().toString());
+//                    PendingIntent sender = PendingIntent.getBroadcast(TermDetailsActivity.this, 0, intent, 0);
+//                    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//                    assert alarmManager != null;
+//                    alarmManager.set(AlarmManager.RTC_WAKEUP, endDate, sender);
+//                    //mNotificationManager.notify(2, notification2);
+//                //}
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
+
