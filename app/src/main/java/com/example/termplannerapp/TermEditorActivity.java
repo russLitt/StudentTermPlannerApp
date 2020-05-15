@@ -47,7 +47,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.termplannerapp.AppAlerts.CHANNEL_TERM_DATES;
+//import static com.example.termplannerapp.AppAlerts.CHANNEL_TERM_DATES;
 import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
 

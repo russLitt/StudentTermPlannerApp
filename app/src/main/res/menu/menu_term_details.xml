@@ -9,7 +9,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/notifications2"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         android:title="@string/set_end_date"
         app:showAsAction="never" />
 </menu>
