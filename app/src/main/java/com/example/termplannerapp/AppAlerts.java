@@ -15,12 +15,9 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 public class AppAlerts extends BroadcastReceiver {
-    private static final String CHANNEL_ID = "test";
-    public static final String CHANNEL_TERM_DATES = "Dates for terms";
-    //    public static final String CHANNEL_COURSE_DATES = "Dates for courses";
-//    public static final String CHANNEL_ASSESSMENT_DATES = "Date for assessments";
+    public static final String CHANNEL_DATES = "alert dates";
     static int notificationID;
-    private static final String channel_id = "test";
+    //private static final String channel_id = "test";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -28,9 +25,10 @@ public class AppAlerts extends BroadcastReceiver {
 
         createNotificationChannel(context);
 
-        Notification notification = new NotificationCompat.Builder(context, CHANNEL_TERM_DATES)
+        Notification notification = new NotificationCompat.Builder(context, CHANNEL_DATES)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentText(intent.getStringExtra("key")).build();
+                .setContentText(intent.getStringExtra("key"))
+                .setChannelId(CHANNEL_DATES).build();
         //     .setContentTitle("Test of Notification with an id of : " + notificationID).build();
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
@@ -52,7 +50,7 @@ public class AppAlerts extends BroadcastReceiver {
 //            notificationManager.createNotificationChannel(channel);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel1 = new NotificationChannel(CHANNEL_TERM_DATES, "channel1",
+            NotificationChannel channel1 = new NotificationChannel(CHANNEL_DATES, "channel1",
                     NotificationManager.IMPORTANCE_HIGH
             );
 

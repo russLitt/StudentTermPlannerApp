@@ -5,12 +5,14 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationManagerCompat;
@@ -27,6 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -145,100 +148,6 @@ public class TermDetailsActivity extends AppCompatActivity {
     }
 
     public void onCourseSelected(int position, CourseEntity course) {
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_term_details, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-
-        if (id == R.id.notifications) {
-
-            String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
-
-            Calendar c = Calendar.getInstance();
-            //c.set(int year, month, dayOfMonth, 0, 0);
-            //mTermStartDate.setText(Long.toString(c.getTimeInMillis()));
-
-            try {
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy", Locale.US);
-                Date date = sdf.parse(mTermStartDate.getText().toString());
-                Date date2 = sdf.parse(mTermEndDate.getText().toString());
-
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(System.currentTimeMillis());
-                calendar.set(HOUR_OF_DAY, 1);
-
-
-                assert date != null;
-                long startDate = date.getTime();
-                assert date2 != null;
-                long endDate = date2.getTime();
-
-                System.out.println(startDate);
-                System.out.println(endDate);
-
-
-                if (currentDate.equals(mTermStartDate.getText().toString())) {
-                    Intent intent = new Intent(TermDetailsActivity.this, AppAlerts.class);
-                    intent.putExtra("key", mTextView.getText().toString() + " begins today: " + mTermStartDate.getText().toString());
-                    PendingIntent sender = PendingIntent.getBroadcast(TermDetailsActivity.this, 0, intent, 0);
-                    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                    assert alarmManager != null;
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, startDate + 100, sender);
-
-                } else {
-                    Intent intent = new Intent(TermDetailsActivity.this, AppAlerts.class);
-                    intent.putExtra("key", mTextView.getText().toString() + " ends today: " + mTermEndDate.getText().toString());
-                    PendingIntent sender = PendingIntent.getBroadcast(TermDetailsActivity.this, 1, intent, 0);
-                    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                    assert alarmManager != null;
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, endDate + 100, sender);
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-       // if (id == R.id.notifications2) {
-//            String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
-//
-//            try {
-//                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy", Locale.US);
-//                Date date2 = sdf.parse(mTermEndDate.getText().toString());
-//
-//                assert date2 != null;
-//                long endDate = date2.getTime();
-//
-//                System.out.println(date2);
-//                Intent intent = new Intent(TermDetailsActivity.this, AppAlerts.class);
-//
-//                //if (currentDate.equals(mTermEndDate.getText().toString())) {
-//
-////                    Notification notification2 = new NotificationCompat.Builder(TermDetailsActivity.this, CHANNEL_TERM_DATES)
-////                            .setSmallIcon(R.drawable.ic_notification)
-//                    //intent.putExtra("key","Term end date");
-//                    intent.putExtra("key", mTextView.getText().toString() + " ends today: " + mTermEndDate.getText().toString());
-//                    PendingIntent sender = PendingIntent.getBroadcast(TermDetailsActivity.this, 0, intent, 0);
-//                    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-//                    assert alarmManager != null;
-//                    alarmManager.set(AlarmManager.RTC_WAKEUP, endDate, sender);
-//                    //mNotificationManager.notify(2, notification2);
-//                //}
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-       // }
-        return super.onOptionsItemSelected(item);
     }
 }
 

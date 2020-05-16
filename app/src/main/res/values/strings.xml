@@ -27,6 +27,7 @@
     <string name="edit_course">Edit course</string>
     <string name="delete_course">Delete</string>
     <string name="delete_all_courses">Delete all courses</string>
+    <string name="set_date_notifications">Set date notifications</string>
     //mentor strings
     <string name="new_mentor">New mentor</string>
     <string name="edit_mentor">Edit mentor</string>
@@ -35,8 +36,4 @@
     <string name="new_assessment">New assessment</string>
     <string name="edit_assessment">Edit assessment</string>
     <string name="delete_assessment">Delete assessment</string>
-    <string name="set_start_date">Set start date alert</string>
-    <string name="set_end_date">Set end date alert</string>
-    <string name="channel_name" />
-    <string name="channel_description" />
 </resources>

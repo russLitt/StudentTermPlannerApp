@@ -1,15 +1,24 @@
 package com.example.termplannerapp;
 
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,8 +36,13 @@ import com.example.termplannerapp.ui.MentorsAdapter;
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +72,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.share_note_btn)
     Button mShareNoteBtn;
-    
+
     @BindView(R.id.course_details_assessment_recycler_view)
     RecyclerView mAssessmentRecyclerView;
 
@@ -87,6 +101,16 @@ public class CourseDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mShareNoteBtn.setOnClickListener(view -> sendEmail());
+
+        //        CalendarView picker = findViewById(R.id.course_start_date);
+//        picker.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+//            @Override
+//            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+//                Calendar c = Calendar.getInstance();
+//                c.set(year, month, dayOfMonth, 0, 0);
+//                mCourseStartDate.setText(Long.toString(c.getTimeInMillis()));
+//            }
+//        });
 
         initViewModel();
         initAssessmentRecyclerView();
@@ -237,5 +261,57 @@ public class CourseDetailsActivity extends AppCompatActivity {
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(CourseDetailsActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_course_details, menu);
+        return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.notifications) {
+
+            Toast.makeText(this, "Course start and end date notifications set", Toast.LENGTH_SHORT).show();
+
+            String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
+
+            try {
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy", Locale.US);
+                Date date = sdf.parse(mCourseStartDate.getText().toString());
+                Date date2 = sdf.parse(mCourseEndDate.getText().toString());
+
+                assert date != null;
+                long startDate = date.getTime();
+                assert date2 != null;
+                long endDate = date2.getTime();
+
+//            if (currentDate.equals(mCourseStartDate.getText().toString())) {
+                Intent intent = new Intent(CourseDetailsActivity.this, AppAlerts.class);
+                intent.putExtra("key", mCourseTitle.getText().toString() + " begins today: " + mCourseStartDate.getText().toString());
+                PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, 0, intent, 0);
+                //startDate = Long.parseLong(mCourseStartDate.getText().toString());
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                assert alarmManager != null;
+                alarmManager.set(AlarmManager.RTC_WAKEUP, startDate, sender);
+                // }
+//            } else if(currentDate.equals(mCourseEndDate.getText().toString())) {
+//                Intent intent = new Intent(CourseDetailsActivity.this, AppAlerts.class);
+//                intent.putExtra("key", mCourseTitle.getText().toString() + " ends today: " + mCourseEndDate.getText().toString());
+//                PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, 1, intent, 0);
+//                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//                assert alarmManager != null;
+//                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
+//            }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

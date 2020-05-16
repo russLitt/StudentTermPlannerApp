@@ -1,11 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.termplannerapp.CourseListActivity">
+    tools:context="com.example.termplannerapp.CourseDetailsActivity">
     <item
-        android:id="@+id/action_delete_course"
-        android:icon="@drawable/ic_delete"
+        android:id="@+id/notifications"
         android:orderInCategory="100"
-        android:title="@string/delete_course"
-        app:showAsAction="always" />
+        android:title="@string/set_date_notifications"
+        app:showAsAction="never" />
 </menu>
