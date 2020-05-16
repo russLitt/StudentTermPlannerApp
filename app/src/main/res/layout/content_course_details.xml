@@ -217,7 +217,7 @@
         app:layout_constraintTop_toBottomOf="@+id/mentor_recycler_view_label">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@id/course_details_mentor_recycler_view"
+            android:id="@+id/course_details_mentor_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -12,11 +12,11 @@
         android:id="@+id/terms_list_btn"
         android:layout_width="345dp"
         android:layout_height="48dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="72dp"
         android:text="Terms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
         android:id="@+id/course_list_btn"
@@ -47,5 +47,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/assessment_list_btn" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="319dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="serif-monospace"
+        android:gravity="center"
+        android:text="WGU C196 Term Planner App"
+        android:textSize="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
