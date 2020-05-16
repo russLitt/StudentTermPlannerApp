@@ -39,9 +39,6 @@ public class AssessmentEditorActivity extends AppCompatActivity {
     @BindView(R.id.assmnt_due_date)
     EditText mAssmntDueDate;
 
-    @BindView(R.id.assmnt_alert_check)
-    CheckBox mCheckBox;
-
     private AssessmentEditorViewModel mViewModel;
     private boolean mNewAssessment, mEditingAssessment;
     private int courseId = -1;
@@ -105,7 +102,6 @@ public class AssessmentEditorActivity extends AppCompatActivity {
             mViewModel.loadData(assessmentId);
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

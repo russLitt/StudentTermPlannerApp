@@ -24,13 +24,15 @@
         android:id="@+id/term_start_date"
         android:layout_width="160dp"
         android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="enter start date"
+        app:layout_constraintBottom_toTopOf="@+id/term_details_course_recycler_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/term_text" />
+        app:layout_constraintTop_toBottomOf="@+id/term_text"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/term_end_date"
@@ -43,31 +45,22 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="enter end date"
+        app:layout_constraintBottom_toTopOf="@+id/term_details_course_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/term_start_date"
-        app:layout_constraintTop_toBottomOf="@+id/term_text" />
+        app:layout_constraintTop_toBottomOf="@+id/term_text"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/term_details_course_recycler_view"
         android:layout_width="411dp"
         android:layout_height="406dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginBottom="88dp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/term_dates_checkbox" />
-
-    <CheckBox
-        android:id="@+id/term_dates_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Send start and expected end dates alerts"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/term_end_date" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

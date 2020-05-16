@@ -51,9 +51,6 @@ public class CourseEditorActivity extends AppCompatActivity {
     @BindView(R.id.rb_completed)
     RadioButton mRadioButton;
 
-    @BindView(R.id.course_dates_checkbox)
-    CheckBox mCheckBox;
-
     @BindView(R.id.course_note)
     TextView mCourseNote;
 
