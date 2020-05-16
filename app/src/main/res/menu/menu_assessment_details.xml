@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.termplannerapp.AssessmentDetailsActivity">
+    <item
+        android:id="@+id/start_notification"
+        android:orderInCategory="100"
+        android:title="@string/set_goal_date_alert"
+        app:showAsAction="never" />
+</menu>
