@@ -27,7 +27,8 @@
     <string name="edit_course">Edit course</string>
     <string name="delete_course">Delete</string>
     <string name="delete_all_courses">Delete all courses</string>
-    <string name="set_date_notifications">Set date notifications</string>
+    <string name="set_date_notifications">Set start date alert</string>
+    <string name="set_end_date_alerts">Set end date alerts</string>
     //mentor strings
     <string name="new_mentor">New mentor</string>
     <string name="edit_mentor">Edit mentor</string>

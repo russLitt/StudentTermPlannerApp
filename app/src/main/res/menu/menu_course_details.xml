@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.termplannerapp.CourseDetailsActivity">
     <item
-        android:id="@+id/notifications"
+        android:id="@+id/start_notification"
         android:orderInCategory="100"
         android:title="@string/set_date_notifications"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/end_notification"
+        android:orderInCategory="100"
+        android:title="@string/set_end_date_alerts"
         app:showAsAction="never" />
 </menu>

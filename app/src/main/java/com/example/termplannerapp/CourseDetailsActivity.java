@@ -11,10 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +36,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -275,39 +271,49 @@ public class CourseDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.notifications) {
+        if (id == R.id.start_notification) {
+            Toast.makeText(this, "Course start date notification set", Toast.LENGTH_SHORT).show();
 
-            Toast.makeText(this, "Course start and end date notifications set", Toast.LENGTH_SHORT).show();
-
-            String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
+            //String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
 
             try {
                 @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy", Locale.US);
+                //convert string date to date object
                 Date date = sdf.parse(mCourseStartDate.getText().toString());
-                Date date2 = sdf.parse(mCourseEndDate.getText().toString());
 
+                //convert date string to time in millis for alarm manager
                 assert date != null;
                 long startDate = date.getTime();
-                assert date2 != null;
-                long endDate = date2.getTime();
 
-//            if (currentDate.equals(mCourseStartDate.getText().toString())) {
                 Intent intent = new Intent(CourseDetailsActivity.this, AppAlerts.class);
                 intent.putExtra("key", mCourseTitle.getText().toString() + " begins today: " + mCourseStartDate.getText().toString());
                 PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, 0, intent, 0);
-                //startDate = Long.parseLong(mCourseStartDate.getText().toString());
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 assert alarmManager != null;
                 alarmManager.set(AlarmManager.RTC_WAKEUP, startDate, sender);
-                // }
-//            } else if(currentDate.equals(mCourseEndDate.getText().toString())) {
-//                Intent intent = new Intent(CourseDetailsActivity.this, AppAlerts.class);
-//                intent.putExtra("key", mCourseTitle.getText().toString() + " ends today: " + mCourseEndDate.getText().toString());
-//                PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, 1, intent, 0);
-//                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-//                assert alarmManager != null;
-//                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
-//            }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (id == R.id.end_notification) {
+            Toast.makeText(this, "Course end date notification set", Toast.LENGTH_SHORT).show();
+
+            try {
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy", Locale.US);
+                Date date2 = sdf.parse(mCourseEndDate.getText().toString());
+
+                assert date2 != null;
+                long endDate = date2.getTime();
+
+                Intent intent = new Intent(CourseDetailsActivity.this, AppAlerts.class);
+                intent.putExtra("key", mCourseTitle.getText().toString() + " ends today: " + mCourseEndDate.getText().toString());
+                PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, 1, intent, 0);
+                AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                assert alarmManager2 != null;
+                alarmManager2.set(AlarmManager.RTC_WAKEUP, endDate, sender);
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
