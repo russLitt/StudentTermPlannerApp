@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/assessment_title_label"
+        android:layout_width="100dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="220dp"
+        android:gravity="center"
+        android:text="Title"
+        android:textSize="@dimen/term_text_size"
+        app:layout_constraintEnd_toStartOf="@+id/assmnt_title"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/assmnt_title"
+        android:layout_width="220dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:hint="Assessment title"
+        android:maxLines="1"
+        android:textColor="@color/term_text_color"
+        android:textSize="@dimen/term_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/assessment_type_label"
+        android:layout_width="100dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Type:"
+        android:textSize="@dimen/term_text_size"
+        app:layout_constraintEnd_toStartOf="@+id/assmnt_switch"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessment_title_label" />
+
+    <TextView
+        android:id="@+id/assmnt_switch"
+        android:layout_width="208dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
+        android:checked="false"
+        android:gravity="center"
+        android:text="assessment type"
+        android:textColor="@color/term_text_color"
+        android:textSize="@dimen/term_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assmnt_title" />
+
+    <TextView
+        android:id="@+id/due_date_label"
+        android:layout_width="120dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Due date:"
+        android:textSize="@dimen/term_text_size"
+        app:layout_constraintEnd_toStartOf="@+id/assmnt_due_date"
+        app:layout_constraintHorizontal_bias="0.343"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessment_type_label" />
+
+    <TextView
+        android:id="@+id/assmnt_due_date"
+        android:layout_width="160dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:ellipsize="end"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Due date"
+        android:inputType="date"
+        android:maxLines="1"
+        android:textColor="@color/term_text_color"
+        android:textSize="@dimen/term_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assmnt_switch" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".TermDetailsActivity"
+    tools:showIn="@layout/activity_term_details">
+
+    <TextView
+        android:id="@+id/term_title_label"
+        android:layout_width="118dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center"
+        android:text="Term title:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/term_text"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/term_text"
+        android:layout_width="196dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginRight="108dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Term title"
+        android:textColor="@color/term_text_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/term_dates_label"
+        android:layout_width="74dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Dates:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/term_details_course_recycler_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/term_title_label"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/term_start_date"
+        android:layout_width="116dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="20dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Start date"
+        android:textColor="@color/term_text_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/term_dates_label"
+        app:layout_constraintTop_toBottomOf="@+id/term_text" />
+
+    <TextView
+        android:id="@+id/term_end_date"
+        android:layout_width="116dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="End date"
+        android:textColor="@color/term_text_color"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/term_text" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="22dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="-"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/term_end_date"
+        app:layout_constraintTop_toBottomOf="@+id/term_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/term_details_course_recycler_view"
+        android:layout_width="437dp"
+        android:layout_height="211dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
