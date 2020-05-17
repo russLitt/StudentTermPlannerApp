@@ -61,7 +61,6 @@ public class AppRepository {
     }
 
     //course methods
-
     private LiveData<List<CourseEntity>> getAllCourses() {
         return mDb.courseDao().getAll();
     }
@@ -87,7 +86,6 @@ public class AppRepository {
     }
 
     //mentor methods
-
     private LiveData<List<MentorEntity>> getAllMentors() {
         return mDb.mentorDao().getAll();
     }
@@ -109,7 +107,6 @@ public class AppRepository {
     }
 
     //assessment methods
-
     private LiveData<List<AssessmentEntity>> getAllAssessments() {
         return mDb.assessmentDao().getAll();
     }

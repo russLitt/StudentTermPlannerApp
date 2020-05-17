@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -117,13 +118,17 @@ public class CourseEditorActivity extends AppCompatActivity {
             setTitle(getString(R.string.edit_course));
             int courseId = extras.getInt(COURSE_ID_KEY);
             mViewModel.loadData(courseId);
+            mNewCourse = false;
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_course_editor, menu);
-        return true;
+        if (!mNewCourse) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_course_editor, menu);
+        }
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
