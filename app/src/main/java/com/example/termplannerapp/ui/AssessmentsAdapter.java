@@ -54,22 +54,16 @@ public class AssessmentsAdapter extends RecyclerView.Adapter<AssessmentsAdapter.
         final AssessmentEntity assessment = mAssessments.get(position);
         holder.mAssmntTitle.setText(assessment.getAssessmentTitle());
 
-        holder.mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, AssessmentEditorActivity.class);
-                intent.putExtra(ASSESSMENT_ID_KEY, assessment.getId());
-                mContext.startActivity(intent);
-            }
+        holder.mFab.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, AssessmentEditorActivity.class);
+            intent.putExtra(ASSESSMENT_ID_KEY, assessment.getId());
+            mContext.startActivity(intent);
         });
 
-        holder.mAssmntDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, AssessmentDetailsActivity.class);
-                intent.putExtra(ASSESSMENT_ID_KEY, assessment.getId());
-                mContext.startActivity(intent);
-            }
+        holder.mAssmntDetails.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, AssessmentDetailsActivity.class);
+            intent.putExtra(ASSESSMENT_ID_KEY, assessment.getId());
+            mContext.startActivity(intent);
         });
     }
 

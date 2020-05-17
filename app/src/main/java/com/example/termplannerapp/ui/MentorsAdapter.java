@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.termplannerapp.MentorDetailsActivity;
 import com.example.termplannerapp.MentorEditorActivity;
-import com.example.termplannerapp.MentorListActivity;
 import com.example.termplannerapp.R;
 import com.example.termplannerapp.database.MentorEntity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -54,22 +53,16 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorsAdapter.ViewHold
         final MentorEntity mentor = mMentors.get(position);
         holder.mMentorName.setText(mentor.getMentorName());
 
-        holder.mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, MentorEditorActivity.class);
-                intent.putExtra(MENTOR_ID_KEY, mentor.getId());
-                mContext.startActivity(intent);
-            }
+        holder.mFab.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, MentorEditorActivity.class);
+            intent.putExtra(MENTOR_ID_KEY, mentor.getId());
+            mContext.startActivity(intent);
         });
 
-        holder.mMentorDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, MentorDetailsActivity.class);
-                intent.putExtra(MENTOR_ID_KEY, mentor.getId());
-                mContext.startActivity(intent);
-            }
+        holder.mMentorDetails.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, MentorDetailsActivity.class);
+            intent.putExtra(MENTOR_ID_KEY, mentor.getId());
+            mContext.startActivity(intent);
         });
     }
 

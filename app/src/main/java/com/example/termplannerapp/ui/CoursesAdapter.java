@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.termplannerapp.CourseDetailsActivity;
 import com.example.termplannerapp.CourseEditorActivity;
 import com.example.termplannerapp.R;
-import com.example.termplannerapp.TermDetailsActivity;
 import com.example.termplannerapp.database.CourseEntity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -55,22 +54,16 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         final CourseEntity course = mCourses.get(position);
         holder.mCourseTitle.setText(course.getCourseTitle());
 
-        holder.mCourseEditFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, CourseEditorActivity.class);
-                intent.putExtra(COURSE_ID_KEY, course.getId());
-                mContext.startActivity(intent);
-            }
+        holder.mCourseEditFab.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, CourseEditorActivity.class);
+            intent.putExtra(COURSE_ID_KEY, course.getId());
+            mContext.startActivity(intent);
         });
 
-        holder.mCourseDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, CourseDetailsActivity.class);
-                intent.putExtra(COURSE_ID_KEY, course.getId());
-                mContext.startActivity(intent);
-            }
+        holder.mCourseDetails.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, CourseDetailsActivity.class);
+            intent.putExtra(COURSE_ID_KEY, course.getId());
+            mContext.startActivity(intent);
         });
     }
 

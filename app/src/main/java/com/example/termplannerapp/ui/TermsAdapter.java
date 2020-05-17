@@ -47,22 +47,16 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
         final TermEntity term = mTerms.get(position);
         holder.mTextView.setText(term.getTermTitle());
 
-        holder.mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, TermEditorActivity.class);
-                intent.putExtra(TERM_ID_KEY, term.getId());
-                mContext.startActivity(intent);
-            }
+        holder.mFab.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, TermEditorActivity.class);
+            intent.putExtra(TERM_ID_KEY, term.getId());
+            mContext.startActivity(intent);
         });
 
-        holder.mTermDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, TermDetailsActivity.class);
-                intent.putExtra(TERM_ID_KEY, term.getId());
-                mContext.startActivity(intent);
-            }
+        holder.mTermDetails.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, TermDetailsActivity.class);
+            intent.putExtra(TERM_ID_KEY, term.getId());
+            mContext.startActivity(intent);
         });
     }
 
