@@ -52,19 +52,16 @@ public class TermListActivity extends AppCompatActivity {
 
     private void initViewModel() {
 
-        final Observer<List<TermEntity>> termsObserver = new Observer<List<TermEntity>>() {
-            @Override
-            public void onChanged(List<TermEntity> termEntities) {
-                termsData.clear();
-                termsData.addAll(termEntities);
+        final Observer<List<TermEntity>> termsObserver = termEntities -> {
+            termsData.clear();
+            termsData.addAll(termEntities);
 
-                if (mTermsAdapter == null) {
-                    mTermsAdapter = new TermsAdapter(termsData,
-                            TermListActivity.this);
-                    mTermRecyclerView.setAdapter(mTermsAdapter);
-                } else {
-                    mTermsAdapter.notifyDataSetChanged();
-                }
+            if (mTermsAdapter == null) {
+                mTermsAdapter = new TermsAdapter(termsData,
+                        TermListActivity.this);
+                mTermRecyclerView.setAdapter(mTermsAdapter);
+            } else {
+                mTermsAdapter.notifyDataSetChanged();
             }
         };
 
@@ -93,7 +90,7 @@ public class TermListActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_add_sample_data) {
-            //addSampleData();
+            addSampleData();
             return true;
         } else if (id == R.id.action_delete_all) {
             deleteAllTerms();
@@ -105,9 +102,9 @@ public class TermListActivity extends AppCompatActivity {
     private void deleteAllTerms() {
         mViewModel.deleteAllTerms();
     }
-//
-//    private void addSampleData() {
-//        mViewModel.addSampleData();
-//    }
+
+    private void addSampleData() {
+        mViewModel.addSampleData();
+    }
 }
 

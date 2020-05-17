@@ -1,29 +1,17 @@
 package com.example.termplannerapp;
 
-import android.annotation.SuppressLint;
-import android.app.AlarmManager;
 import android.app.DatePickerDialog;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -35,21 +23,18 @@ import com.example.termplannerapp.database.TermEntity;
 import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-//import static com.example.termplannerapp.AppAlerts.CHANNEL_TERM_DATES;
 import static com.example.termplannerapp.utilities.Constants.EDITING_TERM_KEY;
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
+
+//import static com.example.termplannerapp.AppAlerts.CHANNEL_TERM_DATES;
 
 public class TermEditorActivity extends AppCompatActivity {
 
@@ -68,7 +53,6 @@ public class TermEditorActivity extends AppCompatActivity {
     private List<CourseEntity> coursesData = new ArrayList<>();
     private List<TermEntity> termsData = new ArrayList<>();
     private CoursesAdapter mCoursesAdapter;
-    private Toolbar toolbar;
     private TermEditorViewModel mViewModel;
     private boolean mNewTerm, mEditing;
     private int termId;

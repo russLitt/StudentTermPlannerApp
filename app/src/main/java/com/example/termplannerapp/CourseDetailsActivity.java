@@ -168,7 +168,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add mentor or assessment?");
         builder.setPositiveButton("Assessment", (dialog, id) -> {
-            //dialog.dismiss();
             if (unassignedAssessments.size() != 0) {
                 final AssessmentSelectMenuAdapter menu = new AssessmentSelectMenuAdapter(this, unassignedAssessments);
                 menu.setHeight(1000);
@@ -264,8 +263,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
         if (id == R.id.start_notification) {
 
             Toast.makeText(this, "Course start date notification set", Toast.LENGTH_SHORT).show();
-
-            //String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
 
             try {
                 @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy", Locale.US);

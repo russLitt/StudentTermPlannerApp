@@ -34,7 +34,6 @@ public class AssessmentListActivity extends AppCompatActivity implements Assessm
 
     private List<AssessmentEntity> assessmentsData = new ArrayList<>();
     private AssessmentsAdapter mAssessmentsAdapter;
-    private MainViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,7 @@ public class AssessmentListActivity extends AppCompatActivity implements Assessm
             }
         };
 
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        MainViewModel mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.mAssessments.observe(this, assessmentsObserver);
     }
 
@@ -80,6 +79,5 @@ public class AssessmentListActivity extends AppCompatActivity implements Assessm
     }
 
     public void onAssessmentSelected(int position, AssessmentEntity assessment) {
-
     }
 }

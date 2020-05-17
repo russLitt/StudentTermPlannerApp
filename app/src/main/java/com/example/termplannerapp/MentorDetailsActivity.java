@@ -25,8 +25,6 @@ public class MentorDetailsActivity extends AppCompatActivity {
     @BindView(R.id.mentor_phone)
     TextView mMentorPhone;
 
-    private MentorEditorViewModel mViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +40,7 @@ public class MentorDetailsActivity extends AppCompatActivity {
     }
 
     private void initViewModel() {
-        mViewModel = new ViewModelProvider(this).get(MentorEditorViewModel.class);
+        MentorEditorViewModel mViewModel = new ViewModelProvider(this).get(MentorEditorViewModel.class);
         mViewModel.mLiveMentors.observe(this, (MentorEntity) -> {
             mMentorName.setText(MentorEntity.getMentorName());
             mMentorEmail.setText(MentorEntity.getMentorEmail());

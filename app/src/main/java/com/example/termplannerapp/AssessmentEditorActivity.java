@@ -6,7 +6,6 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -68,17 +67,13 @@ public class AssessmentEditorActivity extends AppCompatActivity {
             picker.show();
         });
 
-        mAssmntSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mAssmntSwitch.setText("Objective");
-                } else {
-                    mAssmntSwitch.setText("Performance");
-                }
+        mAssmntSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                mAssmntSwitch.setText("Objective");
+            } else {
+                mAssmntSwitch.setText("Performance");
             }
         });
-
         intiViewModel();
     }
 

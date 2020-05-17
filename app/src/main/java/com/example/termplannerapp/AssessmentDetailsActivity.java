@@ -40,8 +40,6 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
     @BindView(R.id.assmnt_due_date)
     TextView mAssmntDueDate;
 
-    private AssessmentEditorViewModel mViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +55,7 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
     }
 
     private void initViewModel() {
-        mViewModel = new ViewModelProvider(this).get(AssessmentEditorViewModel.class);
+        AssessmentEditorViewModel mViewModel = new ViewModelProvider(this).get(AssessmentEditorViewModel.class);
         mViewModel.mLiveAssessments.observe(this, (AssessmentEntity) -> {
             mAssmntSwitch.setText(AssessmentEntity.getAssessmentType());
             mAssmntTitle.setText(AssessmentEntity.getAssessmentTitle());
@@ -72,7 +70,6 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_assessment_details, menu);
         return true;
     }

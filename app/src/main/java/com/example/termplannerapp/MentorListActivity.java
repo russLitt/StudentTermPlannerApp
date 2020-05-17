@@ -34,7 +34,6 @@ public class MentorListActivity extends AppCompatActivity implements MentorsAdap
 
     private List<MentorEntity> mentorsData = new ArrayList<>();
     private MentorsAdapter mMentorsAdapter;
-    private MainViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,7 @@ public class MentorListActivity extends AppCompatActivity implements MentorsAdap
             }
         };
 
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        MainViewModel mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.mMentors.observe(this, mentorsObserver);
     }
 
@@ -75,12 +74,11 @@ public class MentorListActivity extends AppCompatActivity implements MentorsAdap
                 layoutManager.getOrientation());
         mMentorRecyclerView.addItemDecoration(divider);
 
-        mMentorsAdapter = new MentorsAdapter(mentorsData, this,  this);
+        mMentorsAdapter = new MentorsAdapter(mentorsData, this, this);
         mMentorRecyclerView.setAdapter(mMentorsAdapter);
     }
 
     @Override
     public void onMentorSelected(int position, MentorEntity mentor) {
-
     }
 }

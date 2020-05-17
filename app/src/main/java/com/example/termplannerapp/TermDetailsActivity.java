@@ -1,18 +1,9 @@
 package com.example.termplannerapp;
 
-import android.annotation.SuppressLint;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationManagerCompat;
@@ -27,21 +18,14 @@ import com.example.termplannerapp.ui.CoursesAdapter;
 import com.example.termplannerapp.viewmodel.TermEditorViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.example.termplannerapp.utilities.Constants.TERM_ID_KEY;
-import static java.util.Calendar.HOUR_OF_DAY;
 
 public class TermDetailsActivity extends AppCompatActivity {
 
@@ -62,7 +46,6 @@ public class TermDetailsActivity extends AppCompatActivity {
 
     private List<CourseEntity> coursesData = new ArrayList<>();
     private List<CourseEntity> unassignedCourses = new ArrayList<>();
-    private Toolbar toolbar;
     private CoursesAdapter mCoursesAdapter;
     private TermEditorViewModel mViewModel;
     private int termId;
@@ -72,7 +55,7 @@ public class TermDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_details);
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Term Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

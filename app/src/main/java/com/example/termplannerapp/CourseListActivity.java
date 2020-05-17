@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.CheckBox;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -93,10 +91,6 @@ public class CourseListActivity extends AppCompatActivity implements CoursesAdap
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-//        if (id == R.id.action_add_sample_data) {
-//            addSampleData();
-//            return true;
-//        } else
         if (id == R.id.action_delete_all) {
             deleteAllCourses();
             return true;
@@ -110,6 +104,5 @@ public class CourseListActivity extends AppCompatActivity implements CoursesAdap
 
     @Override
     public void onCourseSelected(int position, CourseEntity course) {
-
     }
 }

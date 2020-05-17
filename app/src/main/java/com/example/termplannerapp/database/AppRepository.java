@@ -34,10 +34,10 @@ public class AppRepository {
         mMentors = getAllMentors();
         mAssessments = getAllAssessments();
     }
-//
-//    public void addSampleData() {
-//        executor.execute(() -> mDb.termDao().insertAll(SampleTermData.getTerms()));
-//    }
+
+    public void addSampleData() {
+        executor.execute(() -> mDb.termDao().insertAll(SampleTermData.getTerms()));
+    }
 
     //term methods
     private LiveData<List<TermEntity>> getAllTerms() {

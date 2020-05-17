@@ -1,14 +1,11 @@
 package com.example.termplannerapp;
 
 import android.app.DatePickerDialog;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CalendarView;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,13 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.termplannerapp.database.DateConverter;
 import com.example.termplannerapp.viewmodel.CourseEditorViewModel;
 
 import java.util.Calendar;
 import java.util.Objects;
 
-import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -80,7 +75,6 @@ public class CourseEditorActivity extends AppCompatActivity {
             int day = cal.get(Calendar.DAY_OF_MONTH);
             int year = cal.get(Calendar.YEAR);
             DatePickerDialog picker;
-            // date picker dialog
             picker = new DatePickerDialog(CourseEditorActivity.this,
                     (view1, year1, monthOfYear, dayOfMonth) ->
                             mCourseStartDate.setText((monthOfYear + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
@@ -94,7 +88,6 @@ public class CourseEditorActivity extends AppCompatActivity {
             int day = cal.get(Calendar.DAY_OF_MONTH);
             int year = cal.get(Calendar.YEAR);
             DatePickerDialog picker;
-            // date picker dialog
             picker = new DatePickerDialog(CourseEditorActivity.this,
                     (view1, year1, monthOfYear, dayOfMonth) ->
                             mCourseEndDate.setText((monthOfYear + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
@@ -129,7 +122,6 @@ public class CourseEditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_course_editor, menu);
         return true;
     }

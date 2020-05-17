@@ -50,16 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == R.id.action_help) {
@@ -77,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 "\n\nTerms, courses, assessments and mentors can be created in any order, " +
                 "however a term must exist for a course to be added to it and a course " +
                 "must exist for an assessment and or mentors to be added to it." +
-                "\n\nFurthermore, a term cannot be deleted if it has courses assigned to it.");
+                "\n\nFurthermore, a term cannot be deleted if it has courses assigned to it." +
+                "\n\nNotifications can be set for courses start and expected end dates and " +
+                "assessment goal dates in the details view of courses and assessments.");
         builder.setPositiveButton("Ok", (dialog, id) -> {
             dialog.dismiss();
         });
