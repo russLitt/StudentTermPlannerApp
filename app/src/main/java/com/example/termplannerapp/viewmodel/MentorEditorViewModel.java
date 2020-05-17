@@ -25,12 +25,9 @@ public class MentorEditorViewModel extends AndroidViewModel {
     }
 
     public void loadData(final int mentorId) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                MentorEntity mentor = mRepository.getMentorById(mentorId);
-                mLiveMentors.postValue(mentor);
-            }
+        executor.execute(() -> {
+            MentorEntity mentor = mRepository.getMentorById(mentorId);
+            mLiveMentors.postValue(mentor);
         });
     }
 

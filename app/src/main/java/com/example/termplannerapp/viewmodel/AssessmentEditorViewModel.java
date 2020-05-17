@@ -25,16 +25,13 @@ public class AssessmentEditorViewModel extends AndroidViewModel {
     }
 
     public void loadData(final int assessmentId) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                AssessmentEntity assessment = mRepository.getAssessmentById(assessmentId);
-                mLiveAssessments.postValue(assessment);
-            }
+        executor.execute(() -> {
+            AssessmentEntity assessment = mRepository.getAssessmentById(assessmentId);
+            mLiveAssessments.postValue(assessment);
         });
     }
 
-    public void saveAssessment(String assessmentTitle, String assessmentDueDate, String assessmentType, int courseId)  {
+    public void saveAssessment(String assessmentTitle, String assessmentDueDate, String assessmentType, int courseId) {
         AssessmentEntity assessment = mLiveAssessments.getValue();
 
         if (assessment == null) {

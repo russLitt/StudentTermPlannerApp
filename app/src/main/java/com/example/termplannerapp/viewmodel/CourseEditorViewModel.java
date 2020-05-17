@@ -12,7 +12,6 @@ import com.example.termplannerapp.database.AppRepository;
 import com.example.termplannerapp.database.AssessmentEntity;
 import com.example.termplannerapp.database.CourseEntity;
 import com.example.termplannerapp.database.MentorEntity;
-import com.example.termplannerapp.database.TermEntity;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -30,12 +29,9 @@ public class CourseEditorViewModel extends AndroidViewModel {
     }
 
     public void loadData(final int courseId) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                CourseEntity course = mRepository.getCourseById(courseId);
-                mLiveCourses.postValue(course);
-            }
+        executor.execute(() -> {
+            CourseEntity course = mRepository.getCourseById(courseId);
+            mLiveCourses.postValue(course);
         });
     }
 

@@ -29,12 +29,9 @@ public class TermEditorViewModel extends AndroidViewModel {
     }
 
     public void loadData(final int termId) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                TermEntity term = mRepository.getTermById(termId);
-                mLiveTerms.postValue(term);
-            }
+        executor.execute(() -> {
+            TermEntity term = mRepository.getTermById(termId);
+            mLiveTerms.postValue(term);
         });
     }
 
@@ -69,9 +66,5 @@ public class TermEditorViewModel extends AndroidViewModel {
 
     public LiveData<List<CourseEntity>> getUnassignedCourses() {
         return (mRepository.getCourseByTerm(-1));
-    }
-
-    public TermEntity getTermById(int termId) {
-        return mRepository.getTermById(termId);
     }
 }
