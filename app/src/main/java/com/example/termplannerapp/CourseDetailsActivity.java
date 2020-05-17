@@ -98,16 +98,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         mShareNoteBtn.setOnClickListener(view -> sendEmail());
 
-        //        CalendarView picker = findViewById(R.id.course_start_date);
-//        picker.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-//            @Override
-//            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-//                Calendar c = Calendar.getInstance();
-//                c.set(year, month, dayOfMonth, 0, 0);
-//                mCourseStartDate.setText(Long.toString(c.getTimeInMillis()));
-//            }
-//        });
-
         initViewModel();
         initAssessmentRecyclerView();
         initMentorRecyclerView();
@@ -272,6 +262,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.start_notification) {
+
             Toast.makeText(this, "Course start date notification set", Toast.LENGTH_SHORT).show();
 
             //String currentDate = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());

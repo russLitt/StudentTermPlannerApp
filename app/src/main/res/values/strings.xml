@@ -37,5 +37,7 @@
     <string name="new_assessment">New assessment</string>
     <string name="edit_assessment">Edit assessment</string>
     <string name="delete_assessment">Delete assessment</string>
-    <string name="set_goal_date_alert">Set goal date alert</string> />
+    <string name="set_goal_date_alert">Set goal date alert</string>
+    <string name="send_note_email" />
+    />
 </resources>
