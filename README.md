@@ -1,6 +1,7 @@
 # rAndersonC196
 
-Term Planner App for WGU C196
+# Term Planner App for WGU C196
+
 
 A. Create an Android (version 4.0 or higher) mobile application with the following functional requirements:
 
@@ -10,7 +11,7 @@ A. Create an Android (version 4.0 or higher) mobile application with the followi
 
 •  the start date
 
-•  the end date
+•  the end date\n
 
 
 2. Include features that allow the user to add as many terms as needed.
