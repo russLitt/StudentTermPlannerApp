@@ -137,3 +137,31 @@ Note: This can be the implementation of part A.
 •  buttons
 
 
+#### D. Create a storyboard to demonstrate application flow that includes each  of the menus and screens from part B.
+
+
+#### E. Provide screen shots of generating the signed APK to demonstrate that you have created a deployment package.
+
+
+Note: Verify that all the required functions of your application are working by executing the apk file.
+
+
+#### F. Reflect on the creation of your mobile application by doing the following:
+
+1. Explain mobile application development through the context of the architecture involved, including hardware and software capabilities and limitations.
+
+a. Identify the version of the operating system your application was developed under and is compatible with.
+
+2. Describe (suggested length of 1–2 paragraphs) the challenges you faced during the development of the mobile application.
+
+3. Describe (suggested length of 1–2 paragraphs) how you overcame each  challenge discussed in part F2.
+
+4. Describe (suggested length of 1–2 paragraphs) what you would do differently if you did the project again.
+
+5. Describe how emulators are used and the pros and cons of using an emulator vs. using a development device.
+
+
+#### G. Acknowledge sources, using APA-formatted in-text citations and references, for content that is quoted, paraphrased, or summarized.
+
+
+#### H. Demonstrate professional communication in the content and presentation of your submission.
