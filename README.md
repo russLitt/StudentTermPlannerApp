@@ -12,12 +12,13 @@ You will develop a multiple-screen mobile application for WGU students to track 
 
 1. Include the following information for each  term:
 
+'''
 •  the term title (e.g., Term 1, Term 2, Spring Term)
 
 •  the start date
 
 •  the end date 
-
+'''
 
 2. Include features that allow the user to add as many terms as needed.
 
