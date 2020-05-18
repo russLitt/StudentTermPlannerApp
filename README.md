@@ -11,7 +11,7 @@ A. Create an Android (version 4.0 or higher) mobile application with the followi
 
 •  the start date
 
-•  the end date\n
+•  the end date
 
 
 2. Include features that allow the user to add as many terms as needed.
