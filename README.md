@@ -1,9 +1,14 @@
 # rAndersonC196
 
-# Term Planner App for WGU C196
+### Term Planner App for WGU C196
+
+As a competent mobile application developer, your understanding of mobile application structure and design will help you to develop applications to meet customer requirements. The following project to develop a student scheduler/student progress tracking application, will help you to apply these skills in a familiar, real-world scenario. This task will allow you to demonstrate your ability to apply the skills learned in the course.
 
 
-A. Create an Android (version 4.0 or higher) mobile application with the following functional requirements:
+You will develop a multiple-screen mobile application for WGU students to track their terms, courses associated with each term, and assessment(s) associated with each course. The application will allow students to enter, edit, and delete term, course, and assessment data. It should provide summary and detailed views of courses for each term and provide alerts for upcoming performance and objective assessments. This application will use a SQLite database.
+
+
+#### A. Create an Android (version 4.0 or higher) mobile application with the following functional requirements:
 
 1. Include the following information for each  term:
 
@@ -11,7 +16,7 @@ A. Create an Android (version 4.0 or higher) mobile application with the followi
 
 •  the start date
 
-•  the end date
+•  the end date 
 
 
 2. Include features that allow the user to add as many terms as needed.
@@ -71,7 +76,7 @@ b. enter, edit, and delete assessment information
 c. set alerts for goal dates, that will trigger when the application is not running
 
 
-B. Design the following screen layouts, including appropriate GUI (graphical user interface) elements (e.g., navigation, input, and information) for each  layout:
+#### B. Design the following screen layouts, including appropriate GUI (graphical user interface) elements (e.g., navigation, input, and information) for each  layout:
 
 •  home screen
 
@@ -88,7 +93,7 @@ B. Design the following screen layouts, including appropriate GUI (graphical use
 •  detailed assessment view
 
 
-C. Create a scheduler and progress tracking application as part of your mobile application from part A.
+#### C. Create a scheduler and progress tracking application as part of your mobile application from part A.
 
 
 Note: This can be the implementation of part A.
