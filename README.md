@@ -12,14 +12,14 @@ You will develop a multiple-screen mobile application for WGU students to track 
 
 1. Include the following information for each  term:
 
-
+```
 •  the term title (e.g., Term 1, Term 2, Spring Term)
 
 •  the start date
 
 •  the end date 
 
-
+```
 2. Include features that allow the user to add as many terms as needed.
 
 3. Implement validation so that a term cannot be deleted if courses are assigned to it.
@@ -40,7 +40,7 @@ c. display a detailed view of each  term, including the following information:
 ```
 
 5. Include the following details for each  course:
-
+```
 •  the course title
 
 •  the start date
@@ -50,7 +50,7 @@ c. display a detailed view of each  term, including the following information:
 •  the status (in progress, completed, dropped, plan to take)
 
 •  the course mentor names, phone numbers, and e-mail addresses
-
+```
 
 6. Include features that allow the user to do the following for each  course:
 
@@ -78,7 +78,7 @@ c. set alerts for goal dates, that will trigger when the application is not runn
 
 
 #### B. Design the following screen layouts, including appropriate GUI (graphical user interface) elements (e.g., navigation, input, and information) for each  layout:
-
+```
 •  home screen
 
 •  list of terms
@@ -92,7 +92,7 @@ c. set alerts for goal dates, that will trigger when the application is not runn
 •  detailed term view
 
 •  detailed assessment view
-
+```
 
 #### C. Create a scheduler and progress tracking application as part of your mobile application from part A.
 
@@ -101,7 +101,7 @@ Note: This can be the implementation of part A.
 
 
 1. Include the following implementation requirements in the application from part C. Be sure your application is a minimum version 4.0 mobile application:
-
+```
 •  an ArrayList
 
 •  an intent
@@ -123,10 +123,10 @@ Note: This can be the implementation of part A.
 •  notifications or alerts
 
 •  the use of both declarative and programmatic methods to create a user interface
-
+```
 
 2. Include the following interface requirements in the application from part C:
-
+```
 •  the ability to scroll vertically
 
 •  an action bar
@@ -136,7 +136,7 @@ Note: This can be the implementation of part A.
 •  input controls
 
 •  buttons
-
+```
 
 #### D. Create a storyboard to demonstrate application flow that includes each  of the menus and screens from part B.
 
