@@ -75,3 +75,5 @@ Note: This can be the implementation of part A.
 •  two layouts
 •  input controls
 •  buttons
+
+
