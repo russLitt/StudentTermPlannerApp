@@ -82,27 +82,6 @@ public class CourseListActivity extends AppCompatActivity implements CoursesAdap
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_course_list, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_delete_all) {
-            deleteAllCourses();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void deleteAllCourses() {
-        mViewModel.deleteAllCourses();
-    }
-
-    @Override
     public void onCourseSelected(int position, CourseEntity course) {
     }
 }
